@@ -4,7 +4,7 @@ from BaseClasses import Location
 
 
 class FNaFBLocation(Location):
-    game: str = "Five Nights at F***boy's: Final Mix"
+    game: str = "Five Nights at Fuckboys"
 
 
 class FNaFBLocationData(NamedTuple):
@@ -30,9 +30,9 @@ location_table: Dict[str, FNaFBLocationData] = {
     "Supply Closet - Chest":                                              FNaFBLocationData("General",   756783_004),
     "Restrooms - Chest":                                                  FNaFBLocationData("General",   756783_005),
     # Quests
-    "Restrooms - Obtain Bonnie's Head":                                   FNaFBLocationData("Quests",   756783_006),
+    "Restrooms - Turn in Bonnie's Head Voucher":                          FNaFBLocationData("Quests",   756783_006),
     "Backroom - Return Bonnie's Head":                                    FNaFBLocationData("Quests",   756783_007),
-    "Pirate's Cove - Burn the place to the ground":                       FNaFBLocationData("Quests",   756783_008),
+    "Pirate Cove - Burn the place to the ground":                         FNaFBLocationData("Quests",   756783_008),
     # Trade-Ins
     "Dining Area - Trade Alpha Voucher":                                  FNaFBLocationData("Trade",   756783_009),
     "Dining Area - Trade Beta Voucher":                                   FNaFBLocationData("Trade",   756783_010),
@@ -73,13 +73,13 @@ location_table: Dict[str, FNaFBLocationData] = {
     "Interior Walls - Chest 28":                                          FNaFBLocationData("Walls",   756783_044),
     "Interior Walls - Chest 29":                                          FNaFBLocationData("Walls",   756783_045),
     # Bosses
-    "Toy Freddy":                                                         FNaFBLocationData("Boss",   756783_046),
-    "Toy Bonnie":                                                         FNaFBLocationData("Boss",   756783_047),
-    "Toy Chica":                                                          FNaFBLocationData("Boss",   756783_048),
-    "Mangle":                                                             FNaFBLocationData("Boss",   756783_049),
+    "Show Stage - Toy Freddy":                                            FNaFBLocationData("Boss",   756783_046),
+    "Backroom - Toy Bonnie":                                              FNaFBLocationData("Boss",   756783_047),
+    "Restrooms - Toy Chica":                                              FNaFBLocationData("Boss",   756783_048),
+    "Pirate Cove - Mangle":                                               FNaFBLocationData("Boss",   756783_049),
     "The Puppet":                                                         FNaFBLocationData("Boss",   756783_050),
-    "Defeat ???":                                                         FNaFBLocationData("Boss",   756783_051),
-    "Golden Freddy":                                                      FNaFBLocationData("Boss",   756783_052),
+    "Interior Walls - ???":                                               FNaFBLocationData("Walls",   756783_051),
+    "Office - Golden Freddy":                                             FNaFBLocationData("Boss",   756783_052),
     # Shops
     "Backroom BB - Item 1":                                               FNaFBLocationData("BackroomBB",   756783_053),
     "Backroom BB - Item 2":                                               FNaFBLocationData("BackroomBB",   756783_054),
@@ -118,14 +118,21 @@ location_table: Dict[str, FNaFBLocationData] = {
     "East Hall Corner BB - Item 11":                                      FNaFBLocationData("EastHallBB",   756783_087),
     "East Hall Corner BB - Item 12":                                      FNaFBLocationData("EastHallBB",   756783_088),
     # Cameras
-    "Show Stage Camera":                                                  FNaFBLocationData("Cameras",   756783_089),
-    "Dining Room Camera":                                                 FNaFBLocationData("Cameras",   756783_090),
-    "Backroom Camera":                                                    FNaFBLocationData("Cameras",   756783_0756783),
-    "West Hall Camera":                                                   FNaFBLocationData("Cameras",   756783_092),
-    "East Hall Camera":                                                   FNaFBLocationData("Cameras",   756783_093),
-    "Restrooms Camera":                                                   FNaFBLocationData("Cameras",   756783_094),
-    "Pirate Cove Camera":                                                 FNaFBLocationData("Cameras",   756783_095),
-    "Supply Closet Camera":                                               FNaFBLocationData("Cameras",   756783_096),
-    "East Hall Corner Camera":                                            FNaFBLocationData("Cameras",   756783_097),
-    "West Hall Corner Camera":                                            FNaFBLocationData("Cameras",   756783_098)
+    "Show Stage - Camera":                                                  FNaFBLocationData("Cameras",   756783_089),
+    "Dining Room - Camera":                                                 FNaFBLocationData("Cameras",   756783_090),
+    "Backroom - Camera":                                                    FNaFBLocationData("Cameras",   756783_091),
+    "West Hall - Camera":                                                   FNaFBLocationData("Cameras",   756783_092),
+    "East Hall - Camera":                                                   FNaFBLocationData("Cameras",   756783_093),
+    "Restrooms - Camera":                                                   FNaFBLocationData("Cameras",   756783_094),
+    "Pirate Cove - Camera":                                                 FNaFBLocationData("Cameras",   756783_095),
+    "Supply Closet - Camera":                                               FNaFBLocationData("Cameras",   756783_096),
+    "East Hall Corner - Camera":                                            FNaFBLocationData("Cameras",   756783_097),
+    "West Hall Corner - Camera":                                            FNaFBLocationData("Cameras",   756783_098),
+    # Party Hats
+    "Backroom - Alpha Party Hat":                                           FNaFBLocationData("PartyHats",    756783_099),
+    "Restrooms - Beta Party Hat":                                           FNaFBLocationData("PartyHats",    756783_100),
+    "Supply Closet - Gamma Party Hat":                                      FNaFBLocationData("PartyHats",    756783_101),
+    "East Hall Corner - Omega Party Hat":                                   FNaFBLocationData("PartyHats",    756783_102),
+    # Whoops I forgot this one
+    "Kitchen - Chica":                                                      FNaFBLocationData("General",      756783_103)
     }
