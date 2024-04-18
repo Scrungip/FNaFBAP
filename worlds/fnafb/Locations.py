@@ -135,4 +135,4 @@ location_table: Dict[str, FNaFBLocationData] = {
     "East Hall Corner - Omega Party Hat":                                   FNaFBLocationData("PartyHats",    756783_102),
     # Whoops I forgot this one
     "Kitchen - Chica":                                                      FNaFBLocationData("General",      756783_103)
-    }
+}

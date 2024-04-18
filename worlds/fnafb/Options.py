@@ -24,7 +24,7 @@ class InteriorWalls(Toggle):
 #    display_name = "Deathlink"
 
 
-fnafb_options: Dict[str, type(Option)] = {
+fnafb_options: Dict[str, type(Option)] = { 
     "trade_quest": TradeQuest,
     "interior_walls": InteriorWalls
 #    "death_link": DeathLink

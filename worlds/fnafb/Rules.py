@@ -1,4 +1,5 @@
-from BaseClasses import CollectionState, MultiWorld
+from BaseClasses import CollectionState, MultiWorld, Location, Region, Item
+from worlds.AutoWorld import World
 
 def party_count(state: CollectionState, player: int) -> int:
     return state.count("Bonnie", player) \
@@ -69,6 +70,11 @@ def can_fight_postgame(state: CollectionState, player: int) -> bool:
 
 
 def set_rules(multiworld: MultiWorld, player: int):
+    # Interior Walls
+    multiworld.get_entrance("Interior Walls", player).access_rule = \
+        lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
+
+
     # Bosses
     multiworld.get_location("Show Stage - Toy Freddy", player).access_rule = \
         lambda state: can_fight_lategame(state, player)
@@ -89,11 +95,6 @@ def set_rules(multiworld: MultiWorld, player: int):
         lambda state: state.count("Office Key", player) >= 8
     multiworld.get_location("Office - Golden Freddy", player).access_rule = \
         lambda state: can_fight_lategame(state, player)
-    
-
-    # Interior Walls
-    multiworld.get_entrance("Interior Walls", player).access_rule = \
-        lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
     
 
     # Balloon Boy Shops
@@ -140,9 +141,9 @@ def set_rules(multiworld: MultiWorld, player: int):
         lambda state: can_fight_lategame(state, player)
     
     # Stage Chests
-    multiworld.get_location("Show Stage - Chest Left", player).access_rule = \
+    multiworld.get_location("Show Stage - Left Chest", player).access_rule = \
         lambda state: can_fight_midgame(state, player)
-    multiworld.get_location("Show Stage - Chest Right", player).access_rule = \
+    multiworld.get_location("Show Stage - Right Chest", player).access_rule = \
         lambda state: can_fight_lategame(state, player)
     
 
@@ -160,6 +161,7 @@ def set_rules(multiworld: MultiWorld, player: int):
     # Enemy Trade Item Drops
     multiworld.get_location("Dining Area - Trade Beta Voucher", player).access_rule = \
         lambda state: can_fight_earlygame(state, player)
+    
     multiworld.get_location("Dining Area - Trade Gamma Voucher", player).access_rule = \
         lambda state: can_fight_midgame(state, player)
     
@@ -167,13 +169,13 @@ def set_rules(multiworld: MultiWorld, player: int):
         lambda state: can_fight_lategame(state, player)
     
     multiworld.get_location("Dining Area - Trade Hearts Voucher", player).access_rule = \
-        lambda state: can_fight_postgame(state, player)
+        lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
     multiworld.get_location("Dining Area - Trade Spades Voucher", player).access_rule = \
-        lambda state: can_fight_postgame(state, player)
+        lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
     multiworld.get_location("Dining Area - Trade Clubs Voucher", player).access_rule = \
-        lambda state: can_fight_postgame(state, player)
+        lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
     multiworld.get_location("Dining Area - Trade Diamonds Voucher", player).access_rule = \
-        lambda state: can_fight_postgame(state, player)
+        lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
 
     
     # Win Condition
