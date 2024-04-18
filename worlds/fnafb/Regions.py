@@ -32,13 +32,13 @@ def create_regions(multiworld: MultiWorld, player: int):
                                                 "Trade Machine"]),
         
         "Trade Machine":        FNaFBRegionData([],
-                                                None),
+                                                []),
 
         "Pirate Cove":          FNaFBRegionData(["Pirate Cove - Burn the place to the ground",
                                                  "Pirate Cove - Mangle",
                                                  "Pirate Cove - Camera"],
 
-                                                None),
+                                                []),
 
         "Supply Closet":        FNaFBRegionData(["Supply Closet - Chest",
                                                  "Supply Closet - Gamma Party Hat",
@@ -48,7 +48,7 @@ def create_regions(multiworld: MultiWorld, player: int):
 
         "Supply Closet BB":     FNaFBRegionData([],
                                                    
-                                                None),
+                                                []),
 
         "West Hall":            FNaFBRegionData(["West Hall - Camera"],  
                                                  
@@ -70,7 +70,7 @@ def create_regions(multiworld: MultiWorld, player: int):
                                                  "East Hall Corner BB"]),
         "East Hall Corner BB":  FNaFBRegionData([],
                                                    
-                                                None),
+                                                []),
 
         "Restrooms":            FNaFBRegionData(["Restrooms - Chest",
                                                  "Restrooms - Camera",
@@ -83,7 +83,7 @@ def create_regions(multiworld: MultiWorld, player: int):
 
         "Restrooms BB":         FNaFBRegionData([],
                                                    
-                                                None),
+                                                []),
 
         "Backroom":             FNaFBRegionData(["Backroom - Camera",
                                                  "Backroom - Alpha Party Hat",
@@ -95,11 +95,11 @@ def create_regions(multiworld: MultiWorld, player: int):
 
         "Backroom BB":          FNaFBRegionData([],
                                                    
-                                                None),
+                                                []),
 
         "Interior Walls":       FNaFBRegionData(["Interior Walls - ???"],
                                                    
-                                                None),
+                                                []),
 
         "Office":               FNaFBRegionData(["Office - Golden Freddy"],
                                                    
@@ -122,6 +122,22 @@ def create_regions(multiworld: MultiWorld, player: int):
 
     for name, data in regions.items():
         multiworld.regions.append(create_region(multiworld, player, name, data))
+
+    multiworld.get_entrance("Show Stage", player).connect(multiworld.get_region("Show Stage", player))
+    multiworld.get_entrance("Trade Machine", player).connect(multiworld.get_region("Trade Machine", player))
+    multiworld.get_entrance("Backroom", player).connect(multiworld.get_region("Backroom", player))
+    multiworld.get_entrance("Backroom BB", player).connect(multiworld.get_region("Backroom BB", player))
+    multiworld.get_entrance("Restrooms", player).connect(multiworld.get_region("Restrooms", player))
+    multiworld.get_entrance("Restrooms BB", player).connect(multiworld.get_region("Restrooms BB", player))
+    multiworld.get_entrance("Pirate Cove", player).connect(multiworld.get_region("Pirate Cove", player))
+    multiworld.get_entrance("West Hall", player).connect(multiworld.get_region("West Hall", player))
+    multiworld.get_entrance("West Hall Corner", player).connect(multiworld.get_region("West Hall Corner", player))
+    multiworld.get_entrance("East Hall", player).connect(multiworld.get_region("East Hall", player))
+    multiworld.get_entrance("East Hall Corner", player).connect(multiworld.get_region("East Hall Corner", player))
+    multiworld.get_entrance("Supply Closet", player).connect(multiworld.get_region("Supply Closet", player))
+    multiworld.get_entrance("Supply Closet BB", player).connect(multiworld.get_region("Supply Closet BB", player))
+    multiworld.get_entrance("Interior Walls", player).connect(multiworld.get_region("Interior Walls", player))
+    multiworld.get_entrance("Office", player).connect(multiworld.get_region("Office", player))
 
 
 def create_region(multiworld: MultiWorld, player: int, name: str, data: FNaFBRegionData):
