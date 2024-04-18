@@ -134,6 +134,7 @@ def create_regions(multiworld: MultiWorld, player: int):
     multiworld.get_entrance("West Hall Corner", player).connect(multiworld.get_region("West Hall Corner", player))
     multiworld.get_entrance("East Hall", player).connect(multiworld.get_region("East Hall", player))
     multiworld.get_entrance("East Hall Corner", player).connect(multiworld.get_region("East Hall Corner", player))
+    multiworld.get_entrance("East Hall Corner BB", player).connect(multiworld.get_region("East Hall Corner BB", player))
     multiworld.get_entrance("Supply Closet", player).connect(multiworld.get_region("Supply Closet", player))
     multiworld.get_entrance("Supply Closet BB", player).connect(multiworld.get_region("Supply Closet BB", player))
     multiworld.get_entrance("Interior Walls", player).connect(multiworld.get_region("Interior Walls", player))
