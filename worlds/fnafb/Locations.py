@@ -4,7 +4,7 @@ from BaseClasses import Location
 
 
 class FNaFBLocation(Location):
-    game: str = "Five Nights at Fuckboys"
+    game: str = "Five Nights at F***boy's"
 
 
 class FNaFBLocationData(NamedTuple):
