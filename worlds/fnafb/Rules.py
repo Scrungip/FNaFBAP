@@ -36,8 +36,8 @@ def skills(state: CollectionState, player: int) -> int:
 def total_defense(state: CollectionState, player: int) -> int:
     return (state.count("Progressive Body Endoskeletons", player) * 4 \
     + state.count("Progressive Head Endoskeletons", player) * 4 \
-    + state.count("Progressive Pizza Shields") \
-    + state.count("Progressive Caffeine Sodas")) \
+    + state.count("Progressive Pizza Shields", player) \
+    + state.count("Progressive Caffeine Sodas", player)) \
     * party_count(state, player)
 
 
@@ -177,7 +177,7 @@ def set_rules(multiworld: MultiWorld, player: int):
     connect_regions(multiworld, player, "West Hall", "West Hall Corner")
     connect_regions(multiworld, player, "West Hall Corner", "Office")
     connect_regions(multiworld, player, "East Hall", "East Hall Corner")
-    connect_regions(multiworld, player, "East Hall Corner", "Office", lambda state: state.count("Office Key", player) >= 8)
+    connect_regions(multiworld, player, "East Hall Corner", "Office", lambda state: state.count("Office Key", player) >= 4)
 
     
     # Win Condition

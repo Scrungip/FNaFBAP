@@ -44,6 +44,14 @@ class FNaFBWorld(World):
     def create_items(self):
         item_pool: List[FNaFBItem] = []
         total_locations = len(self.multiworld.get_unfilled_locations(self.player))
+        for name, data in item_table.items():
+            quantity = data.max_quantity
+
+            # Ignore filler, it will be added in a later stage.
+            if data.category == "Filler":
+                continue
+
+            item_pool += [self.create_item(name) for _ in range(0, quantity)]
         while len(item_pool) < total_locations:
             item_pool.append(self.create_item(self.get_filler_item_name()))
 
@@ -56,6 +64,8 @@ class FNaFBWorld(World):
 
     def create_item(self, name: str) -> FNaFBItem:
         data = item_table[name]
+        if (name == "Reveal Interior Walls") and not self.get_setting("trade_quest"):
+            item.classification = ItemClassification.filler
         return FNaFBItem(name, data.classification, data.code, self.player)
 
     def create_regions(self):
