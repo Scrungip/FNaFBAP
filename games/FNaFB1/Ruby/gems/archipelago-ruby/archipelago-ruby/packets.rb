@@ -1,6 +1,3 @@
-require_relative 'objects'
-require 'json'
-
 module Archipelago
     module Packets
         # ----------------------------------
@@ -144,7 +141,7 @@ module Archipelago
           
           
         class DataPackage
-            attr_reader :cmd, :datapackage
+            attr_reader :cmd, :data
 
             def initialize(data)
                 parse(data)
