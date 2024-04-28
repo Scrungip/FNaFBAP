@@ -25,7 +25,7 @@ class FNaFBWorld(World):
     """
     Five Nights at F***boy's is an RPG game that contains a lot of crude humor from the mid 2010's, join Freddy F***boy as he begins his night of debauchery.
     """
-    game = "Five Nights at F***boy's"
+    game = "Five Nights at Fuckboy's"
     option_definitions = fnafb_options
     topology_present = True
     data_version = 4

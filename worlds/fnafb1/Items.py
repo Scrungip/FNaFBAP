@@ -4,7 +4,7 @@ from BaseClasses import Item, ItemClassification
 
 
 class FNaFBItem(Item):
-    game: str = "Five Nights at F***boy's"
+    game: str = "Five Nights at Fuckboy's"
 
 
 class FNaFBItemData(NamedTuple):
