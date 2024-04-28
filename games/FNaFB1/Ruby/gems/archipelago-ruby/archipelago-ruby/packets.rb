@@ -99,19 +99,8 @@ module Archipelago
         end
 
         class RoomUpdate
-            attr_reader :cmd, :players, :checked_locations, :missing_locations
-          
-            def initialize(data)
-                parse(data)
-            end
-          
-            def parse(data)
-                json_data = JSON.parse(data)[0]
-                @cmd = json_data['cmd']
-                @players = json_data['players'] # Should be NetworkPlayer object.
-                @checked_locations = json_data['checked_locations']
-                @missing_locations = json_data['missing_locations']
-            end
+            # NOTE: Class should never be initialized. Reserved for future use if need be.
+            # Call data.import_game_data(RoomUpdate) instead, with RoomUpdate being a hash.
         end
 
         class PrintJSON
@@ -290,7 +279,7 @@ module Archipelago
         class LocationScouts
             attr_accessor :locations, :create_as_hint
 
-            def initialize(locations, create_as_hint)
+            def initialize(create_as_hint, locations)
             @cmd = 'LocationScouts'
             @locations = locations # Should be list of ints
             @create_as_hint = create_as_hint

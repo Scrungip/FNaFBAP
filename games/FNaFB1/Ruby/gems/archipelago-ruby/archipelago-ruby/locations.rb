@@ -2,12 +2,13 @@ module Archipelago
 
     class Client
 
-        class Locations
+        class LocationsManager
 
-            def initialize(data)
-                @data = data
+            def initialize(client)
+                @client = client
                 @checked_locations = []
                 @missing_locations = []
+                @datapackages = {}
                 @check_index = 0
             end
 
@@ -24,41 +25,48 @@ module Archipelago
                 @missing_locations = location_list
             end
 
+            def import_datapackages(datapackages)
+                @datapackages = datapackages if datapackages.is_a?(Hash)
+            end
+
             def check(*id_arguments)
-                if @client_connect_status == ConnectStatus::CONNECTED
+                if @client.client_connect_status == ConnectStatus::CONNECTED
                     id_arguments.each do |id|
                         @checked_locations << id if id.is_a?(Integer)
                     end
 
                     check_packet = Packets::LocationChecks.new(@checked_locations)
-                    @client_socket.send(check_packet.to_json)
+                    @client.client_socket.send(check_packet.to_json)
                 else
                     puts "You need to have an active Archipelago connection to use this!"
                 end
             end
 
             def scout(hint_mode, *id_arguments)
-                if @client_connect_status == ConnectStatus::CONNECTED
+                if @client.client_connect_status == ConnectStatus::CONNECTED
                     scout_list = []
                     id_arguments.each do |id|
                         scout_list << id if id.is_a?(Integer)
                     end
 
                     scout_packet = Packets::LocationScouts.new(hint_mode, scout_list)
-                    @client_socket.send(scout_packet.to_json)
+                    @client.client_socket.send(scout_packet.to_json)
                 else
                     puts "You need to have an active Archipelago connection to use this!"
                 end
             end
 
             def name(game_name, id)
-                return @data.location_name_from_id(game_name, id)
+                @datapackages[game]["location_name_to_id"].each do |location, value|
+                    return location if value == id
+                end
+                return "Unknown Location"
             end
 
             def auto_release
-                if @client_connect_status == ConnectStatus::CONNECTED
+                if @client.client_connect_status == ConnectStatus::CONNECTED
                     check_packet = Packets::LocationChecks.new(@missing_locations)
-                    @client_socket.send(check_packet.to_json)
+                    @client.client_socket.send(check_packet.to_json)
                 else
                     puts "You need to have an active Archipelago connection to use this!"
                 end

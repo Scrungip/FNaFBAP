@@ -9,13 +9,13 @@ require 'json'
 module Archipelago
 
     class Client
-        attr_reader :locations, :data
+        attr_reader :locations, :data, :client_connect_status, :client_socket
 
         def initialize()
             @client_version = Objects::Version.new(0, 4, 6)
             @client_connect_status = ConnectStatus::DISCONNECTED
-            @data = Data.new()
-            @locations = Locations.new(@data)
+            @data = DataManager.new()
+            @locations = LocationsManager.new(self)
             @listeners = Hash.new { |hash, key| hash[key] = []}
 
             add_default_listeners()
@@ -97,10 +97,10 @@ module Archipelago
         def add_default_listeners
 
             add_listener("RoomInfo") do |msg|
-                @data.import_roominfo(msg)
+                @data.import_game_data(msg)
 
                 password = nil
-                if @data.roominfo.password
+                if @data.game_data["password"]
                     puts "Password:"
                     password = STDIN.gets.strip
                 end
@@ -120,17 +120,23 @@ module Archipelago
 
             add_listener("Connected") do |msg|
                 @client_connect_status = ConnectStatus::CONNECTED
-                @data.import_connected(msg)
+                @data.import_game_data(msg)
                 puts "Connection successful!"
 
-                @locations.import_checked_locations(@data.connected.checked_locations)
-                @locations.import_missing_locations(@data.connected.missing_locations)
-                datapackages_to_update = @data.check_datapackages
+                @locations.import_checked_locations(@data.game_data["checked_locations"])
+                @locations.import_missing_locations(@data.game_data["missing_locations"])
 
+                datapackages_to_update = @data.import_datapackages
                 if !datapackages_to_update.empty?
                     getDataPackagePacket = Packets::GetDataPackage.new(datapackages_to_update)
                     @client_socket.send(getDataPackagePacket.to_json)
                 end
+
+                @locations.import_datapackages(@data.datapackages)
+            end
+
+            add_listener("RoomUpdate") do |msg|
+                @data.import_game_data(msg)
             end
 
             add_listener("ConnectionRefused") do |msg|
@@ -139,12 +145,12 @@ module Archipelago
             end
 
             add_listener("PrintJSON") do |msg|
-                printJSON_packet = Packets::PrintJSON.new(msg)
-                puts printJSON_packet.data[0]["text"]
+                puts msg
             end
 
             add_listener("DataPackage") do |msg|
                 @data.update_datapackages(msg)
+                @locations.import_datapackages(@data.datapackages)
             end
         end
     end

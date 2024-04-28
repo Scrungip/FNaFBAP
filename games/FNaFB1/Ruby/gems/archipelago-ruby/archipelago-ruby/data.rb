@@ -5,37 +5,40 @@ module Archipelago
 
     class Client
 
-        class Data
-            attr_reader :roominfo, :connected
+        class DataManager
+            attr_reader :game_data, :datapackages
+
+            # The DataManager handles data about the current game state. It also imports DataPackages from your local filesystem (or writes should they not exist.)
 
             def initialize
                 @data_folder = setup_data_folder()
-                @roominfo = {}
-                @connected = {}
-                @checksum_hash = {}
-                @datapackage_hash = {}
+                @game_data = {}
+                @datapackages = {}
             end
 
-            def import_roominfo(roominfo)
-                @roominfo = Packets::RoomInfo.new(roominfo)
-                @checksum_hash = @roominfo.datapackage_checksums
+            def import_game_data(game_data)
+                game_data = JSON.parse(game_data)[0]
+                if !["RoomInfo", "Connected", "RoomUpdate"].include?(game_data["cmd"])
+                    puts "[DataManager] Called import_game_data but arg provided is a #{datapackage["cmd"]}. Expecting RoomInfo, Connected or RoomUpdate."
+                    return
+                end
+                game_data.each do |key, value|
+                    @game_data[key] = value
+                end
+                @game_data["cmd"] = "Internal Game Data"
             end
 
-            def import_connected(connected)
-                @connected = Packets::Connected.new(connected)
-            end
-
-            def check_datapackages
+            def import_datapackages
                 datapackages_to_update = []
 
-                @checksum_hash.each do |game, checksum|
+                @game_data["datapackage_checksums"].each do |game, checksum|
                     if !Dir.exist?(File.join(@data_folder, game))
                         Dir.mkdir(File.join(@data_folder, game))
                         datapackages_to_update << game
                     elsif !File.exist?(File.join(@data_folder, game, "#{checksum}.json"))
                         datapackages_to_update << game
                     else
-                        @datapackage_hash[game] = JSON.parse(File.read(File.join(@data_folder, game, "#{checksum}.json")).sub("\xEF\xBB\xBF".force_encoding("UTF-8"), ''))
+                        @datapackages[game] = JSON.parse(File.read(File.join(@data_folder, game, "#{checksum}.json")).sub("\xEF\xBB\xBF".force_encoding("UTF-8"), ''))
                     end
                 end
 
@@ -43,29 +46,15 @@ module Archipelago
             end
 
             def update_datapackages(datapackage)
-                dataPackagePacket = Packets::DataPackage.new(datapackage)
-
-                dataPackagePacket.data["games"].each do |game, datapak|
+                datapackage = JSON.parse(datapackage)[0]
+                datapackage["data"]["games"].each do |game, datapak|
                     json_filepath = File.join(@data_folder, game, "#{datapak["checksum"]}.json")
                     File.delete(json_filepath) if File.exist?(json_filepath)
                     File.open(json_filepath, 'w') do |file|
                         file.puts datapak.to_json
-                        @datapackage_hash[game] = datapak
+                        @datapackages[game] = datapak
                     end
                 end
-            end
-
-            def location_name_from_id(game, id)
-                location_name_to_id = @datapackage_hash[game]["location_name_to_id"]
-
-                location_name_to_id.each do |location, value|
-                    return location if value == id
-                end
-                return "Unknown Location"
-            end
-
-            def games
-                return @roominfo.games
             end
 
             # TODO: The location_names_from_group function. I cannot find any examples of games with groups.
