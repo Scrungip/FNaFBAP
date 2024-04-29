@@ -3,19 +3,23 @@ require_relative 'constants'
 require_relative 'objects'
 require_relative 'locations'
 require_relative 'data'
+require_relative 'items'
+require_relative 'players'
 require 'websocket-client-simple'
 require 'json'
 
 module Archipelago
 
     class Client
-        attr_reader :locations, :data, :client_connect_status, :client_socket
+        attr_reader :data, :locations, :items, :players, :client_connect_status, :client_socket
 
         def initialize()
             @client_version = Objects::Version.new(0, 4, 6)
             @client_connect_status = ConnectStatus::DISCONNECTED
             @data = DataManager.new()
             @locations = LocationsManager.new(self)
+            @items = ItemsManager.new(self)
+            @players = PlayersManager.new(self)
             @listeners = Hash.new { |hash, key| hash[key] = []}
 
             add_default_listeners()
@@ -25,7 +29,7 @@ module Archipelago
             return if @client_connect_status != ConnectStatus::DISCONNECTED
             Thread.new do
                 @connect_info = connect_info
-                url = "wss://#{@connect_info["hostname"]}:#{@connect_info["port"]}"
+                url = "ws://#{@connect_info["hostname"]}:#{@connect_info["port"]}"
                 @client_socket = WebSocket::Client::Simple.connect(url) # Assign to instance variable
             
                 @client_socket.on :open do
@@ -68,7 +72,7 @@ module Archipelago
                 say_packet = Packets::Say.new(text)
                 @client_socket.send(say_packet.to_json)
             else
-                puts "You need to have an active Archipelago connection to use this!"
+                puts "[Client say] You need to have an active Archipelago connection to use this!"
             end
         end
 
@@ -77,7 +81,7 @@ module Archipelago
                 status_packet = Packets::StatusUpdate.new(status)
                 @client_socket.send(status_packet.to_json)
             else
-                puts "You need to have an active Archipelago connection to use this!"
+                puts "[Client update_status] You need to have an active Archipelago connection to use this!"
             end
         end
 
@@ -85,8 +89,10 @@ module Archipelago
 
         def notify_listeners(msg)
             if valid_json?(msg.data)
-                packetString = JSON.parse(msg.data)[0]
-                @listeners[packetString["cmd"]].each { |listener| listener.call(msg.data)}
+                datapackets = JSON.parse(msg.data)
+                datapackets.each do |packet|
+                    @listeners[packet["cmd"]].each { |listener| listener.call(packet)}
+                end
             elsif msg.type == :ping
                 @client_socket.send(msg.data, type: :pong)
             else
@@ -119,9 +125,7 @@ module Archipelago
             end
 
             add_listener("Connected") do |msg|
-                @client_connect_status = ConnectStatus::CONNECTED
                 @data.import_game_data(msg)
-                puts "Connection successful!"
 
                 @locations.import_checked_locations(@data.game_data["checked_locations"])
                 @locations.import_missing_locations(@data.game_data["missing_locations"])
@@ -133,15 +137,23 @@ module Archipelago
                 end
 
                 @locations.import_datapackages(@data.datapackages)
+                @items.import_datapackages(@data.datapackages)
+                @client_connect_status = ConnectStatus::CONNECTED
+                puts "Connection successful!"
             end
 
             add_listener("RoomUpdate") do |msg|
                 @data.import_game_data(msg)
             end
 
+            add_listener("ReceivedItems") do |msg|
+                msg["items"].each do |item|
+                    @items.received << item
+                end
+            end
+
             add_listener("ConnectionRefused") do |msg|
-                connectionrefused_packet = Packets::ConnectionRefused.new(msg)
-                puts connectionrefused_packet.errors
+                puts connectionrefused_packet["errors"]
             end
 
             add_listener("PrintJSON") do |msg|
@@ -151,6 +163,7 @@ module Archipelago
             add_listener("DataPackage") do |msg|
                 @data.update_datapackages(msg)
                 @locations.import_datapackages(@data.datapackages)
+                @items.import_datapackages(@data.datapackages)
             end
         end
     end

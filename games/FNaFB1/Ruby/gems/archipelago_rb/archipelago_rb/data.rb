@@ -17,9 +17,8 @@ module Archipelago
             end
 
             def import_game_data(game_data)
-                game_data = JSON.parse(game_data)[0]
                 if !["RoomInfo", "Connected", "RoomUpdate"].include?(game_data["cmd"])
-                    puts "[DataManager] Called import_game_data but arg provided is a #{datapackage["cmd"]}. Expecting RoomInfo, Connected or RoomUpdate."
+                    puts "[DataManager import_game_data] Attempted to import #{datapackage["cmd"]}. Expecting RoomInfo, Connected or RoomUpdate."
                     return
                 end
                 game_data.each do |key, value|
@@ -46,7 +45,6 @@ module Archipelago
             end
 
             def update_datapackages(datapackage)
-                datapackage = JSON.parse(datapackage)[0]
                 datapackage["data"]["games"].each do |game, datapak|
                     json_filepath = File.join(@data_folder, game, "#{datapak["checksum"]}.json")
                     File.delete(json_filepath) if File.exist?(json_filepath)
@@ -55,6 +53,10 @@ module Archipelago
                         @datapackages[game] = datapak
                     end
                 end
+            end
+
+            def method_missing(method_name)
+                return @game_data[method_name.to_s]
             end
 
             # TODO: The location_names_from_group function. I cannot find any examples of games with groups.

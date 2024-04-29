@@ -6,15 +6,9 @@ module Archipelago
 
             def initialize(client)
                 @client = client
+                @datapackages = {}
                 @checked_locations = []
                 @missing_locations = []
-                @datapackages = {}
-                @check_index = 0
-            end
-
-            def import_check_index(check_index)
-                @check_index = check_index if check_index.is_a?(Integer)
-                puts "Check index must be an integer!" unless check_index.is_a?(Integer)
             end
 
             def import_checked_locations(location_list)
@@ -38,7 +32,7 @@ module Archipelago
                     check_packet = Packets::LocationChecks.new(@checked_locations)
                     @client.client_socket.send(check_packet.to_json)
                 else
-                    puts "You need to have an active Archipelago connection to use this!"
+                    puts "[LocationsManager check] You need to have an active Archipelago connection to use this!"
                 end
             end
 
@@ -52,15 +46,21 @@ module Archipelago
                     scout_packet = Packets::LocationScouts.new(hint_mode, scout_list)
                     @client.client_socket.send(scout_packet.to_json)
                 else
-                    puts "You need to have an active Archipelago connection to use this!"
+                    puts "[LocationsManager scout] You need to have an active Archipelago connection to use this!"
                 end
             end
 
             def name(game_name, id)
-                @datapackages[game]["location_name_to_id"].each do |location, value|
+                @datapackages[game_name]["location_name_to_id"].each do |location, value|
                     return location if value == id
                 end
                 return "Unknown Location"
+            end
+
+            def group(game_name, group_name)
+                return @datapackages[game_name]["location_name_groups"][group_name]
+            rescue
+                return "Unknown Location Group"
             end
 
             def auto_release
@@ -68,7 +68,7 @@ module Archipelago
                     check_packet = Packets::LocationChecks.new(@missing_locations)
                     @client.client_socket.send(check_packet.to_json)
                 else
-                    puts "You need to have an active Archipelago connection to use this!"
+                    puts "[LocationsManager auto_release] You need to have an active Archipelago connection to use this!"
                 end
             end
         end
