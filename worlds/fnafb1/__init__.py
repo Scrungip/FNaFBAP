@@ -47,6 +47,24 @@ class FNaFBWorld(World):
         for name, data in item_table.items():
             quantity = data.max_quantity
 
+            # Ignore Interior Walls if it's not enabled.
+            if name == "Reveal Interior Walls" and not self.get_setting("interior_walls"):
+                continue
+
+            # Remove one of each weapon type if Interior Walls is not active
+            if name == "Progressive Microphone" and not self.get_setting("interior_walls"):
+                quantity = 5
+                continue
+            if name == "Progressive Guitar" and not self.get_setting("interior_walls"):
+                quantity = 5
+                continue
+            if name == "Progressive Cupcakes" and not self.get_setting("interior_walls"):
+                quantity = 5
+                continue
+            if name == "Progressive Hook" and not self.get_setting("interior_walls"):
+                quantity = 5
+                continue
+
             # Ignore filler, it will be added in a later stage.
             if data.category == "Filler":
                 continue
@@ -64,8 +82,6 @@ class FNaFBWorld(World):
 
     def create_item(self, name: str) -> FNaFBItem:
         data = item_table[name]
-        if (name == "Reveal Interior Walls") and not self.get_setting("trade_quest"):
-            item.classification = ItemClassification.filler
         return FNaFBItem(name, data.classification, data.code, self.player)
 
     def create_regions(self):
@@ -73,51 +89,3 @@ class FNaFBWorld(World):
 
     def set_rules(self):
         set_rules(self.multiworld, self.player)
-
-    def generate_early(self):
-        if not self.get_setting("trade_quest"):
-            self.multiworld.get_location("Dining Area - Trade Alpha Voucher", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Dining Area - Trade Beta Voucher", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Dining Area - Trade Gamma Voucher", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Dining Area - Trade Omega Voucher", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Dining Area - Trade Spades Voucher", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Dining Area - Trade Hearts Voucher", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Dining Area - Trade Diamonds Voucher", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Dining Area - Trade Clubs Voucher", self.player).progress_type = LocationProgressType.EXCLUDED
-        if not self.get_setting("interior_walls"):
-            self.multiworld.get_location("Interior Walls - Chest 1", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 2", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 3", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 4", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 5", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 6", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 7", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 8", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 9", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 10", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 11", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 12", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 13", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 14", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 15", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 16", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 17", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 18", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 19", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 20", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 21", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 22", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 23", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 24", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 25", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 26", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 27", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 28", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - Chest 29", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Interior Walls - ???", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Dining Area - Trade Spades Voucher", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Dining Area - Trade Hearts Voucher", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Dining Area - Trade Diamonds Voucher", self.player).progress_type = LocationProgressType.EXCLUDED
-            self.multiworld.get_location("Dining Area - Trade Clubs Voucher", self.player).progress_type = LocationProgressType.EXCLUDED
-
-

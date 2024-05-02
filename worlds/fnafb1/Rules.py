@@ -16,7 +16,7 @@ def attack_power(state: CollectionState, player: int) -> int:
 
 # This one's a bit of a mess, might have to rethink it at a later time
 def skills(state: CollectionState, player: int) -> int:
-    return (state.count("Tophat Toss", player) \
+    return state.count("Tophat Toss", player) \
     + state.count("Lead Stinger", player) \
     + state.count("Toreador March", player) \
     + (state.count("Bunny Hop", player) \
@@ -26,11 +26,9 @@ def skills(state: CollectionState, player: int) -> int:
     + (state.count("Pizza Pass", player) \
     + state.count("Caffeine Revival", player)) \
     * state.count("Chica", player) \
-    + state.count("Rushdown", player)) \
-    * (state.count("Plank Walk", player) \
-    + (1 * state.count("Plank Walk", player))) \
+    + (state.count("Rushdown", player) \
+    + state.count("Plank Walk", player)) \
     * state.count("Foxy", player)
-    # Plank Walk is arguably the most important of the bunch so I want to make sure logic accounts for it, I guess (idk what the fuck im doing)
 
 # Endoskeletons provide more defense so we should treat it as such
 def total_defense(state: CollectionState, player: int) -> int:
@@ -45,28 +43,32 @@ def can_fight_earlygame(state: CollectionState, player: int) -> bool:
     return attack_power(state, player) >= 8 \
     and total_defense(state, player) >= 10 \
     and party_count(state, player) >= 2 \
-    and skills(state, player) >= 3
+    and skills(state, player) >= 1
 
 
 def can_fight_midgame(state: CollectionState, player: int) -> bool:
     return attack_power(state, player) >= 13 \
     and total_defense(state, player) >= 22 \
     and party_count(state, player) >= 3 \
-    and skills(state, player) >= 4
+    and skills(state, player) >= 3
 
 
 def can_fight_lategame(state: CollectionState, player: int) -> bool:
     return attack_power(state, player) >= 18 \
-    and total_defense(state, player) >= 36 \
+    and total_defense(state, player) >= 30 \
     and party_count(state, player) >= 4 \
-    and skills(state, player) >= 6
+    and skills(state, player) >= 6 \
+    and state.count("Plank Walk", player) >= 1 \
+    and state.count("Foxy", player) >= 1
 
 
 def can_fight_postgame(state: CollectionState, player: int) -> bool:
-    return attack_power(state, player) >= 24 \
-    and total_defense(state, player) >= 40 \
+    return attack_power(state, player) >= 21 \
+    and total_defense(state, player) >= 36 \
     and party_count(state, player) >= 4 \
-    and skills(state, player) >= 10
+    and skills(state, player) >= 10 \
+    and state.count("Plank Walk", player) >= 1 \
+    and state.count("Foxy", player) >= 1
 
 
 def set_rules(multiworld: MultiWorld, player: int):
@@ -168,8 +170,6 @@ def set_rules(multiworld: MultiWorld, player: int):
     connect_regions(multiworld, player, "Show Stage", "Pirate Cove")
     connect_regions(multiworld, player, "Show Stage", "West Hall")
     connect_regions(multiworld, player, "Show Stage", "East Hall")
-    connect_regions(multiworld, player, "Show Stage", "Trade Machine")
-    connect_regions(multiworld, player, "Show Stage", "Interior Walls", lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player))
     connect_regions(multiworld, player, "Backroom", "Backroom BB", lambda state: state.has("Backroom BB", player))
     connect_regions(multiworld, player, "Restrooms", "Restrooms BB", lambda state: state.can_reach("Restrooms - Beta Party Hat", 'Location', player) and state.has("Restrooms BB", player))
     connect_regions(multiworld, player, "West Hall", "Supply Closet")

@@ -22,6 +22,8 @@ def create_regions(multiworld: MultiWorld, player: int):
         
         "Trade Machine":        FNaFBRegionData([]),
 
+        "Trade Machine IW":     FNaFBRegionData([]),
+
         "Pirate Cove":          FNaFBRegionData(["Pirate Cove - Burn the place to the ground",
                                                  "Pirate Cove - Mangle",
                                                  "Pirate Cove - Camera"]),
@@ -78,6 +80,8 @@ def create_regions(multiworld: MultiWorld, player: int):
         regions["Interior Walls"].locations.append(walls)
     for voucher in get_locations_by_category("Trade").keys():
         regions["Trade Machine"].locations.append(voucher)
+    for voucheriw in get_locations_by_category("TradeIW").keys():
+        regions["Trade Machine IW"].locations.append(voucheriw)    
 
     for name, data in regions.items():
         multiworld.regions.append(create_region(multiworld, player, name, data))
