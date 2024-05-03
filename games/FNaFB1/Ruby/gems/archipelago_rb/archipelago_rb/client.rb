@@ -5,37 +5,46 @@ require_relative 'locations'
 require_relative 'data'
 require_relative 'items'
 require_relative 'players'
+require_relative 'hints'
 require 'websocket-client-simple'
 require 'json'
 
 module Archipelago
 
     class Client
-        attr_reader :data, :locations, :items, :players, :client_connect_status, :client_socket
+        attr_accessor :connect_info
+        attr_reader :data, :locations, :items, :players, :hints, :client_connect_status, :client_socket
 
         def initialize()
+            @connect_info = {}
+            @terminate = false
             @client_version = Objects::Version.new(0, 4, 6)
             @client_connect_status = ConnectStatus::DISCONNECTED
-            @data = DataManager.new()
-            @locations = LocationsManager.new(self)
-            @items = ItemsManager.new(self)
-            @players = PlayersManager.new(self)
+            @data = Data.new()
+            @locations = Locations.new(self)
+            @items = Items.new(self)
+            @players = Players.new(self)
+            @hints = Hints.new(self)
             @listeners = Hash.new { |hash, key| hash[key] = []}
 
             add_default_listeners()
         end
 
-        def connect(connect_info)
+        def connect
             return if @client_connect_status != ConnectStatus::DISCONNECTED
+            @terminate = false
             Thread.new do
-                @connect_info = connect_info
-                url = "ws://#{@connect_info["hostname"]}:#{@connect_info["port"]}"
-                @client_socket = WebSocket::Client::Simple.connect(url) # Assign to instance variable
+                begin
+                    url = "wss://#{@connect_info["hostname"]}:#{@connect_info["port"]}"
+                    @client_socket = WebSocket::Client::Simple.connect(url)
+                rescue
+                    url = "ws://#{@connect_info["hostname"]}:#{@connect_info["port"]}"
+                    @client_socket = WebSocket::Client::Simple.connect(url)
+                end
             
                 @client_socket.on :open do
                 end
-            
-                # Get a reference to the instance method
+
                 packet_handler = method(:notify_listeners)
             
                 @client_socket.on :message do |msg|
@@ -50,14 +59,17 @@ module Archipelago
                 end
             
                 loop do
-                    STDIN.gets.strip
+                    sleep 1
+                    break if @terminate
                 end
             end
+            
         end
 
-        def disconnect()
+        def disconnect
             if @client_socket
                 @client_socket.close
+                @terminate = true
                 @client_connect_status = ConnectStatus::DISCONNECTED
                 puts "Client disconnected."
             end
