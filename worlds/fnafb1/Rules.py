@@ -1,5 +1,6 @@
 from BaseClasses import CollectionState, MultiWorld, Location, Region, Item
 from .Regions import connect_regions
+from Options import Toggle
 
 def party_count(state: CollectionState, player: int) -> int:
     return state.count("Bonnie", player) \
@@ -145,23 +146,29 @@ def set_rules(multiworld: MultiWorld, player: int):
     
 
     # Enemy Trade Item Drops
-    multiworld.get_location("Dining Area - Trade Beta Voucher", player).access_rule = \
-        lambda state: can_fight_earlygame(state, player)
+    if multiworld.trade_quest[player] == Toggle.option_true:
+        multiworld.get_location("Dining Area - Trade Beta Voucher", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player)
     
-    multiworld.get_location("Dining Area - Trade Gamma Voucher", player).access_rule = \
-        lambda state: can_fight_midgame(state, player)
+    if multiworld.trade_quest[player] == Toggle.option_true:
+        multiworld.get_location("Dining Area - Trade Gamma Voucher", player).access_rule = \
+            lambda state: can_fight_midgame(state, player)
+    if multiworld.trade_quest[player] == Toggle.option_true:
+        multiworld.get_location("Dining Area - Trade Omega Voucher", player).access_rule = \
+            lambda state: can_fight_lategame(state, player)
     
-    multiworld.get_location("Dining Area - Trade Omega Voucher", player).access_rule = \
-        lambda state: can_fight_lategame(state, player)
-    
-    multiworld.get_location("Dining Area - Trade Hearts Voucher", player).access_rule = \
-        lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
-    multiworld.get_location("Dining Area - Trade Spades Voucher", player).access_rule = \
-        lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
-    multiworld.get_location("Dining Area - Trade Clubs Voucher", player).access_rule = \
-        lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
-    multiworld.get_location("Dining Area - Trade Diamonds Voucher", player).access_rule = \
-        lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
+    if multiworld.trade_quest[player] == Toggle.option_true and multiworld.interior_walls[player] == Toggle.option_true:
+        multiworld.get_location("Dining Area - Trade Hearts Voucher", player).access_rule = \
+            lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
+    if multiworld.trade_quest[player] == Toggle.option_true and multiworld.interior_walls[player] == Toggle.option_true:
+        multiworld.get_location("Dining Area - Trade Spades Voucher", player).access_rule = \
+            lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
+    if multiworld.trade_quest[player] == Toggle.option_true and multiworld.interior_walls[player] == Toggle.option_true:
+        multiworld.get_location("Dining Area - Trade Clubs Voucher", player).access_rule = \
+            lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
+    if multiworld.trade_quest[player] == Toggle.option_true and multiworld.interior_walls[player] == Toggle.option_true:
+        multiworld.get_location("Dining Area - Trade Diamonds Voucher", player).access_rule = \
+            lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
     
     # Connect regions at rule runtime
     connect_regions(multiworld, player, "Menu", "Show Stage")
@@ -170,14 +177,27 @@ def set_rules(multiworld: MultiWorld, player: int):
     connect_regions(multiworld, player, "Show Stage", "Pirate Cove")
     connect_regions(multiworld, player, "Show Stage", "West Hall")
     connect_regions(multiworld, player, "Show Stage", "East Hall")
+    if multiworld.trade_quest[player] == Toggle.option_true:
+        connect_regions(multiworld, player, "Show Stage", "Trade Machine")
+    if multiworld.trade_quest[player] == Toggle.option_true and multiworld.interior_walls[player] == Toggle.option_true:
+        connect_regions(multiworld, player, "Trade Machine", "Trade Machine IW")
+    if multiworld.interior_walls[player] == Toggle.option_true:
+        connect_regions(multiworld, player, "Show Stage", "Interior Walls", lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player))
     connect_regions(multiworld, player, "Backroom", "Backroom BB", lambda state: state.has("Backroom BB", player))
     connect_regions(multiworld, player, "Restrooms", "Restrooms BB", lambda state: state.can_reach("Restrooms - Beta Party Hat", 'Location', player) and state.has("Restrooms BB", player))
     connect_regions(multiworld, player, "West Hall", "Supply Closet")
     connect_regions(multiworld, player, "Supply Closet", "Supply Closet BB", lambda state: state.can_reach("Supply Closet - Gamma Party Hat", 'Location', player) and state.has("Supply Closet BB", player))
     connect_regions(multiworld, player, "West Hall", "West Hall Corner")
-    connect_regions(multiworld, player, "West Hall Corner", "Office")
+    if multiworld.trade_quest[player] == Toggle.option_false or multiworld.interior_walls[player] == Toggle.option_false:
+        connect_regions(multiworld, player, "West Hall Corner", "Office", lambda state: state.count("Office Key Piece", player) >= 3)
     connect_regions(multiworld, player, "East Hall", "East Hall Corner")
-    connect_regions(multiworld, player, "East Hall Corner", "Office", lambda state: state.count("Office Key", player) >= 4)
+    if multiworld.trade_quest[player] == Toggle.option_false or multiworld.interior_walls[player] == Toggle.option_false:
+        connect_regions(multiworld, player, "East Hall Corner", "Office", lambda state: state.count("Office Key Piece", player) >= 3)
+    if multiworld.trade_quest[player] == Toggle.option_true or multiworld.interior_walls[player] == Toggle.option_true:
+        connect_regions(multiworld, player, "West Hall Corner", "Office", lambda state: state.count("Office Key Piece", player) >= 6)
+    connect_regions(multiworld, player, "East Hall", "East Hall Corner")
+    if multiworld.trade_quest[player] == Toggle.option_true or multiworld.interior_walls[player] == Toggle.option_true:
+        connect_regions(multiworld, player, "East Hall Corner", "Office", lambda state: state.count("Office Key Piece", player) >= 6)
 
     
     # Win Condition

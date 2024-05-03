@@ -2,6 +2,7 @@ from typing import Dict, List, NamedTuple, Optional
 
 from BaseClasses import MultiWorld, Region
 from .Locations import FNaFBLocation, location_table, get_locations_by_category
+from Options import Toggle
 
 
 class FNaFBRegionData(NamedTuple):
@@ -84,6 +85,12 @@ def create_regions(multiworld: MultiWorld, player: int):
         regions["Trade Machine IW"].locations.append(voucheriw)    
 
     for name, data in regions.items():
+        if name == "Interior Walls" and multiworld.interior_walls[player] == Toggle.option_false:
+            continue
+        if name == "Trade Machine IW" and (multiworld.interior_walls[player] == Toggle.option_false or multiworld.trade_quest[player] == Toggle.option_false):
+            continue
+        if name == "Trade Machine" and multiworld.trade_quest[player] == Toggle.option_false:
+            continue
         multiworld.regions.append(create_region(multiworld, player, name, data))
 
 
