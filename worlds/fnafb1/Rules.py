@@ -41,33 +41,31 @@ def total_defense(state: CollectionState, player: int) -> int:
 
 
 def can_fight_earlygame(state: CollectionState, player: int) -> bool:
-    return attack_power(state, player) >= 8 \
-    and total_defense(state, player) >= 10 \
-    and party_count(state, player) >= 2 \
-    and skills(state, player) >= 1
+    return attack_power(state, player) >= 2 \
+    and total_defense(state, player) >= 4 \
 
 
 def can_fight_midgame(state: CollectionState, player: int) -> bool:
-    return attack_power(state, player) >= 13 \
-    and total_defense(state, player) >= 22 \
-    and party_count(state, player) >= 3 \
-    and skills(state, player) >= 3
+    return attack_power(state, player) >= 4 \
+    and total_defense(state, player) >= 10 \
+    and party_count(state, player) >= 2 \
+    and skills(state, player) >= 2
 
 
 def can_fight_lategame(state: CollectionState, player: int) -> bool:
-    return attack_power(state, player) >= 18 \
-    and total_defense(state, player) >= 30 \
-    and party_count(state, player) >= 4 \
+    return attack_power(state, player) >= 12 \
+    and total_defense(state, player) >= 24 \
+    and party_count(state, player) >= 3 \
     and skills(state, player) >= 6 \
-    and state.count("Plank Walk", player) >= 1 \
-    and state.count("Foxy", player) >= 1
+    and state.has("Plank Walk", player) \
+    and state.has("Foxy", player)
 
 
 def can_fight_postgame(state: CollectionState, player: int) -> bool:
-    return attack_power(state, player) >= 21 \
-    and total_defense(state, player) >= 36 \
+    return attack_power(state, player) >= 20 \
+    and total_defense(state, player) >= 30 \
     and party_count(state, player) >= 4 \
-    and skills(state, player) >= 10 \
+    and skills(state, player) >= 8 \
     and state.count("Plank Walk", player) >= 1 \
     and state.count("Foxy", player) >= 1
 
@@ -188,17 +186,10 @@ def set_rules(multiworld: MultiWorld, player: int):
     connect_regions(multiworld, player, "West Hall", "Supply Closet")
     connect_regions(multiworld, player, "Supply Closet", "Supply Closet BB", lambda state: state.can_reach("Supply Closet - Gamma Party Hat", 'Location', player) and state.has("Supply Closet BB", player))
     connect_regions(multiworld, player, "West Hall", "West Hall Corner")
-    if multiworld.trade_quest[player] == Toggle.option_false or multiworld.interior_walls[player] == Toggle.option_false:
-        connect_regions(multiworld, player, "West Hall Corner", "Office", lambda state: state.count("Office Key Piece", player) >= 3)
+    connect_regions(multiworld, player, "West Hall Corner", "Office", lambda state: state.count("Office Key Piece", player) >= 4)
     connect_regions(multiworld, player, "East Hall", "East Hall Corner")
-    if multiworld.trade_quest[player] == Toggle.option_false or multiworld.interior_walls[player] == Toggle.option_false:
-        connect_regions(multiworld, player, "East Hall Corner", "Office", lambda state: state.count("Office Key Piece", player) >= 3)
-    if multiworld.trade_quest[player] == Toggle.option_true or multiworld.interior_walls[player] == Toggle.option_true:
-        connect_regions(multiworld, player, "West Hall Corner", "Office", lambda state: state.count("Office Key Piece", player) >= 6)
-    connect_regions(multiworld, player, "East Hall", "East Hall Corner")
-    if multiworld.trade_quest[player] == Toggle.option_true or multiworld.interior_walls[player] == Toggle.option_true:
-        connect_regions(multiworld, player, "East Hall Corner", "Office", lambda state: state.count("Office Key Piece", player) >= 6)
+    connect_regions(multiworld, player, "East Hall Corner", "Office", lambda state: state.count("Office Key Piece", player) >= 4)
 
-    
+
     # Win Condition
     multiworld.completion_condition[player] = lambda state: state.can_reach("Office - Golden Freddy", 'Location', player)

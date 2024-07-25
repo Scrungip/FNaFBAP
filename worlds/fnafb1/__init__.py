@@ -60,8 +60,6 @@ class FNaFBWorld(World):
                 quantity - 1
             if name == "Progressive Hook" and not self.get_setting("interior_walls"):
                 quantity - 1
-            if name == "Office Key Piece" and not (self.get_setting("interior_walls") or self.get_setting("trade_quest")):
-                quantity - 3
 
             # Ignore filler, it will be added in a later stage.
             if data.category == "Filler":
