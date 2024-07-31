@@ -65,16 +65,16 @@ class FNaFBWorld(World):
             if name == "Dragon Dildo" and not self.get_setting("interior_walls"):
                 continue
             
-            # Remove more unneccessary items when Interior Walls is not active to make room for filler
+            # Remove more unneccessary items when Interior Walls/Trade Quest is not active to make room for filler
             if category == "Armor" and classification == ItemClassification.useful and not self.get_setting("interior_walls"):
                 continue
-            if name == "Fazbear Combo" and not self.get_setting("interior_walls"):
+            if name == "Fazbear Combo" and not self.get_setting("trade_quest"):
                 continue
-            if name == "Flighty Combo" and not self.get_setting("interior_walls"):
+            if name == "Flighty Combo" and not self.get_setting("trade_quest"):
                 continue
-            if name == "Bonbon Combo" and not self.get_setting("interior_walls"):
+            if name == "Bonbon Combo" and not self.get_setting("trade_quest"):
                 continue
-            if name == "Pirate Combo" and not self.get_setting("interior_walls"):
+            if name == "Pirate Combo" and not self.get_setting("trade_quest"):
                 continue
             if name == "Fearless Flight" and not self.get_setting("interior_walls"):
                 continue
