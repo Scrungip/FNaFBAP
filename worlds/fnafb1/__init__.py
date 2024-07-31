@@ -1,6 +1,6 @@
 from typing import List
 
-from BaseClasses import Tutorial, Location, LocationProgressType, CollectionState, MultiWorld
+from BaseClasses import Tutorial, Location, LocationProgressType, CollectionState, MultiWorld, ItemClassification
 from worlds.AutoWorld import WebWorld, World
 from .Items import FNaFBItem, FNaFBItemData, get_items_by_category, item_table
 from .Locations import FNaFBLocation, location_table
@@ -46,6 +46,8 @@ class FNaFBWorld(World):
         total_locations = len(self.multiworld.get_unfilled_locations(self.player))
         for name, data in item_table.items():
             quantity = data.max_quantity
+            category = data.category
+            classification = data.classification
 
             # Ignore Interior Walls if it's not enabled.
             if name == "Reveal Interior Walls" and not self.get_setting("interior_walls"):
@@ -60,6 +62,24 @@ class FNaFBWorld(World):
                 quantity -= 1
             if name == "Progressive Hook" and not self.get_setting("interior_walls"):
                 quantity -= 1
+            if name == "Dragon Dildo" and not self.get_setting("interior_walls"):
+                continue
+            
+            # Remove more unneccessary items when Interior Walls is not active to make room for filler
+            if category == "Armor" and classification == ItemClassification.useful and not self.get_setting("interior_walls"):
+                continue
+            if name == "Fazbear Combo" and not self.get_setting("interior_walls"):
+                continue
+            if name == "Flighty Combo" and not self.get_setting("interior_walls"):
+                continue
+            if name == "Bonbon Combo" and not self.get_setting("interior_walls"):
+                continue
+            if name == "Pirate Combo" and not self.get_setting("interior_walls"):
+                continue
+            if name == "Fearless Flight" and not self.get_setting("interior_walls"):
+                continue
+            if name == "Speed Share" and not self.get_setting("interior_walls"):
+                continue
 
             # Ignore filler, it will be added in a later stage.
             if data.category == "Filler":

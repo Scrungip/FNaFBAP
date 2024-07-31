@@ -35,7 +35,7 @@ item_table: Dict[str, FNaFBItemData] = {
     "Progressive Guitar":       FNaFBItemData("BonnieWeapons",    756783_004, ItemClassification.progression,                 6),
     "Progressive Cupcakes":     FNaFBItemData("ChicaWeapons",     756783_005, ItemClassification.progression,                 6),
     "Progressive Hook":         FNaFBItemData("FoxyWeapons",      756783_006, ItemClassification.progression,                 6),
-    "Dragon Dildo":             FNaFBItemData("Useful",           756783_007, ItemClassification.useful, 1),
+    "Dragon Dildo":             FNaFBItemData("Useful",           756783_007, ItemClassification.useful),
 
     # Skills
     "Tophat Toss":              FNaFBItemData("FreddySkills",     756783_008, ItemClassification.progression),
