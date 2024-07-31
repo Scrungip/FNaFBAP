@@ -53,13 +53,13 @@ class FNaFBWorld(World):
 
             # Remove one of each weapon type if Interior Walls is not active
             if name == "Progressive Microphone" and not self.get_setting("interior_walls"):
-                quantity - 1
+                quantity -= 1
             if name == "Progressive Guitar" and not self.get_setting("interior_walls"):
-                quantity - 1
+                quantity -= 1
             if name == "Progressive Cupcakes" and not self.get_setting("interior_walls"):
-                quantity - 1
+                quantity -= 1
             if name == "Progressive Hook" and not self.get_setting("interior_walls"):
-                quantity - 1
+                quantity -= 1
 
             # Ignore filler, it will be added in a later stage.
             if data.category == "Filler":

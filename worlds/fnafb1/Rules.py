@@ -41,8 +41,9 @@ def total_defense(state: CollectionState, player: int) -> int:
 
 
 def can_fight_earlygame(state: CollectionState, player: int) -> bool:
-    return attack_power(state, player) >= 2 \
+    return attack_power(state, player) >= 1 \
     and total_defense(state, player) >= 4 \
+    and skills(state, player) >= 1
 
 
 def can_fight_midgame(state: CollectionState, player: int) -> bool:
@@ -79,7 +80,7 @@ def set_rules(multiworld: MultiWorld, player: int):
         lambda state: can_fight_lategame(state, player)
     
     multiworld.get_location("Pirate Cove - Mangle", player).access_rule = \
-        lambda state: can_fight_lategame(state, player)
+        lambda state: can_fight_lategame(state, player) and state.has("Lighter", player)
     
     multiworld.get_location("Restrooms - Toy Chica", player).access_rule = \
         lambda state: can_fight_lategame(state, player)
@@ -103,10 +104,9 @@ def set_rules(multiworld: MultiWorld, player: int):
     
     # Cameras
     multiworld.get_location("Show Stage - Camera", player).access_rule = \
-        lambda state: can_fight_earlygame(state, player)
+        lambda state: can_fight_midgame(state, player)
     multiworld.get_location("Dining Area - Camera", player).access_rule = \
-        lambda state: can_fight_earlygame(state, player)
-    
+        lambda state: can_fight_midgame(state, player)
     multiworld.get_location("Backroom - Camera", player).access_rule = \
         lambda state: can_fight_midgame(state, player)
     multiworld.get_location("Restrooms - Camera", player).access_rule = \
@@ -134,7 +134,7 @@ def set_rules(multiworld: MultiWorld, player: int):
 
     # Story Quests
     multiworld.get_location("Restrooms - Turn in Bonnie's Head Voucher", player).access_rule = \
-        lambda state: state.has("Bonnie's Head Voucher", player) and state.has("Chica", player)
+        lambda state: state.has("Bonnie's Head Voucher", player)
     multiworld.get_location("Backroom - Return Bonnie's Head", player).access_rule = \
         lambda state: state.has("Bonnie's Head", player)
     multiworld.get_location("Pirate Cove - Burn the place to the ground", player).access_rule = \

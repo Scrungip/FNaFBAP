@@ -119,7 +119,7 @@ location_table: Dict[str, FNaFBLocationData] = {
     "East Hall Corner BB - Item 12":                                      FNaFBLocationData("EastHallBB",   756783_088),
     # Cameras
     "Show Stage - Camera":                                                  FNaFBLocationData("Cameras",   756783_089),
-    "Dining Room - Camera":                                                 FNaFBLocationData("Cameras",   756783_090),
+    "Dining Area - Camera":                                                 FNaFBLocationData("Cameras",   756783_090),
     "Backroom - Camera":                                                    FNaFBLocationData("Cameras",   756783_091),
     "West Hall - Camera":                                                   FNaFBLocationData("Cameras",   756783_092),
     "East Hall - Camera":                                                   FNaFBLocationData("Cameras",   756783_093),

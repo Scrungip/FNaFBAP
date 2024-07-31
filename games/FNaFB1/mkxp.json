@@ -6,15 +6,15 @@
   // Please specify where your RTP (Runtime Package) is in case it isn't in the default location.
   // Make sure to escape any backslashes (\, write these as \\)
   // Default: [ "C:\\RPGVXAce\\" ]
-  "RTP": [ "D:\\RPGVXAce\\" ],
+  "RTP": [ "C:\\RPGVXAce\\" ],
 
   // Please specify your Archipelago details.
   "Archipelago_Hostname": "archipelago.gg", // This will likely either be an IP address, "archipelago.gg", or "localhost".
-  "Archipelago_Port": 59427,
-  "Archipelago_Name": "ScrungipFuckboy", // This is your seat/player name.
+  "Archipelago_Port": 59327,
+  "Archipelago_Name": "FreddyFuckboy", // This is your seat/player name.
 
   // Thanks for checking the settings. Set the below to true, save this file and restart the game.
-  "Confirm_Settings": true
+  "Confirm_Settings": false
 
   // Best of luck in the multiworld! Advanced users may also set mkxp settings here.
 
