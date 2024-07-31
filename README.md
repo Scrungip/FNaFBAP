@@ -11,10 +11,10 @@
  - Characters, Weapons, Armors, Key Items, and B.B. Shops have been shuffled into the item pool to find.
  - The Kingly/Godly Weapons have been removed from the RNG drops in place of Vouchers to be traded in on the Show Stage for checks (if enabled in the player's YAML).
  - The B.B. Shops each have a different amount of items for sale to send out to AP.
-    Backroom B.B. has 6
-    Restrooms B.B. has 8
-    Supply Closet B.B. has 10
-    East Hall Corner B.B. has 12
+     - Backroom B.B. has 6
+     - Restrooms B.B. has 8
+     - Supply Closet B.B. has 10
+     - East Hall Corner B.B. has 12
  - Some armors that don't normally show up during typical play appear in the randomizer to spice things up a bit.
  - A Vending Machine has been enabled in the Dining Area since B.B. no longer gives standard items.
  - The door to The Office requires 4 Key Pieces to be obtained before you're allowed to enter. You must also defeat all of the cameras as normal.
