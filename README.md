@@ -9,6 +9,7 @@
 # Changes to base game
  Some changes were made to make playing this randomizer a more seamless experience. Here's what you need to know.
  - Characters, Weapons, Armors, Key Items, and B.B. Shops have been shuffled into the item pool to find.
+ - The Kingly/Godly Weapons have been removed from the RNG drops in place of Vouchers to be traded in on the Show Stage for checks (if enabled in the player's YAML).
  - The B.B. Shops each have a different amount of items for sale to send out to AP.
     Backroom B.B. has 6
     Restrooms B.B. has 8
