@@ -134,5 +134,10 @@ location_table: Dict[str, FNaFBLocationData] = {
     "Supply Closet - Gamma Party Hat":                                      FNaFBLocationData("PartyHats",    756783_101),
     "East Hall Corner - Omega Party Hat":                                   FNaFBLocationData("PartyHats",    756783_102),
     # Whoops I forgot this one
-    "Kitchen - Chica":                                                      FNaFBLocationData("General",      756783_103)
+    "Kitchen - Chica":                                                      FNaFBLocationData("General",      756783_103),
+    # Levels
+    **{f"Freddy - Level {i+1}":                                             FNaFBLocationData("Levelsanity",  756783_110 + i) for i in range(0, 20)},
+    **{f"Bonnie - Level {i+1}":                                             FNaFBLocationData("Levelsanity",  756783_140 + i) for i in range(0, 20)},
+    **{f"Chica - Level {i+1}":                                              FNaFBLocationData("Levelsanity",  756783_170 + i) for i in range(0, 20)},
+    **{f"Foxy - Level {i+1}":                                               FNaFBLocationData("Levelsanity",  756783_200 + i) for i in range(0, 20)}
 }

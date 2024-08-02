@@ -47,26 +47,26 @@ def can_fight_earlygame(state: CollectionState, player: int) -> bool:
 
 
 def can_fight_midgame(state: CollectionState, player: int) -> bool:
-    return attack_power(state, player) >= 4 \
-    and total_defense(state, player) >= 10 \
+    return attack_power(state, player) >= 5 \
+    and total_defense(state, player) >= 12 \
     and party_count(state, player) >= 2 \
     and skills(state, player) >= 2
 
 
 def can_fight_lategame(state: CollectionState, player: int) -> bool:
-    return attack_power(state, player) >= 12 \
-    and total_defense(state, player) >= 24 \
+    return attack_power(state, player) >= 15 \
+    and total_defense(state, player) >= 26 \
     and party_count(state, player) >= 3 \
-    and skills(state, player) >= 6 \
+    and skills(state, player) >= 7 \
     and state.has("Plank Walk", player) \
     and state.has("Foxy", player)
 
 
 def can_fight_postgame(state: CollectionState, player: int) -> bool:
-    return attack_power(state, player) >= 20 \
-    and total_defense(state, player) >= 30 \
+    return attack_power(state, player) >= 21 \
+    and total_defense(state, player) >= 36 \
     and party_count(state, player) >= 4 \
-    and skills(state, player) >= 8 \
+    and skills(state, player) >= 9 \
     and state.count("Plank Walk", player) >= 1 \
     and state.count("Foxy", player) >= 1
 
@@ -157,16 +157,159 @@ def set_rules(multiworld: MultiWorld, player: int):
     
     if multiworld.trade_quest[player] == Toggle.option_true and multiworld.interior_walls[player] == Toggle.option_true:
         multiworld.get_location("Dining Area - Trade Hearts Voucher", player).access_rule = \
-            lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
+            lambda state: can_fight_postgame(state, player) and state.has("Reveal Interior Walls", player)
     if multiworld.trade_quest[player] == Toggle.option_true and multiworld.interior_walls[player] == Toggle.option_true:
         multiworld.get_location("Dining Area - Trade Spades Voucher", player).access_rule = \
-            lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
+            lambda state: can_fight_postgame(state, player) and state.has("Reveal Interior Walls", player)
     if multiworld.trade_quest[player] == Toggle.option_true and multiworld.interior_walls[player] == Toggle.option_true:
         multiworld.get_location("Dining Area - Trade Clubs Voucher", player).access_rule = \
-            lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
+            lambda state: can_fight_postgame(state, player) and state.has("Reveal Interior Walls", player)
     if multiworld.trade_quest[player] == Toggle.option_true and multiworld.interior_walls[player] == Toggle.option_true:
         multiworld.get_location("Dining Area - Trade Diamonds Voucher", player).access_rule = \
-            lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player)
+            lambda state: can_fight_postgame(state, player) and state.has("Reveal Interior Walls", player)
+        
+    # Levelsanity
+    if multiworld.levelsanity[player] == Toggle.option_true:
+        # Freddy
+        multiworld.get_location("Freddy - Level 5", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player)
+        multiworld.get_location("Freddy - Level 6", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player)
+        multiworld.get_location("Freddy - Level 7", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player)
+        multiworld.get_location("Freddy - Level 8", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player)
+        multiworld.get_location("Freddy - Level 9", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player)
+        multiworld.get_location("Freddy - Level 10", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player)
+        
+        multiworld.get_location("Freddy - Level 11", player).access_rule = \
+            lambda state: can_fight_midgame(state, player)
+        multiworld.get_location("Freddy - Level 12", player).access_rule = \
+            lambda state: can_fight_midgame(state, player)
+        multiworld.get_location("Freddy - Level 13", player).access_rule = \
+            lambda state: can_fight_midgame(state, player)
+        multiworld.get_location("Freddy - Level 14", player).access_rule = \
+            lambda state: can_fight_midgame(state, player)
+        multiworld.get_location("Freddy - Level 15", player).access_rule = \
+            lambda state: can_fight_midgame(state, player)
+        
+        multiworld.get_location("Freddy - Level 16", player).access_rule = \
+            lambda state: can_fight_lategame(state, player)
+        multiworld.get_location("Freddy - Level 17", player).access_rule = \
+            lambda state: can_fight_lategame(state, player)
+        multiworld.get_location("Freddy - Level 18", player).access_rule = \
+            lambda state: can_fight_lategame(state, player)
+        multiworld.get_location("Freddy - Level 19", player).access_rule = \
+            lambda state: can_fight_lategame(state, player)
+        multiworld.get_location("Freddy - Level 20", player).access_rule = \
+            lambda state: can_fight_lategame(state, player)
+        # Bonnie
+        multiworld.get_location("Bonnie - Level 5", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 6", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 7", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 8", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 9", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 10", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Bonnie", player)
+        
+        multiworld.get_location("Bonnie - Level 11", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 12", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 13", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 14", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 15", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Bonnie", player)
+        
+        multiworld.get_location("Bonnie - Level 16", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 17", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 18", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 19", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 20", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Bonnie", player)
+        # Chica
+        multiworld.get_location("Chica - Level 5", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Chica", player)
+        multiworld.get_location("Chica - Level 6", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Chica", player)
+        multiworld.get_location("Chica - Level 7", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Chica", player)
+        multiworld.get_location("Chica - Level 8", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Chica", player)
+        multiworld.get_location("Chica - Level 9", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Chica", player)
+        multiworld.get_location("Chica - Level 10", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Chica", player)
+        
+        multiworld.get_location("Chica - Level 11", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Chica", player)
+        multiworld.get_location("Chica - Level 12", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Chica", player)
+        multiworld.get_location("Chica - Level 13", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Chica", player)
+        multiworld.get_location("Chica - Level 14", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Chica", player)
+        multiworld.get_location("Chica - Level 15", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Chica", player)
+        
+        multiworld.get_location("Chica - Level 16", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Chica", player)
+        multiworld.get_location("Chica - Level 17", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Chica", player)
+        multiworld.get_location("Chica - Level 18", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Chica", player)
+        multiworld.get_location("Chica - Level 19", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Chica", player)
+        multiworld.get_location("Chica - Level 20", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Chica", player)
+        # Foxy
+        multiworld.get_location("Foxy - Level 5", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 6", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 7", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 8", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 9", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 10", player).access_rule = \
+            lambda state: can_fight_earlygame(state, player) and state.has("Foxy", player)
+        
+        multiworld.get_location("Foxy - Level 11", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 12", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 13", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 14", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 15", player).access_rule = \
+            lambda state: can_fight_midgame(state, player) and state.has("Foxy", player)
+        
+        multiworld.get_location("Foxy - Level 16", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 17", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 18", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 19", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 20", player).access_rule = \
+            lambda state: can_fight_lategame(state, player) and state.has("Foxy", player)
     
     # Connect regions at rule runtime
     connect_regions(multiworld, player, "Menu", "Show Stage")
@@ -179,8 +322,10 @@ def set_rules(multiworld: MultiWorld, player: int):
         connect_regions(multiworld, player, "Show Stage", "Trade Machine")
     if multiworld.trade_quest[player] == Toggle.option_true and multiworld.interior_walls[player] == Toggle.option_true:
         connect_regions(multiworld, player, "Trade Machine", "Trade Machine IW")
+    if multiworld.levelsanity[player] == Toggle.option_true:
+        connect_regions(multiworld, player, "Show Stage", "Levelsanity")
     if multiworld.interior_walls[player] == Toggle.option_true:
-        connect_regions(multiworld, player, "Show Stage", "Interior Walls", lambda state: can_fight_postgame(state, player) and state.has("Interior Walls Unlock", player))
+        connect_regions(multiworld, player, "Show Stage", "Interior Walls", lambda state: can_fight_postgame(state, player) and state.has("Reveal Interior Walls", player))
     connect_regions(multiworld, player, "Backroom", "Backroom BB", lambda state: state.has("Backroom BB", player))
     connect_regions(multiworld, player, "Restrooms", "Restrooms BB", lambda state: state.can_reach("Restrooms - Beta Party Hat", 'Location', player) and state.has("Restrooms BB", player))
     connect_regions(multiworld, player, "West Hall", "Supply Closet")
