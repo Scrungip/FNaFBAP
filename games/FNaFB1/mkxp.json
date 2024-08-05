@@ -10,7 +10,7 @@
 
   // Please specify your Archipelago details.
   "Archipelago_Hostname": "archipelago.gg", // This will likely either be an IP address, "archipelago.gg", or "localhost".
-  "Archipelago_Port": 61114,
+  "Archipelago_Port": 63265,
   "Archipelago_Name": "ScrungipFuckboy", // This is your seat/player name.
 
   // Thanks for checking the settings. Set the below to true, save this file and restart the game.

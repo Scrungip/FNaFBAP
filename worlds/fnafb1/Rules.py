@@ -171,8 +171,6 @@ def set_rules(multiworld: MultiWorld, player: int):
     # Levelsanity
     if multiworld.levelsanity[player] == Toggle.option_true:
         # Freddy
-        multiworld.get_location("Freddy - Level 5", player).access_rule = \
-            lambda state: can_fight_earlygame(state, player)
         multiworld.get_location("Freddy - Level 6", player).access_rule = \
             lambda state: can_fight_earlygame(state, player)
         multiworld.get_location("Freddy - Level 7", player).access_rule = \
@@ -206,8 +204,17 @@ def set_rules(multiworld: MultiWorld, player: int):
         multiworld.get_location("Freddy - Level 20", player).access_rule = \
             lambda state: can_fight_lategame(state, player)
         # Bonnie
+        multiworld.get_location("Bonnie - Level 1", player).access_rule = \
+            lambda state: state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 2", player).access_rule = \
+            lambda state: state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 3", player).access_rule = \
+            lambda state: state.has("Bonnie", player)
+        multiworld.get_location("Bonnie - Level 4", player).access_rule = \
+            lambda state: state.has("Bonnie", player)
         multiworld.get_location("Bonnie - Level 5", player).access_rule = \
-            lambda state: can_fight_earlygame(state, player) and state.has("Bonnie", player)
+            lambda state: state.has("Bonnie", player)
+
         multiworld.get_location("Bonnie - Level 6", player).access_rule = \
             lambda state: can_fight_earlygame(state, player) and state.has("Bonnie", player)
         multiworld.get_location("Bonnie - Level 7", player).access_rule = \
@@ -241,8 +248,17 @@ def set_rules(multiworld: MultiWorld, player: int):
         multiworld.get_location("Bonnie - Level 20", player).access_rule = \
             lambda state: can_fight_lategame(state, player) and state.has("Bonnie", player)
         # Chica
+        multiworld.get_location("Chica - Level 1", player).access_rule = \
+            lambda state: state.has("Chica", player)
+        multiworld.get_location("Chica - Level 2", player).access_rule = \
+            lambda state: state.has("Chica", player)
+        multiworld.get_location("Chica - Level 3", player).access_rule = \
+            lambda state: state.has("Chica", player)
+        multiworld.get_location("Chica - Level 4", player).access_rule = \
+            lambda state: state.has("Chica", player)
         multiworld.get_location("Chica - Level 5", player).access_rule = \
-            lambda state: can_fight_earlygame(state, player) and state.has("Chica", player)
+            lambda state: state.has("Chica", player)
+
         multiworld.get_location("Chica - Level 6", player).access_rule = \
             lambda state: can_fight_earlygame(state, player) and state.has("Chica", player)
         multiworld.get_location("Chica - Level 7", player).access_rule = \
@@ -276,8 +292,17 @@ def set_rules(multiworld: MultiWorld, player: int):
         multiworld.get_location("Chica - Level 20", player).access_rule = \
             lambda state: can_fight_lategame(state, player) and state.has("Chica", player)
         # Foxy
+        multiworld.get_location("Foxy - Level 1", player).access_rule = \
+            lambda state: state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 2", player).access_rule = \
+            lambda state: state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 3", player).access_rule = \
+            lambda state: state.has("Foxy", player)
+        multiworld.get_location("Foxy - Level 4", player).access_rule = \
+            lambda state: state.has("Foxy", player)
         multiworld.get_location("Foxy - Level 5", player).access_rule = \
-            lambda state: can_fight_earlygame(state, player) and state.has("Foxy", player)
+            lambda state: state.has("Foxy", player)
+
         multiworld.get_location("Foxy - Level 6", player).access_rule = \
             lambda state: can_fight_earlygame(state, player) and state.has("Foxy", player)
         multiworld.get_location("Foxy - Level 7", player).access_rule = \
