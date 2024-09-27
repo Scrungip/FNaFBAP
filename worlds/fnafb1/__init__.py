@@ -13,7 +13,7 @@ class FNaFBWeb(WebWorld):
     theme = "partyTime"
     tutorials = [Tutorial(
         "Multiworld Setup Guide",
-        "A guide to setting up the Five Nights at F***boy's client for use with Archipelago.",
+        "A guide to setting up the Five Nights at Fuckboy's client for use with Archipelago.",
         "English",
         "fnafb_en.md",
         "fnafb/en",
@@ -23,13 +23,13 @@ class FNaFBWeb(WebWorld):
 
 class FNaFBWorld(World):
     """
-    Five Nights at F***boy's is an RPG game that contains a lot of crude humor from the mid 2010's, join Freddy F***boy as he begins his night of debauchery.
+    Are you ready for Freddy?
     """
     game = "Five Nights at Fuckboy's"
     option_definitions = fnafb_options
     topology_present = True
     data_version = 4
-    required_client_version = (0, 4, 5)
+    required_client_version = (0, 5, 0)
     web = FNaFBWeb()
 
     item_name_to_id = {name: data.code for name, data in item_table.items()}
@@ -54,31 +54,31 @@ class FNaFBWorld(World):
                 continue
 
             # Remove one of each weapon type if Interior Walls is not active
-            if name == "Progressive Microphone" and not self.get_setting("interior_walls"):
+            if name == "Progressive Microphone" and not self.get_setting("trade_quest" or "levelsanity" or "interior_walls"):
                 quantity -= 1
-            if name == "Progressive Guitar" and not self.get_setting("interior_walls"):
+            if name == "Progressive Guitar" and not self.get_setting("trade_quest" or "levelsanity" or "interior_walls"):
                 quantity -= 1
-            if name == "Progressive Cupcakes" and not self.get_setting("interior_walls"):
+            if name == "Progressive Cupcakes" and not self.get_setting("trade_quest" or "levelsanity" or "interior_walls"):
                 quantity -= 1
-            if name == "Progressive Hook" and not self.get_setting("interior_walls"):
+            if name == "Progressive Hook" and not self.get_setting("trade_quest" or "levelsanity" or "interior_walls"):
                 quantity -= 1
-            if name == "Dragon Dildo" and not self.get_setting("interior_walls"):
+            if name == "Dragon Dildo" and not self.get_setting("levelsanity" or "interior_walls"):
                 continue
             
             # Remove more unneccessary items when Interior Walls/Trade Quest is not active to make room for filler
             if category == "Armor" and classification == ItemClassification.useful and not self.get_setting("interior_walls"):
                 continue
-            if name == "Fazbear Combo" and not self.get_setting("trade_quest"):
+            if name == "Fazbear Combo" and not self.get_setting("interior_walls" or "levelsanity"):
                 continue
-            if name == "Flighty Combo" and not self.get_setting("trade_quest"):
+            if name == "Flighty Combo" and not self.get_setting("interior_walls" or "levelsanity"):
                 continue
-            if name == "Bonbon Combo" and not self.get_setting("trade_quest"):
+            if name == "Bonbon Combo" and not self.get_setting("interior_walls" or "levelsanity"):
                 continue
-            if name == "Pirate Combo" and not self.get_setting("trade_quest"):
+            if name == "Pirate Combo" and not self.get_setting("interior_walls" or "levelsanity"):
                 continue
-            if name == "Fearless Flight" and not self.get_setting("interior_walls"):
+            if name == "Fearless Flight" and not self.get_setting("interior_walls" or "levelsanity"):
                 continue
-            if name == "Speed Share" and not self.get_setting("interior_walls"):
+            if name == "Speed Share" and not self.get_setting("interior_walls" or "levelsanity"):
                 continue
 
             # Ignore filler, it will be added in a later stage.

@@ -80,7 +80,7 @@ def set_rules(multiworld: MultiWorld, player: int):
         lambda state: can_fight_lategame(state, player)
     
     multiworld.get_location("Pirate Cove - Mangle", player).access_rule = \
-        lambda state: can_fight_lategame(state, player) and state.has("Lighter", player)
+        lambda state: can_fight_lategame(state, player)
     
     multiworld.get_location("Restrooms - Toy Chica", player).access_rule = \
         lambda state: can_fight_lategame(state, player)
