@@ -21,6 +21,8 @@ def create_regions(multiworld: MultiWorld, player: int):
                                                  "Kitchen - Chica",
                                                  "Show Stage - Toy Freddy"]),
         
+        "Levelsanity":          FNaFBRegionData([]),
+        
         "Trade Machine":        FNaFBRegionData([]),
 
         "Trade Machine IW":     FNaFBRegionData([]),
@@ -82,7 +84,9 @@ def create_regions(multiworld: MultiWorld, player: int):
     for voucher in get_locations_by_category("Trade").keys():
         regions["Trade Machine"].locations.append(voucher)
     for voucheriw in get_locations_by_category("TradeIW").keys():
-        regions["Trade Machine IW"].locations.append(voucheriw)    
+        regions["Trade Machine IW"].locations.append(voucheriw)   
+    for levels in get_locations_by_category("Levelsanity").keys():
+        regions["Levelsanity"].locations.append(levels)
 
     for name, data in regions.items():
         if name == "Interior Walls" and multiworld.interior_walls[player] == Toggle.option_false:
@@ -90,6 +94,8 @@ def create_regions(multiworld: MultiWorld, player: int):
         if name == "Trade Machine IW" and (multiworld.interior_walls[player] == Toggle.option_false or multiworld.trade_quest[player] == Toggle.option_false):
             continue
         if name == "Trade Machine" and multiworld.trade_quest[player] == Toggle.option_false:
+            continue
+        if name == "Levelsanity" and multiworld.levelsanity[player] == Toggle.option_false:
             continue
         multiworld.regions.append(create_region(multiworld, player, name, data))
 

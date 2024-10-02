@@ -4,16 +4,26 @@ from Options import Choice, Range, Option, Toggle, DeathLink, DefaultOnToggle, O
 
 class TradeQuest(Toggle):
     """
-    Includes RNG Trade Item drops in logic.
+    Includes RNG Trade Item drops in the randomizer.
+    (Adds 4 locations, or 8 if Interior Walls is also enabled.)
     """
     display_name = "Include Trade Checks"
 
 
 class InteriorWalls(Toggle):
     """
-    Includes Interior Walls in logic.
+    Includes Interior Walls in the randomizer.
+    (Adds 30 locations.)
     """
     display_name = "Include Interior Walls"
+
+
+class Levelsanity(Toggle):
+    """
+    Includes each level up as an item location.
+    (Adds 80 locations.)
+    """
+    display_name = "Include Levelsanity"
 
 
 #class DeathLink(Toggle):
@@ -25,6 +35,7 @@ class InteriorWalls(Toggle):
 
 fnafb_options: Dict[str, type(Option)] = { 
     "trade_quest": TradeQuest,
-    "interior_walls": InteriorWalls
+    "interior_walls": InteriorWalls,
+    "levelsanity": Levelsanity
 #    "death_link": DeathLink
 }
