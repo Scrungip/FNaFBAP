@@ -6,6 +6,6 @@
   // Please specify where your RTP (Runtime Package) is in case it isn't in the default location.
   // Make sure to escape any backslashes (\, write these as \\)
   // Default: [ "C:\\Program Files (x86)\\Common Files\\Enterbrain\\RGSS3\\RPGVXAce" ]
-  "RTP": [ "C:\\Program Files (x86)\\Common Files\\Enterbrain\\RGSS3\\RPGVXAce" ],
+  "RTP": [ "D:\\RPGVXAce" ],
 
 }

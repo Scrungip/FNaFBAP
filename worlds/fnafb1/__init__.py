@@ -37,6 +37,16 @@ class FNaFBWorld(World):
 
     def get_setting(self, name: str):
         return getattr(self.multiworld, name)[self.player]
+    
+    def get_extra_locations(self) -> int:
+        extra = 0
+        if self.get_setting("interior_walls"):
+            extra += 1
+        if self.get_setting("levelsanity"):
+            extra += 1
+        if self.get_setting("trade_quest"):
+            extra += 1
+        return extra
 
     def fill_slot_data(self) -> dict:
         return {option_name: self.get_setting(option_name).value for option_name in fnafb_options}
@@ -53,32 +63,24 @@ class FNaFBWorld(World):
             if name == "Reveal Interior Walls" and not self.get_setting("interior_walls"):
                 continue
 
-            # Remove one of each weapon type if Interior Walls is not active
-            if name == "Progressive Microphone" and not self.get_setting("trade_quest" or "levelsanity" or "interior_walls"):
-                quantity -= 1
-            if name == "Progressive Guitar" and not self.get_setting("trade_quest" or "levelsanity" or "interior_walls"):
-                quantity -= 1
-            if name == "Progressive Cupcakes" and not self.get_setting("trade_quest" or "levelsanity" or "interior_walls"):
-                quantity -= 1
-            if name == "Progressive Hook" and not self.get_setting("trade_quest" or "levelsanity" or "interior_walls"):
-                quantity -= 1
-            if name == "Dragon Dildo" and not self.get_setting("levelsanity" or "interior_walls"):
+            # Remove more unneccessary items to make room for filler when extra settings aren't enabled
+            if name == "Dragon Dildo" and self.get_extra_locations() <= 1:
                 continue
-            
-            # Remove more unneccessary items when Interior Walls/Trade Quest is not active to make room for filler
-            if category == "Armor" and classification == ItemClassification.useful and not self.get_setting("interior_walls"):
+            if category == "Armor" and self.get_extra_locations() <= 1:
                 continue
-            if name == "Fazbear Combo" and not self.get_setting("interior_walls" or "levelsanity"):
+            if name == "Fazbear Combo" and self.get_extra_locations() <= 1:
                 continue
-            if name == "Flighty Combo" and not self.get_setting("interior_walls" or "levelsanity"):
+            if name == "Flighty Combo" and self.get_extra_locations() <= 1:
                 continue
-            if name == "Bonbon Combo" and not self.get_setting("interior_walls" or "levelsanity"):
+            if name == "Bonbon Combo" and self.get_extra_locations() <= 1:
                 continue
-            if name == "Pirate Combo" and not self.get_setting("interior_walls" or "levelsanity"):
+            if name == "Pirate Combo" and self.get_extra_locations() <= 1:
                 continue
-            if name == "Fearless Flight" and not self.get_setting("interior_walls" or "levelsanity"):
+            if name == "Caffeine Revival" and self.get_extra_locations() <= 1:
                 continue
-            if name == "Speed Share" and not self.get_setting("interior_walls" or "levelsanity"):
+            if name == "Guitar Smash" and self.get_extra_locations() <= 1:
+                continue
+            if name == "Speed Share" and self.get_extra_locations() <= 1:
                 continue
 
             # Ignore filler, it will be added in a later stage.

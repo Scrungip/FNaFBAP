@@ -2,91 +2,129 @@ from BaseClasses import CollectionState, MultiWorld, Location, Region, Item
 from .Regions import connect_regions
 from Options import Toggle
 
+def FreddyStat(state: CollectionState, player: int) -> int:
+    return state.count("Progressive Microphone", player)
+
+def BonnieStat(state: CollectionState, player: int) -> int:
+    if state.has("Bonnie", player):
+        return state.count("Progressive Guitar", player)
+    else:
+        return 0
+
+def ChicaStat(state: CollectionState, player: int) -> int:
+    if state.has("Chica", player):
+        return state.count("Progressive Cupcakes", player)
+    else:
+        return 0
+    
+def FoxyStat(state: CollectionState, player: int) -> int:
+    if state.has("Foxy", player):
+        return state.count("Progressive Hook", player)
+    else:
+        return 0
+    
+def FreddySkill(state: CollectionState, player: int) -> int:
+    return state.count("Tophat Toss", player) \
+    + state.count("Lead Stinger", player) \
+    + state.count("Toreador March", player)
+
+def BonnieSkill(state: CollectionState, player: int) -> int:
+    if state.has("Bonnie", player):
+        return state.count("Bunny Hop", player) \
+        + state.count("Backup Bash", player)
+    else:
+        return 0
+    
+def ChicaSkill(state: CollectionState, player: int) -> int:
+    if state.has("Chica", player):
+        return state.count("Fearless Flight", player)
+    else:
+        return 0
+    
+def FoxySkill(state: CollectionState, player: int) -> int:
+    if state.has("Foxy", player):
+        return state.count("Rushdown", player) \
+        + state.count("Plank Walk", player)
+    else:
+        return 0
+
 def party_count(state: CollectionState, player: int) -> int:
     return state.count("Bonnie", player) \
     + state.count("Chica", player) \
     + state.count("Foxy", player) \
     + 1 # This one's to account for Freddy
 
-# Check if the player has the party members before adding their power to the calculation
-def attack_power(state: CollectionState, player: int) -> int:
-    return state.count("Progressive Microphone", player) \
-    + state.count("Bonnie", player) * state.count("Progressive Guitar", player) \
-    + state.count("Chica", player) * state.count("Progressive Cupcakes", player) \
-    + state.count("Foxy", player) * state.count("Progressive Hook", player)
+def TotalStat(state: CollectionState, player: int) -> int:
+    return FreddyStat(state, player) \
+    + BonnieStat(state, player) \
+    + ChicaStat(state, player) \
+    + FoxyStat(state, player)
 
-# This one's a bit of a mess, might have to rethink it at a later time
-def skills(state: CollectionState, player: int) -> int:
-    return state.count("Tophat Toss", player) \
-    + state.count("Lead Stinger", player) \
-    + state.count("Toreador March", player) \
-    + (state.count("Bunny Hop", player) \
-    + state.count("Backup Bash", player) \
-    + state.count("Guitar Smash", player)) \
-    * state.count("Bonnie", player) \
-    + (state.count("Pizza Pass", player) \
-    + state.count("Caffeine Revival", player)) \
-    * state.count("Chica", player) \
-    + (state.count("Rushdown", player) \
-    + state.count("Plank Walk", player)) \
-    * state.count("Foxy", player)
+def TotalSkills(state: CollectionState, player: int) -> int:
+    return FreddySkill(state, player) \
+    + BonnieSkill(state, player) \
+    + ChicaSkill(state, player) \
+    + FoxySkill(state, player)
 
 # Endoskeletons provide more defense so we should treat it as such
 def total_defense(state: CollectionState, player: int) -> int:
-    return (state.count("Progressive Body Endoskeletons", player) * 4 \
-    + state.count("Progressive Head Endoskeletons", player) * 4 \
+    return state.count("Progressive Body Endoskeletons", player) * 5 \
+    + state.count("Progressive Head Endoskeletons", player) * 5 \
     + state.count("Progressive Pizza Shields", player) \
-    + state.count("Progressive Caffeine Sodas", player)) \
-    * party_count(state, player)
+    + state.count("Progressive Caffeine Sodas", player)
 
 
 def can_fight_earlygame(state: CollectionState, player: int) -> bool:
-    return attack_power(state, player) >= 1 \
-    and total_defense(state, player) >= 4 \
-    and skills(state, player) >= 1
+    return TotalStat(state, player) >= 1
 
 
 def can_fight_midgame(state: CollectionState, player: int) -> bool:
-    return attack_power(state, player) >= 5 \
-    and total_defense(state, player) >= 12 \
+    return TotalStat(state, player) >= 3 \
+    and total_defense(state, player) >= 8 \
     and party_count(state, player) >= 2 \
-    and skills(state, player) >= 2
+    and TotalSkills(state, player) >= 1
 
 
 def can_fight_lategame(state: CollectionState, player: int) -> bool:
-    return attack_power(state, player) >= 15 \
-    and total_defense(state, player) >= 26 \
-    and party_count(state, player) >= 3 \
-    and skills(state, player) >= 7 \
-    and state.has("Plank Walk", player) \
-    and state.has("Foxy", player)
+    return TotalStat(state, player) >= 18 \
+    and total_defense(state, player) >= 30 \
+    and party_count(state, player) >= 4 \
+    and FreddySkill(state, player) >= 1 \
+    and BonnieSkill(state, player) >= 1 \
+    and ChicaSkill(state, player) >= 1 \
+    and FoxySkill(state, player) >= 2
 
 
 def can_fight_postgame(state: CollectionState, player: int) -> bool:
-    return attack_power(state, player) >= 21 \
-    and total_defense(state, player) >= 36 \
+    return TotalStat(state, player) >= 22 \
+    and total_defense(state, player) >= 40 \
     and party_count(state, player) >= 4 \
-    and skills(state, player) >= 9 \
-    and state.count("Plank Walk", player) >= 1 \
-    and state.count("Foxy", player) >= 1
+    and FreddySkill(state, player) >= 3 \
+    and BonnieSkill(state, player) >= 2 \
+    and ChicaSkill(state, player) >= 1 \
+    and FoxySkill(state, player) >= 2
 
 
 def set_rules(multiworld: MultiWorld, player: int):
     # Bosses
     multiworld.get_location("Show Stage - Toy Freddy", player).access_rule = \
-        lambda state: can_fight_lategame(state, player)
+        lambda state: can_fight_lategame(state, player) and FreddyStat(state, player) >= 5
     
     multiworld.get_location("Backroom - Toy Bonnie", player).access_rule = \
-        lambda state: can_fight_lategame(state, player)
+        lambda state: can_fight_lategame(state, player) and BonnieStat(state, player) >= 5
     
     multiworld.get_location("Pirate Cove - Mangle", player).access_rule = \
-        lambda state: can_fight_lategame(state, player)
+        lambda state: can_fight_lategame(state, player) and FoxyStat(state, player) >= 5
     
     multiworld.get_location("Restrooms - Toy Chica", player).access_rule = \
-        lambda state: can_fight_lategame(state, player)
+        lambda state: can_fight_lategame(state, player) and ChicaStat(state, player) >= 5
     
     multiworld.get_location("The Puppet", player).access_rule = \
-        lambda state: can_fight_lategame(state, player)
+        lambda state: can_fight_lategame(state, player) and \
+            state.can_reach("Show Stage - Toy Freddy", 'Location', player) and \
+            state.can_reach("Backroom - Toy Bonnie", 'Location', player) and \
+            state.can_reach("Pirate Cove - Mangle", 'Location', player) and \
+            state.can_reach("Restrooms - Toy Chica", 'Location', player)
     
     multiworld.get_location("Office - Golden Freddy", player).access_rule = \
         lambda state: can_fight_lategame(state, player)
@@ -134,7 +172,7 @@ def set_rules(multiworld: MultiWorld, player: int):
 
     # Story Quests
     multiworld.get_location("Restrooms - Turn in Bonnie's Head Voucher", player).access_rule = \
-        lambda state: state.has("Bonnie's Head Voucher", player)
+        lambda state: state.can_reach("Restrooms - Beta Party Hat", 'Location', player) and state.has("Bonnie's Head Voucher", player)
     multiworld.get_location("Backroom - Return Bonnie's Head", player).access_rule = \
         lambda state: state.has("Bonnie's Head", player)
     multiworld.get_location("Pirate Cove - Burn the place to the ground", player).access_rule = \
