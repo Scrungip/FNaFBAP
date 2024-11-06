@@ -358,6 +358,7 @@ def set_rules(multiworld: MultiWorld, player: int):
     connect_regions(multiworld, player, "West Hall", "West Hall Corner")
     connect_regions(multiworld, player, "West Hall Corner", "Office", lambda state: state.count("Office Key Piece", player) >= 4)
     connect_regions(multiworld, player, "East Hall", "East Hall Corner")
+    connect_regions(multiworld, player, "East Hall Corner", "East Hall Corner BB", lambda state: state.can_reach("East Hall Corner - Omega Party Hat", 'Location', player) and state.has("East Hall Corner BB", player))
     connect_regions(multiworld, player, "East Hall Corner", "Office", lambda state: state.count("Office Key Piece", player) >= 4)
 
 
