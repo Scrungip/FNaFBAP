@@ -17,7 +17,7 @@ class FNaFB2Web(WebWorld):
         "English",
         "fnafb2_en.md",
         "fnafb2/en",
-        ["Scrungip"]
+        ["Zuils"]
     )]
 
 
@@ -48,44 +48,17 @@ class FNaFB2World(World):
             quantity = data.max_quantity
             category = data.category
             classification = data.classification
-
-            # Ignore Interior Walls if it's not enabled.
-            if name == "Reveal Interior Walls" and not self.get_setting("interior_walls"):
-                continue
-
-            # Remove one of each weapon type if Interior Walls is not active
-            if name == "Progressive Microphone" and not self.get_setting("trade_quest" or "levelsanity" or "interior_walls"):
-                quantity -= 1
-            if name == "Progressive Guitar" and not self.get_setting("trade_quest" or "levelsanity" or "interior_walls"):
-                quantity -= 1
-            if name == "Progressive Cupcakes" and not self.get_setting("trade_quest" or "levelsanity" or "interior_walls"):
-                quantity -= 1
-            if name == "Progressive Hook" and not self.get_setting("trade_quest" or "levelsanity" or "interior_walls"):
-                quantity -= 1
-            if name == "Dragon Dildo" and not self.get_setting("levelsanity" or "interior_walls"):
-                continue
             
-            # Remove more unneccessary items when Interior Walls/Trade Quest is not active to make room for filler
-            if category == "Armor" and classification == ItemClassification.useful and not self.get_setting("interior_walls"):
-                continue
-            if name == "Fazbear Combo" and not self.get_setting("interior_walls" or "levelsanity"):
-                continue
-            if name == "Flighty Combo" and not self.get_setting("interior_walls" or "levelsanity"):
-                continue
-            if name == "Bonbon Combo" and not self.get_setting("interior_walls" or "levelsanity"):
-                continue
-            if name == "Pirate Combo" and not self.get_setting("interior_walls" or "levelsanity"):
-                continue
-            if name == "Fearless Flight" and not self.get_setting("interior_walls" or "levelsanity"):
-                continue
-            if name == "Speed Share" and not self.get_setting("interior_walls" or "levelsanity"):
+            # If difficulty is standard, remove the 3 show stage chests and every cassette and rap god
+            if self.get_setting("difficulty") == 0 and (category == "Cassette" \
+                or "Lucky Soda Chest" in name or "Double Pizza Chest" in name):
                 continue
 
             # Ignore filler, it will be added in a later stage.
-            if data.category == "Filler":
+            if category == "Filler":
                 continue
 
-            item_pool += [self.create_item(name) for _ in range(0, quantity)]
+            item_pool += [self.create_item(name) for _ in range(quantity)]
         while len(item_pool) < total_locations:
             item_pool.append(self.create_item(self.get_filler_item_name()))
 
@@ -94,7 +67,7 @@ class FNaFB2World(World):
     def get_filler_item_name(self) -> str:
         fillers = get_items_by_category("Filler")
         weights = [data.weight for data in fillers.values()]
-        return self.multiworld.random.choices([filler for filler in fillers.keys()], weights, k=1)[0]
+        return self.multiworld.random.choices(list(fillers.keys()), weights, k=1)[0]
 
     def create_item(self, name: str) -> FNaFB2Item:
         data = item_table[name]
