@@ -27,7 +27,7 @@ location_table: Dict[str, FNaFB2LocationData] = {
     "Show Stage - Right Chest":                                           FNaFB2LocationData("General",     766783_001),
     "Show Stage - Lucky Soda Chest":                                      FNaFB2LocationData("General",     766783_002),
     "Show Stage - Double Pizza Chest":                                    FNaFB2LocationData("General",     766783_003),
-    "Show Stage - Punch the fuck out of the carousel":                    FNaFB2LocationData("General",     766783_004),
+    "Game Room - Punch the fuck out of the carousel":                     FNaFB2LocationData("General",     766783_004),
     "Men's Bathroom - Chest":                                             FNaFB2LocationData("General",     766783_005),
     "Women's Bathroom - Toy Chica":                                       FNaFB2LocationData("General",     766783_006),
     "Right Vent - Toy Bonnie":                                            FNaFB2LocationData("General",     766783_007),
