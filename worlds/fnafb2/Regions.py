@@ -150,7 +150,8 @@ def create_region(multiworld: MultiWorld, player: int, name: str, data: FNaFB2Re
             loc_data = location_table.get(loc_name)
             location = FNaFB2Location(player, loc_name, loc_data.code if loc_data else None, region)
             if ("Rod of Femininity" in loc_name and multiworld.fem_rods[player] == Toggle.option_true) \
-                or (loc_name == "Boss Rush" and multiworld.boss_rush[player] == Toggle.option_true and multiworld.Goal[player] == 0):
+                or (loc_name == "Boss Rush" and multiworld.boss_rush[player] == Toggle.option_true and multiworld.Goal[player] == 0) \
+                    or (loc_name == "Cave of the Past - Dragon Dildo F" and multiworld.boss_rush[player] == Toggle.option_true):
                 location.progress_type = LocationProgressType.EXCLUDED
             region.locations.append(location)
 

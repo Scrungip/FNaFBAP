@@ -173,7 +173,7 @@ def set_rules(multiworld: MultiWorld, player: int):
     multiworld.get_location("Game Room - Camera", player).access_rule = \
         lambda state: can_fight_midgame(state, player)
     multiworld.get_location("Prize Corner - Camera", player).access_rule = \
-        lambda state: can_fight_midgame(state, player),
+        lambda state: can_fight_midgame(state, player)
     multiworld.get_location("Main Hall - Camera", player).access_rule = \
         lambda state: can_fight_midgame(state, player)
     multiworld.get_location("Kid's Cove - Camera", player).access_rule = \
@@ -204,7 +204,7 @@ def set_rules(multiworld: MultiWorld, player: int):
         lambda state: state.can_reach_location("Women's Bathroom - Splash Woman", player) and state.has("Progressive Cupcakes", player)
     multiworld.get_location("Right Vent - Toy Bonnie", player).access_rule = \
         lambda state: state.has("Stick", player)
-        
+
     multiworld.get_location("Cave of the Past - Dragon Dildo A", player).access_rule = \
         lambda state: state.has("Stick", player)
     multiworld.get_location("Cave of the Past - Dragon Dildo B", player).access_rule = \
@@ -220,8 +220,8 @@ def set_rules(multiworld: MultiWorld, player: int):
 
     # Story Quests
     multiworld.get_location("Turn in Sex Toy Voucher to BB", player).access_rule = \
-        lambda state: state.can_reach_location("Kid's Cove - Protection Hat", player) and \
-            state.has("Kid's Cove BB", player) and state.has("Sex Toy Voucher", player)
+        lambda state: state.can_reach_location("Kid's Cove - Protection Hat", player) \
+            and state.has("Kid's Cove BB", player) and state.has("Sex Toy Voucher", player)
     multiworld.get_location("Kid's Cove - Return Sex Toy", player).access_rule = \
         lambda state: state.has("Sex Toy", player, 2)
     multiworld.get_location("Vending Machine - Turn in Sex Toy", player).access_rule = \

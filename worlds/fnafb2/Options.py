@@ -36,7 +36,7 @@ class FemRods(DefaultOnToggle):
 class BossRush(DefaultOnToggle):
     """
     Turning this on will force Boss Rush to be a filler item.
-    This setting is ignored if goal is set to refurbs.
+    This setting is ignored if goal is set to refurbs and will force the Dragon Dildo F check to be a filler item.
     """
     display_name = "Exclude Boss Rush"
     
