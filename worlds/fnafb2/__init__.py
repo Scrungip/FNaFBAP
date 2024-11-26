@@ -17,7 +17,7 @@ class FNaFB2Web(WebWorld):
         "English",
         "fnafb2_en.md",
         "fnafb2/en",
-        ["Zuils"]
+        ["Zuils and Scrungip"]
     )]
 
 
@@ -49,7 +49,7 @@ class FNaFB2World(World):
             category = data.category
             classification = data.classification
             
-            # If difficulty is standard, remove the 3 show stage chests and every cassette and rap god
+            # If difficulty is standard, remove the cassettes, lucky soda, and double pizza
             if self.get_setting("difficulty") == 0 and (category == "Cassette" \
                 or "Lucky Soda" in name or "Double Pizza" in name):
                 continue

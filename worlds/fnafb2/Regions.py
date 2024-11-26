@@ -171,7 +171,7 @@ def create_regions(multiworld: MultiWorld, player: int):
             continue
         if "Critical" in name and multiworld.difficulty[player].value < 2:
             continue
-        if "Proud" in name and multiworld.difficulty[player].value == 0:
+        if "Proud" in name and multiworld.difficulty[player].value < 1:
             continue
         if name == "Refurbs" and multiworld.Goal[player].value == 0:
             continue
