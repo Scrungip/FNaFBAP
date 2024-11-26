@@ -11,12 +11,10 @@ class FNaFB2RegionData(NamedTuple):
 
 def create_regions(multiworld: MultiWorld, player: int):
     regions: Dict[str, FNaFB2RegionData] = {
-        "Menu":                 FNaFB2RegionData(None),
+        "Menu":                         FNaFB2RegionData(None),
 
-        "Show Stage":           FNaFB2RegionData(["Show Stage - Left Chest",
+        "Show Stage":                   FNaFB2RegionData(["Show Stage - Left Chest",
                                                  "Show Stage - Right Chest",
-                                                 "Show Stage - Lucky Soda Chest",
-                                                 "Show Stage - Double Pizza Chest",
                                                  "Vending Machine - Turn in Sex Toy",
                                                  "Game Room - Punch the fuck out of the carousel",
                                                  "Show Stage - Camera",
@@ -25,76 +23,117 @@ def create_regions(multiworld: MultiWorld, player: int):
                                                  "The Puppet",
                                                  "The Second Puppet"]),
         
-        "Levelsanity":          FNaFB2RegionData([]),
+        "Show Stage Proud":             FNaFB2RegionData(["Show Stage - Lucky Soda Chest",
+                                                 "Show Stage - Double Pizza Chest"]),
         
-        "Trade Machine":        FNaFB2RegionData([]),
-        
-        "Kid's Cove":           FNaFB2RegionData(["Kid's Cove - Return Sex Toy",
+        "Levelsanity":                  FNaFB2RegionData([]),
+
+        "Trade Machine":                FNaFB2RegionData([]),
+
+        "Kid's Cove":                   FNaFB2RegionData(["Kid's Cove - Return Sex Toy",
                                                   "Kid's Cove - Chest",
                                                   "Kid's Cove - Camera",
                                                   "Kid's Cove - Protection Hat"]),
 
-        "Kid's Cove BB":        FNaFB2RegionData(["Turn in Sex Toy Voucher to BB"]),
+        "Kid's Cove BB":                FNaFB2RegionData(["Turn in Sex Toy Voucher to BB"]),
+        
+        "Kid's Cove Proud":             FNaFB2RegionData([]),
+        
+        "Kid's Cove Critical":          FNaFB2RegionData(["Kid's Cove - Chest 1",
+                                                          "Kid's Cove - Chest 2"]),
 
-        "Main Hall":            FNaFB2RegionData(["Main Hall - Camera",
+        "Main Hall":                    FNaFB2RegionData(["Main Hall - Camera",
                                                   "Main Hall - Protection Hat"]),
 
-        "Main Hall BB":         FNaFB2RegionData([]),
+        "Main Hall BB":                 FNaFB2RegionData([]),
 
-        "Women's Bathroom":     FNaFB2RegionData(["Women's Bathroom - Toy Chica",
+        "Women's Bathroom":             FNaFB2RegionData(["Women's Bathroom - Toy Chica",
                                                   "Women's Bathroom - Chest",
                                                   "Women's Bathroom - Splash Woman",
                                                   "The Puppet - Rod of Femininity A",
                                                   "The Second Puppet - Rod of Femininity B",
                                                   "BB - Foam Cupcakes A"]),
+        
+        "Women's Bathroom Proud":       FNaFB2RegionData([]),
+        
+        "Women's Bathroom Critical":    FNaFB2RegionData(["Women's Bathroom - Shadow Bonnie"]),
 
-        "Men's Bathroom":       FNaFB2RegionData(["Men's Bathroom - Chest"]),
+        "Men's Bathroom":               FNaFB2RegionData(["Men's Bathroom - Chest"]),
 
-        "Parts/Service":        FNaFB2RegionData(["Parts/Service - Camera",
+        "Men's Bathroom Proud":         FNaFB2RegionData([]),
+
+        "Men's Bathroom Critical":      FNaFB2RegionData([]),
+
+        "Parts/Service":                FNaFB2RegionData(["Parts/Service - Camera",
                                                   "Foxy's Steppin' Cove",
                                                   "Puppet Man Dating Sim",
                                                   "SEND CAKE TO CHILD",
                                                   "Boss Rush"]),
 
-        "Office Hall":          FNaFB2RegionData([]),
+        "Parts/Service Proud":          FNaFB2RegionData([]),
 
-        "Party Room 3":         FNaFB2RegionData(["Party Room 3 - Withered Freddy",
+        "Office Hall":                  FNaFB2RegionData([]),
+
+        "Office Hall Proud":            FNaFB2RegionData([]),
+
+        "Party Room 3":                 FNaFB2RegionData(["Party Room 3 - Withered Freddy",
                                                   "Party Room 3 - Camera",
                                                   "Party Room 3 - Protection Hat"]),
 
-        "Party Room 3 BB":      FNaFB2RegionData([]),
+        "Party Room 3 BB":              FNaFB2RegionData([]),
+        
+        "Party Room 3 Proud":           FNaFB2RegionData([]),
+        
+        "Party Room 3 Critical":        FNaFB2RegionData([]),
 
-        "Party Room 4":         FNaFB2RegionData(["Party Room 4 - Withered Foxy",
+        "Party Room 4":                 FNaFB2RegionData(["Party Room 4 - Withered Foxy",
                                                  "Party Room 4 - Withered Foxy Rematch",
                                                  "Party Room 4 - Camera"]),
         
-        "Party Room 1":         FNaFB2RegionData(["Party Room 1 - Withered Bonnie",
+        "Party Room 4 Proud":           FNaFB2RegionData([]),
+        
+        "Party Room 4 Critical":        FNaFB2RegionData([]),
+        
+        "Party Room 1":                 FNaFB2RegionData(["Party Room 1 - Withered Bonnie",
                                                   "Party Room 1 - Camera"]),
         
-        "Left Vent":            FNaFB2RegionData(["Left Vent - Camera"]),
+        "Party Room 1 Proud":           FNaFB2RegionData([]),
+        
+        "Party Room 1 Critical":        FNaFB2RegionData([]),
+        
+        "Left Vent":                    FNaFB2RegionData(["Left Vent - Camera"]),
 
-        "Party Room 2":         FNaFB2RegionData(["Party Room 2 - Withered Chica",
+        "Party Room 2":                 FNaFB2RegionData(["Party Room 2 - Withered Chica",
                                                   "Party Room 2 - Camera"]),
 
-        "Right Vent":           FNaFB2RegionData(["Right Vent - Toy Bonnie",
+        "Party Room 2 Proud":           FNaFB2RegionData([]),
+
+        "Party Room 2 Critical":        FNaFB2RegionData([]),
+
+        "Right Vent":                   FNaFB2RegionData(["Right Vent - Toy Bonnie",
                                                   "Right Vent - Camera"]),
 
-        "Office":               FNaFB2RegionData(["Office - Left Chest",
+        "Office":                       FNaFB2RegionData(["Office - Left Chest",
                                                   "Office - Right Chest",
                                                   "Office - Camera",
                                                   "Office - Protection Hat"]),
         
-        "Office BB":            FNaFB2RegionData([]),
+        "Office BB":                    FNaFB2RegionData([]),
 
-        "Cave of the Past":     FNaFB2RegionData(["Cave of the Past - Dragon Dildo A",
+        "Office Proud":                 FNaFB2RegionData([]),
+
+        "Office Critical":              FNaFB2RegionData([]),
+
+        "Cave of the Past":             FNaFB2RegionData(["Cave of the Past - Dragon Dildo A",
                                                   "Cave of the Past - Dragon Dildo B",
                                                   "Cave of the Past - Dragon Dildo C",
                                                   "Cave of the Past - Dragon Dildo D",
                                                   "Cave of the Past - Dragon Dildo E",
-                                                  "Cave of the Past - Dragon Dildo F",
-                                                  "BB's Lair - BB"]),
+                                                  "Cave of the Past - Dragon Dildo F"]),
         
-        "BB Giygas":           FNaFB2RegionData(["BB Giygas - Left Chest 1",
+        "BB's Lair":                    FNaFB2RegionData(["BB's Lair - BB"]),
+        
+        "BB Giygas":                    FNaFB2RegionData(["BB Giygas - Left Chest 1",
                                                   "BB Giygas - Left Chest 2",
                                                   "BB Giygas - Left Chest 3",
                                                   "BB Giygas - Left Chest 4",
@@ -104,7 +143,7 @@ def create_regions(multiworld: MultiWorld, player: int):
                                                   "BB Giygas - Right Chest 3",
                                                   "BB Giygas"]),
         
-        "Refurbs":             FNaFB2RegionData(["Refurbs"])
+        "Refurbs":                      FNaFB2RegionData(["Refurbs"])
     }
 
     # Category hell
@@ -120,23 +159,19 @@ def create_regions(multiworld: MultiWorld, player: int):
         regions["Trade Machine"].locations.append(voucher)
     for levels in get_locations_by_category("Levelsanity").keys():
         regions["Levelsanity"].locations.append(levels)
-    if multiworld.difficulty[player].value == 1:
-        regions["Show Stage"].locations.append("Show Stage - Cassette Radar Chest")
-        regions["Kid's Cove"].locations.append("Kid's Cove - Cassette")
-        regions["Parts/Service"].locations.append("Parts/Service - Cassette")
-        regions["Men's Bathroom"].locations.append("Men's Bathroom - Cassette")
-        regions["Women's Bathroom"].locations.append("Women's Bathroom - Cassette")
-        regions["Office"].locations.extend(["Office - Cassette", "Office - Rap God"])
-        regions["Office Hall"].locations.append("Office Hall - Cassette")
-        regions["Party Room 1"].locations.append("Party Room 1 - Cassette")
-        regions["Party Room 2"].locations.append("Party Room 2 - Cassette")
-        regions["Party Room 3"].locations.append("Party Room 3 - Cassette")
-        regions["Party Room 4"].locations.append("Party Room 4 - Cassette")
+    for cassette in get_locations_by_category("Cassette").keys():
+        regions[cassette.split(" - ")[0] + " Proud"].locations.append(cassette)
+    for gem in get_locations_by_category("Gem").keys():
+        regions[gem.split(" - ")[0] + " Critical"].locations.append(gem)
 
     for name, data in regions.items():
         if name == "Trade Machine" and multiworld.trade_quest[player] == Toggle.option_false:
             continue
-        if name == "Levelsanity" and multiworld.levelsanity[player] == Toggle.option_false:
+        if name == "Levelsanity" and (multiworld.levelsanity[player] == Toggle.option_false or multiworld.difficulty[player].value == 2):
+            continue
+        if "Critical" in name and multiworld.difficulty[player].value < 2:
+            continue
+        if "Proud" in name and multiworld.difficulty[player].value == 0:
             continue
         if name == "Refurbs" and multiworld.Goal[player].value == 0:
             continue
@@ -149,9 +184,12 @@ def create_region(multiworld: MultiWorld, player: int, name: str, data: FNaFB2Re
         for loc_name in data.locations:
             loc_data = location_table.get(loc_name)
             location = FNaFB2Location(player, loc_name, loc_data.code if loc_data else None, region)
-            if ("Rod of Femininity" in loc_name and multiworld.fem_rods[player] == Toggle.option_true) \
-                or (loc_name == "Boss Rush" and multiworld.boss_rush[player] == Toggle.option_true and multiworld.Goal[player] == 0) \
-                    or (loc_name == "Cave of the Past - Dragon Dildo F" and multiworld.boss_rush[player] == Toggle.option_true):
+            if (
+                ("Rod of Femininity" in loc_name and multiworld.fem_rods[player] == Toggle.option_true)
+                or (loc_name == "Boss Rush" and multiworld.extra_checks[player] == Toggle.option_true and multiworld.Goal[player] == 0)
+                or (loc_name == "Cave of the Past - Dragon Dildo F" and multiworld.extra_checks[player] == Toggle.option_true)
+                or ("Shadow Bonnie" in loc_name and multiworld.shadow_bonnie[player] == Toggle.option_true and multiworld.difficulty[player].value == 2)
+                ):
                 location.progress_type = LocationProgressType.EXCLUDED
             region.locations.append(location)
 

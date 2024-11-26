@@ -51,9 +51,9 @@ class FNaFB2World(World):
             
             # If difficulty is standard, remove the 3 show stage chests and every cassette and rap god
             if self.get_setting("difficulty") == 0 and (category == "Cassette" \
-                or "Lucky Soda Chest" in name or "Double Pizza Chest" in name):
+                or "Lucky Soda" in name or "Double Pizza" in name):
                 continue
-
+            
             # Ignore filler, it will be added in a later stage.
             if category == "Filler":
                 continue

@@ -143,8 +143,27 @@ location_table: Dict[str, FNaFB2LocationData] = {
     "Foxy's Steppin' Cove":                                               FNaFB2LocationData("Arcade",      766783_219),
     "Puppet Man Dating Sim":                                              FNaFB2LocationData("Arcade",      766783_220),
     "SEND CAKE TO CHILD":                                                 FNaFB2LocationData("Arcade",      766783_221),
-    # Stuff I forgot to add
+    # Stuff added later and I'm too lazy to put them in the correct spot
     "Main Hall - Camera":                                                 FNaFB2LocationData("Cameras",     766782_222),
     "BB - Foam Cupcakes A":                                               FNaFB2LocationData("General",     766783_223),
-    "BB's Lair - BB":                                                     FNaFB2LocationData("Boss",        766783_224)
+    "BB's Lair - BB":                                                     FNaFB2LocationData("Boss",        766783_224),
+    "Women's Bathroom - Shadow Bonnie":                                   FNaFB2LocationData("Boss",        766783_225),
+    "Kid's Cove - Chest 1":                                               FNaFB2LocationData("General",     766783_226),
+    "Kid's Cove - Chest 2":                                               FNaFB2LocationData("General",     766783_227),
+    "Kid's Cove - Tophat Slash Gem":                                      FNaFB2LocationData("Gem",         766783_228),
+    "Kid's Cove - Status Bomb Gem":                                       FNaFB2LocationData("Gem",         766783_229),
+    "Men's Bathroom - Paravolt Gem":                                      FNaFB2LocationData("Gem",         766783_230),
+    "Men's Bathroom - Tophat Dash Gem":                                   FNaFB2LocationData("Gem",         766783_231),
+    "Women's Bathroom - Grab Bag Gem":                                    FNaFB2LocationData("Gem",         766783_232),
+    "Women's Bathroom - Somnojolt Gem":                                   FNaFB2LocationData("Gem",         766783_233),
+    "Office - Electroshock Gem":                                          FNaFB2LocationData("Gem",         766783_234),
+    "Office - Recovery Wing Gem":                                         FNaFB2LocationData("Gem",         766783_235),
+    "Office - Spread Bomb Gem":                                           FNaFB2LocationData("Gem",         766783_236),
+    "Office - Tophat Crash Gem":                                          FNaFB2LocationData("Gem",         766783_237),
+    "Party Room 1 - Timer Flip Gem":                                      FNaFB2LocationData("Gem",         766783_238),
+    "Party Room 2 - Healing Wing Gem":                                    FNaFB2LocationData("Gem",         766783_239),
+    "Party Room 3 - Curing Wing Gem":                                     FNaFB2LocationData("Gem",         766783_240),
+    "Party Room 4 - Raising Wing Gem":                                    FNaFB2LocationData("Gem",         766783_241),
+    "Party Room 4 - Tophat Smash Gem":                                    FNaFB2LocationData("Gem",         766783_242),
+    "Party Room 4 - Lightningbolt Gem":                                   FNaFB2LocationData("Gem",         766783_243)
 }

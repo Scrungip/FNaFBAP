@@ -21,28 +21,39 @@ class TradeQuest(Toggle):
 class Difficulty(Choice):
     """
     Playing on Proud will include the 3 extra chests on the show stage, the cassettes and rap god boss as locations.
+    Playing on Critical will include everything on Proud plus each keystone for ability unlocks and 2 chests in Kid's Cove.
     """
     display_name = "Difficulty"
     option_standard = 0
     option_proud = 1
+    option_critical = 2
     default = 0
 
 class FemRods(DefaultOnToggle):
     """
     Turning this on will force both Rod of Femininity A and B to be filler items.
+    If this is off, all locations in the women's bathroom won't be in logic until the second puppet is accessible.
     """
     display_name = "Exclude Rod of Femininity"
 
-class BossRush(DefaultOnToggle):
+class ExtraChecks(DefaultOnToggle):
     """
-    Turning this on will force Boss Rush to be a filler item.
-    This setting is ignored if goal is set to refurbs and will force the Dragon Dildo F check to be a filler item.
+    Turning this on will force Boss Rush and the Dragon Dildo F check to be a filler item.
+    This setting is ignored if goal is set to refurbs.
     """
-    display_name = "Exclude Boss Rush"
+    display_name = "Exclude Extra Checks"
+    
+class ShadowBonnie(Toggle):
+    """
+    Turning this on will force the Shadow Bonnie bossfight check to be a filler item.
+    This setting is only affected if the critical difficulty is enabled. 
+    """
+    display_name = "Exclude Shadow Bonnie"
     
 class Levelsanity(Toggle):
     """
     Includes each level up and each ability learned as an item location.
+    This setting is ignored if the difficulty is critical
     (Adds 108 locations)
     """
     display_name = "Include Levelsanity"
@@ -59,7 +70,8 @@ fnafb2_options: Dict[str, type(Option)] = {
     "trade_quest": TradeQuest,
     "difficulty": Difficulty,
     "fem_rods": FemRods,
-    "boss_rush": BossRush,
+    "extra_checks": ExtraChecks,
+    "shadow_bonnie": ShadowBonnie,
     "levelsanity": Levelsanity
 #    "death_link": DeathLink
 }

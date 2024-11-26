@@ -196,10 +196,11 @@ def set_rules(multiworld: MultiWorld, player: int):
         lambda state: can_fight_almostlategame(state, player)
 
     # General
-    multiworld.get_location("Show Stage - Lucky Soda Chest", player).access_rule = \
-        lambda state: can_fight_almostlategame(state, player)
-    multiworld.get_location("Show Stage - Double Pizza Chest", player).access_rule = \
-        lambda state: can_fight_lategame(state, player)
+    if multiworld.difficulty[player].value > 0:
+        multiworld.get_location("Show Stage - Lucky Soda Chest", player).access_rule = \
+            lambda state: can_fight_almostlategame(state, player)
+        multiworld.get_location("Show Stage - Double Pizza Chest", player).access_rule = \
+            lambda state: can_fight_lategame(state, player)
     multiworld.get_location("Women's Bathroom - Toy Chica", player).access_rule = \
         lambda state: state.can_reach_location("Women's Bathroom - Splash Woman", player) and state.has("Progressive Cupcakes", player)
     multiworld.get_location("Right Vent - Toy Bonnie", player).access_rule = \
@@ -239,7 +240,7 @@ def set_rules(multiworld: MultiWorld, player: int):
             lambda state: can_fight_lategame(state, player)
 
     # Cassettes
-    if multiworld.difficulty[player].value == 1:
+    if multiworld.difficulty[player].value > 0:
         multiworld.get_location("Show Stage - Cassette Radar Chest", player).access_rule = \
             lambda state: can_fight_lategame(state, player)
         multiworld.get_location("Kid's Cove - Cassette", player).access_rule = \
@@ -263,7 +264,7 @@ def set_rules(multiworld: MultiWorld, player: int):
         multiworld.get_location("Party Room 4 - Cassette", player).access_rule = \
             lambda state: state.has("Cassette Radar", player)
         multiworld.get_location("Office - Rap God", player).access_rule = \
-            lambda state: can_fight_endgame(state, player) and state.has("Cassette", player, 10)
+            lambda state: can_fight_endgame(state, player) and state.has("Cassette Radar", player) and state.has("Cassette", player, 10)
 
     # Keystones
     multiworld.get_location("Kid's Cove - Chest", player).access_rule = \
@@ -274,9 +275,52 @@ def set_rules(multiworld: MultiWorld, player: int):
         lambda state: can_fight_lategame(state, player) and state.has("Toy Bonnie", player)
     multiworld.get_location("Office - Right Chest", player).access_rule = \
         lambda state: can_fight_lategame(state, player)
+        
+    # Critical mode
+    if multiworld.difficulty[player].value == 2:
+        # You can't fight shadow bonnie with toy animatronics and withered freddy in the party
+        multiworld.get_location("Women's Bathroom - Shadow Bonnie", player).access_rule = \
+            lambda state: (
+                state.has("Progressive Microphone", player, 6)
+                and (state.count("Progressive Tophat Slash", player)
+                     + state.count("Progressive Tophat Dash", player)
+                     + state.count("Progressive Tophat Crash", player)
+                     + state.count("Progressive Tophat Smash", player)) >= 10
+                and state.has("Progressive Body Endoskeletons", player, 4)
+                and state.has("Progressive Head Endoskeletons", player, 4)
+                and state.has("Progressive Pizza Shields", player, 4)
+                and state.has("Progressive Caffeine Sodas", player, 4)
+                and state.has("Withered Bonnie", player)
+                and state.has("Withered Chica", player)
+                and state.has("Withered Foxy", player)
+            )
+        multiworld.get_location("Kid's Cove - Status Bomb Gem", player).access_rule = \
+            lambda state: state.has("Toy Bonnie", player)
+        multiworld.get_location("Men's Bathroom - Paravolt Gem", player).access_rule = \
+            lambda state: state.has("Mangle", player)
+        multiworld.get_location("Women's Bathroom - Grab Bag Gem", player).access_rule = \
+            lambda state: state.has("Toy Bonnie", player)
+        multiworld.get_location("Women's Bathroom - Somnojolt Gem", player).access_rule = \
+            lambda state: state.has("Mangle", player)
+        multiworld.get_location("Office - Electroshock Gem", player).access_rule = \
+            lambda state: state.has("Mangle", player)
+        multiworld.get_location("Office - Recovery Wing Gem", player).access_rule = \
+            lambda state: state.has("Toy Chica", player)
+        multiworld.get_location("Office - Spread Bomb Gem", player).access_rule = \
+            lambda state: state.has("Toy Bonnie", player)
+        multiworld.get_location("Party Room 1 - Timer Flip Gem", player).access_rule = \
+            lambda state: state.has("Toy Bonnie", player)
+        multiworld.get_location("Party Room 2 - Healing Wing Gem", player).access_rule = \
+            lambda state: state.has("Toy Chica", player)
+        multiworld.get_location("Party Room 3 - Curing Wing Gem", player).access_rule = \
+            lambda state: state.has("Toy Chica", player)
+        multiworld.get_location("Party Room 4 - Raising Wing Gem", player).access_rule = \
+            lambda state: state.has("Toy Chica", player)
+        multiworld.get_location("Party Room 4 - Lightningbolt Gem", player).access_rule = \
+            lambda state: state.has("Mangle", player)
 
     # Levelsanity
-    if multiworld.levelsanity[player] == Toggle.option_true:
+    if multiworld.levelsanity[player] == Toggle.option_true and multiworld.difficulty[player].value < 2:
         for i in range(1, 21):
             if i < 6:
                 multiworld.get_location(f"Toy Bonnie - Level {i}", player).access_rule = \
@@ -380,11 +424,14 @@ def set_rules(multiworld: MultiWorld, player: int):
     connect_regions(multiworld, player, "Show Stage", "Main Hall")
     if multiworld.trade_quest[player] == Toggle.option_true:
         connect_regions(multiworld, player, "Show Stage", "Trade Machine")
-    if multiworld.levelsanity[player] == Toggle.option_true:
+    if multiworld.levelsanity[player] == Toggle.option_true and multiworld.difficulty[player].value < 2:
         connect_regions(multiworld, player, "Show Stage", "Levelsanity")
     connect_regions(multiworld, player, "Main Hall", "Main Hall BB", lambda state: state.has("Main Hall BB", player))
-    connect_regions(multiworld, player, "Main Hall", "Men's Bathroom")
-    connect_regions(multiworld, player, "Main Hall", "Women's Bathroom")
+    connect_regions(multiworld, player, "Main Hall", "Men's Bathroom") 
+    if multiworld.fem_rods[player] == Toggle.option_true:
+        connect_regions(multiworld, player, "Main Hall", "Women's Bathroom")
+    else:
+        connect_regions(multiworld, player, "Main Hall", "Women's Bathroom", lambda state: can_fight_endgame(state, player))
     connect_regions(multiworld, player, "Main Hall", "Parts/Service")
     connect_regions(multiworld, player, "Main Hall", "Office Hall")
     connect_regions(multiworld, player, "Office Hall", "Party Room 4")
@@ -399,7 +446,29 @@ def set_rules(multiworld: MultiWorld, player: int):
     connect_regions(multiworld, player, "Right Vent", "Office")
     connect_regions(multiworld, player, "Office", "Office BB", lambda state: state.has("Office BB", player))
     connect_regions(multiworld, player, "Office", "Cave of the Past", lambda state: can_fight_endgame(state, player) and state.has("BB's Essence", player, 4))
-    connect_regions(multiworld, player, "Cave of the Past", "BB Giygas")
+    connect_regions(multiworld, player, "Cave of the Past", "BB's Lair")
+    connect_regions(multiworld, player, "BB's Lair", "BB Giygas")
+    if multiworld.difficulty[player].value > 0:
+        connect_regions(multiworld, player, "Show Stage", "Show Stage Proud")
+        connect_regions(multiworld, player, "Kid's Cove", "Kid's Cove Proud")
+        connect_regions(multiworld, player, "Women's Bathroom", "Women's Bathroom Proud")
+        connect_regions(multiworld, player, "Men's Bathroom", "Men's Bathroom Proud")
+        connect_regions(multiworld, player, "Parts/Service", "Parts/Service Proud")
+        connect_regions(multiworld, player, "Office Hall", "Office Hall Proud")
+        connect_regions(multiworld, player, "Party Room 1", "Party Room 1 Proud")
+        connect_regions(multiworld, player, "Party Room 2", "Party Room 2 Proud")
+        connect_regions(multiworld, player, "Party Room 3", "Party Room 3 Proud")
+        connect_regions(multiworld, player, "Party Room 4", "Party Room 4 Proud")
+        connect_regions(multiworld, player, "Office", "Office Proud")
+    if multiworld.difficulty[player].value == 2:
+        connect_regions(multiworld, player, "Kid's Cove", "Kid's Cove Critical")
+        connect_regions(multiworld, player, "Women's Bathroom", "Women's Bathroom Critical")
+        connect_regions(multiworld, player, "Men's Bathroom", "Men's Bathroom Critical")
+        connect_regions(multiworld, player, "Party Room 1", "Party Room 1 Critical")
+        connect_regions(multiworld, player, "Party Room 2", "Party Room 2 Critical")
+        connect_regions(multiworld, player, "Party Room 3", "Party Room 3 Critical")
+        connect_regions(multiworld, player, "Party Room 4", "Party Room 4 Critical")
+        connect_regions(multiworld, player, "Office", "Office Critical")
     if multiworld.Goal[player].value == 1:
         connect_regions(multiworld, player, "BB Giygas", "Refurbs")
 
