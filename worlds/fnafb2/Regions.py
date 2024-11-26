@@ -187,7 +187,7 @@ def create_region(multiworld: MultiWorld, player: int, name: str, data: FNaFB2Re
             if (
                 ("Rod of Femininity" in loc_name and multiworld.fem_rods[player] == Toggle.option_true)
                 or (loc_name == "Boss Rush" and multiworld.extra_checks[player] == Toggle.option_true and multiworld.Goal[player] == 0)
-                or (loc_name == "Cave of the Past - Dragon Dildo F" and multiworld.extra_checks[player] == Toggle.option_true)
+                or (loc_name == "Cave of the Past - Dragon Dildo F" and multiworld.extra_checks[player] == Toggle.option_true and multiworld.Goal[player] == 0)
                 or ("Shadow Bonnie" in loc_name and multiworld.shadow_bonnie[player] == Toggle.option_true and multiworld.difficulty[player].value == 2)
                 ):
                 location.progress_type = LocationProgressType.EXCLUDED
