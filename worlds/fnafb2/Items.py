@@ -81,17 +81,17 @@ item_table: Dict[str, FNaFB2ItemData] = {
     "Sex Toy Voucher":                  FNaFB2ItemData("Quest",                  766783_040, ItemClassification.progression,                2),
     # First Sex Toy gets stolen so you need 2 to get Mangle 
     "Sex Toy":                          FNaFB2ItemData("Quest",                  766783_041, ItemClassification.progression,                2),
-    "BB's Essence":                     FNaFB2ItemData("Quest",                  766783_042, ItemClassification.progression_skip_balancing, 4),
+    "B.B.'s Essence":                   FNaFB2ItemData("Quest",                  766783_042, ItemClassification.progression_skip_balancing, 4),
 
     # Cassettes for proud mode
     "Cassette Radar":                   FNaFB2ItemData("Cassette",               766783_043, ItemClassification.progression),
     "Cassette":                         FNaFB2ItemData("Cassette",               766783_044, ItemClassification.progression,                10),
 
     # BB
-    "Main Hall BB":                     FNaFB2ItemData("Quest",                  766783_045, ItemClassification.progression),
-    "Party Room 3 BB":                  FNaFB2ItemData("Quest",                  766783_046, ItemClassification.progression),
-    "Kid's Cove BB":                    FNaFB2ItemData("Quest",                  766783_047, ItemClassification.progression),
-    "Office BB":                        FNaFB2ItemData("Quest",                  766783_048, ItemClassification.progression),
+    "Main Hall B.B.":                   FNaFB2ItemData("Quest",                  766783_045, ItemClassification.progression),
+    "Party Room 3 B.B.":                FNaFB2ItemData("Quest",                  766783_046, ItemClassification.progression),
+    "Kid's Cove B.B.":                  FNaFB2ItemData("Quest",                  766783_047, ItemClassification.progression),
+    "Office B.B.":                      FNaFB2ItemData("Quest",                  766783_048, ItemClassification.progression),
 
     # Gems
     "Tophat Keystone":                  FNaFB2ItemData("Quest",                  766783_049, ItemClassification.progression),

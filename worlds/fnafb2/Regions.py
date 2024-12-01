@@ -35,7 +35,7 @@ def create_regions(multiworld: MultiWorld, player: int):
                                                   "Kid's Cove - Camera",
                                                   "Kid's Cove - Protection Hat"]),
 
-        "Kid's Cove BB":                FNaFB2RegionData(["Turn in Sex Toy Voucher to BB"]),
+        "Kid's Cove B.B.":              FNaFB2RegionData(["Turn in Sex Toy Voucher to B.B."]),
         
         "Kid's Cove Proud":             FNaFB2RegionData([]),
         
@@ -45,14 +45,14 @@ def create_regions(multiworld: MultiWorld, player: int):
         "Main Hall":                    FNaFB2RegionData(["Main Hall - Camera",
                                                   "Main Hall - Protection Hat"]),
 
-        "Main Hall BB":                 FNaFB2RegionData([]),
+        "Main Hall B.B.":               FNaFB2RegionData([]),
 
         "Women's Bathroom":             FNaFB2RegionData(["Women's Bathroom - Toy Chica",
                                                   "Women's Bathroom - Chest",
                                                   "Women's Bathroom - Splash Woman",
                                                   "The Puppet - Rod of Femininity A",
                                                   "The Second Puppet - Rod of Femininity B",
-                                                  "BB - Foam Cupcakes A"]),
+                                                  "B.B. - Foam Cupcakes A"]),
         
         "Women's Bathroom Proud":       FNaFB2RegionData([]),
         
@@ -80,7 +80,7 @@ def create_regions(multiworld: MultiWorld, player: int):
                                                   "Party Room 3 - Camera",
                                                   "Party Room 3 - Protection Hat"]),
 
-        "Party Room 3 BB":              FNaFB2RegionData([]),
+        "Party Room 3 B.B.":            FNaFB2RegionData([]),
         
         "Party Room 3 Proud":           FNaFB2RegionData([]),
         
@@ -118,7 +118,7 @@ def create_regions(multiworld: MultiWorld, player: int):
                                                   "Office - Camera",
                                                   "Office - Protection Hat"]),
         
-        "Office BB":                    FNaFB2RegionData([]),
+        "Office B.B.":                  FNaFB2RegionData([]),
 
         "Office Proud":                 FNaFB2RegionData([]),
 
@@ -131,30 +131,30 @@ def create_regions(multiworld: MultiWorld, player: int):
                                                   "Cave of the Past - Dragon Dildo E",
                                                   "Cave of the Past - Dragon Dildo F"]),
         
-        "BB's Lair":                    FNaFB2RegionData(["BB's Lair - BB"]),
+        "B.B.'s Lair":                  FNaFB2RegionData(["B.B.'s Lair - B.B."]),
         
-        "BB Giygas":                    FNaFB2RegionData(["BB Giygas - Left Chest 1",
-                                                  "BB Giygas - Left Chest 2",
-                                                  "BB Giygas - Left Chest 3",
-                                                  "BB Giygas - Left Chest 4",
-                                                  "BB Giygas - Left Chest 5",
-                                                  "BB Giygas - Right Chest 1",
-                                                  "BB Giygas - Right Chest 2",
-                                                  "BB Giygas - Right Chest 3",
-                                                  "BB Giygas"]),
+        "B.B. Giygas":                  FNaFB2RegionData(["B.B. Giygas - Left Chest 1",
+                                                  "B.B. Giygas - Left Chest 2",
+                                                  "B.B. Giygas - Left Chest 3",
+                                                  "B.B. Giygas - Left Chest 4",
+                                                  "B.B. Giygas - Left Chest 5",
+                                                  "B.B. Giygas - Right Chest 1",
+                                                  "B.B. Giygas - Right Chest 2",
+                                                  "B.B. Giygas - Right Chest 3",
+                                                  "B.B. Giygas"]),
         
         "Refurbs":                      FNaFB2RegionData(["Refurbs"])
     }
 
     # Category hell
     for mainhallbb in get_locations_by_category("MainHallBB").keys():
-        regions["Main Hall BB"].locations.append(mainhallbb)
+        regions["Main Hall B.B."].locations.append(mainhallbb)
     for partyroombb in get_locations_by_category("PartyRoomBB").keys():
-        regions["Party Room 3 BB"].locations.append(partyroombb)
+        regions["Party Room 3 B.B."].locations.append(partyroombb)
     for kidscovebb in get_locations_by_category("KidsCoveBB").keys():
-        regions["Kid's Cove BB"].locations.append(kidscovebb)
+        regions["Kid's Cove B.B."].locations.append(kidscovebb)
     for officebb in get_locations_by_category("OfficeBB").keys():
-        regions["Office BB"].locations.append(officebb)
+        regions["Office B.B."].locations.append(officebb)
     for voucher in get_locations_by_category("Trade").keys():
         regions["Trade Machine"].locations.append(voucher)
     for levels in get_locations_by_category("Levelsanity").keys():

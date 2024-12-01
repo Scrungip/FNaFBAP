@@ -202,7 +202,7 @@ def set_rules(multiworld: MultiWorld, player: int):
         multiworld.get_location("Show Stage - Double Pizza Chest", player).access_rule = \
             lambda state: can_fight_lategame(state, player)
     multiworld.get_location("Women's Bathroom - Toy Chica", player).access_rule = \
-        lambda state: state.can_reach_location("Women's Bathroom - Splash Woman", player) and state.has("Progressive Cupcakes", player)
+        lambda state: state.can_reach_location("Women's Bathroom - Splash Woman", player) and (state.has("Progressive Cupcakes", player) or can_fight_lategame(state, player))
     multiworld.get_location("Right Vent - Toy Bonnie", player).access_rule = \
         lambda state: state.has("Stick", player)
 
@@ -220,13 +220,13 @@ def set_rules(multiworld: MultiWorld, player: int):
         lambda state: state.has("Progressive Dragon Dildo", player, 5)
 
     # Story Quests
-    multiworld.get_location("Turn in Sex Toy Voucher to BB", player).access_rule = \
+    multiworld.get_location("Turn in Sex Toy Voucher to B.B.", player).access_rule = \
         lambda state: state.can_reach_location("Kid's Cove - Protection Hat", player) \
-            and state.has("Kid's Cove BB", player) and state.has("Sex Toy Voucher", player)
+            and state.has("Kid's Cove B.B.", player) and state.has("Sex Toy Voucher", player)
     multiworld.get_location("Kid's Cove - Return Sex Toy", player).access_rule = \
         lambda state: state.has("Sex Toy", player, 2)
     multiworld.get_location("Vending Machine - Turn in Sex Toy", player).access_rule = \
-        lambda state: state.has("Sex Toy Voucher", player)
+        lambda state: state.has("Sex Toy Voucher", player) and can_fight_lategame(state, player)
 
     # Enemy Trade Item Drops
     if multiworld.trade_quest[player] == Toggle.option_true:
@@ -357,29 +357,28 @@ def set_rules(multiworld: MultiWorld, player: int):
                 multiworld.get_location(f"Mangle - Level {i}", player).access_rule = \
                     lambda state: can_fight_almostlategame(state, player) and state.has("Mangle", player)
         
-        # Failsafe is if you upgrade skill without using it 20 times, it will just send the check immediately
-        multiworld.get_location("Toy Freddy - Tophat Slash LV2", player).access_rule = \
-            lambda state: state.has("Progressive Tophat Slash", player)
-        multiworld.get_location("Toy Freddy - Tophat Slash LVMAX", player).access_rule = \
-            lambda state: state.has("Progressive Tophat Slash", player, 2)
-        multiworld.get_location("Toy Freddy - Tophat Dash LV1", player).access_rule = \
+        multiworld.get_location("Toy Freddy - Tophat Dash", player).access_rule = \
             lambda state: can_fight_earlygame(state, player)
-        multiworld.get_location("Toy Freddy - Tophat Dash LV2", player).access_rule = \
-            lambda state: can_fight_earlygame(state, player) and state.has("Progressive Tophat Dash", player)
-        multiworld.get_location("Toy Freddy - Tophat Dash LVMAX", player).access_rule = \
-            lambda state: can_fight_earlygame(state, player) and state.has("Progressive Tophat Dash", player, 2)
-        multiworld.get_location("Toy Freddy - Tophat Crash LV1", player).access_rule = \
+        multiworld.get_location("Toy Freddy - Tophat Crash", player).access_rule = \
             lambda state: can_fight_midgame(state, player)
-        multiworld.get_location("Toy Freddy - Tophat Crash LV2", player).access_rule = \
-            lambda state: can_fight_midgame(state, player) and state.has("Progressive Tophat Crash", player)
-        multiworld.get_location("Toy Freddy - Tophat Crash LVMAX", player).access_rule = \
-            lambda state: can_fight_midgame(state, player) and state.has("Progressive Tophat Crash", player, 2)
-        multiworld.get_location("Toy Freddy - Tophat Smash LV1", player).access_rule = \
-            lambda state: can_fight_almostlategame(state, player)
-        multiworld.get_location("Toy Freddy - Tophat Smash LV2", player).access_rule = \
-            lambda state: can_fight_almostlategame(state, player) and state.has("Progressive Tophat Smash", player)
-        multiworld.get_location("Toy Freddy - Tophat Smash LVMAX", player).access_rule = \
-            lambda state: can_fight_almostlategame(state, player) and state.has("Progressive Tophat Smash", player, 2)
+        multiworld.get_location("Toy Freddy - Tophat Smash", player).access_rule = \
+            lambda state: can_fight_lategame(state, player)
+        multiworld.get_location("Toy Freddy - Use Tophat Slash 20 times", player).access_rule = \
+            lambda state: state.has("Progressive Tophat Slash", player)
+        multiworld.get_location("Toy Freddy - Use Tophat Slash 40 times", player).access_rule = \
+            lambda state: state.has("Progressive Tophat Slash", player)
+        multiworld.get_location("Toy Freddy - Use Tophat Dash 20 times", player).access_rule = \
+            lambda state: state.has("Progressive Tophat Dash", player)
+        multiworld.get_location("Toy Freddy - Use Tophat Dash 40 times", player).access_rule = \
+            lambda state: state.has("Progressive Tophat Dash", player)
+        multiworld.get_location("Toy Freddy - Use Tophat Crash 20 times", player).access_rule = \
+            lambda state: state.has("Progressive Tophat Crash", player)
+        multiworld.get_location("Toy Freddy - Use Tophat Dash 40 times", player).access_rule = \
+            lambda state: state.has("Progressive Tophat Crash", player)
+        multiworld.get_location("Toy Freddy - Use Tophat Smash 20 times", player).access_rule = \
+            lambda state: state.has("Progressive Tophat Smash", player)
+        multiworld.get_location("Toy Freddy - Use Tophat Smash 40 times", player).access_rule = \
+            lambda state: state.has("Progressive Tophat Smash", player)
 
         multiworld.get_location("Mangle - Electroshock", player).access_rule = \
             lambda state: state.has("Mangle", player)
@@ -420,13 +419,13 @@ def set_rules(multiworld: MultiWorld, player: int):
     # Connect regions at rule runtime
     connect_regions(multiworld, player, "Menu", "Show Stage")
     connect_regions(multiworld, player, "Show Stage", "Kid's Cove")
-    connect_regions(multiworld, player, "Show Stage", "Kid's Cove BB", lambda state: state.has("Kid's Cove BB", player))
+    connect_regions(multiworld, player, "Show Stage", "Kid's Cove B.B.", lambda state: state.has("Kid's Cove B.B.", player))
     connect_regions(multiworld, player, "Show Stage", "Main Hall")
     if multiworld.trade_quest[player] == Toggle.option_true:
         connect_regions(multiworld, player, "Show Stage", "Trade Machine")
     if multiworld.levelsanity[player] == Toggle.option_true and multiworld.difficulty[player].value < 2:
         connect_regions(multiworld, player, "Show Stage", "Levelsanity")
-    connect_regions(multiworld, player, "Main Hall", "Main Hall BB", lambda state: state.has("Main Hall BB", player))
+    connect_regions(multiworld, player, "Main Hall", "Main Hall B.B.", lambda state: state.has("Main Hall B.B.", player))
     connect_regions(multiworld, player, "Main Hall", "Men's Bathroom") 
     if multiworld.fem_rods[player] == Toggle.option_true:
         connect_regions(multiworld, player, "Main Hall", "Women's Bathroom")
@@ -436,7 +435,7 @@ def set_rules(multiworld: MultiWorld, player: int):
     connect_regions(multiworld, player, "Main Hall", "Office Hall")
     connect_regions(multiworld, player, "Office Hall", "Party Room 4")
     connect_regions(multiworld, player, "Office Hall", "Party Room 3")
-    connect_regions(multiworld, player, "Party Room 3", "Party Room 3 BB", lambda state: state.has("Party Room 3 BB", player))
+    connect_regions(multiworld, player, "Party Room 3", "Party Room 3 B.B.", lambda state: state.has("Party Room 3 B.B.", player))
     connect_regions(multiworld, player, "Office Hall", "Party Room 1")
     connect_regions(multiworld, player, "Office Hall", "Party Room 2")
     connect_regions(multiworld, player, "Office Hall", "Office")
@@ -444,10 +443,10 @@ def set_rules(multiworld: MultiWorld, player: int):
     connect_regions(multiworld, player, "Party Room 2", "Right Vent")
     connect_regions(multiworld, player, "Left Vent", "Office")
     connect_regions(multiworld, player, "Right Vent", "Office")
-    connect_regions(multiworld, player, "Office", "Office BB", lambda state: state.has("Office BB", player))
-    connect_regions(multiworld, player, "Office", "Cave of the Past", lambda state: can_fight_endgame(state, player) and state.has("BB's Essence", player, 4))
-    connect_regions(multiworld, player, "Cave of the Past", "BB's Lair")
-    connect_regions(multiworld, player, "BB's Lair", "BB Giygas")
+    connect_regions(multiworld, player, "Office", "Office B.B.", lambda state: state.has("Office B.B.", player))
+    connect_regions(multiworld, player, "Office", "Cave of the Past", lambda state: can_fight_endgame(state, player) and state.has("B.B.'s Essence", player, 4))
+    connect_regions(multiworld, player, "Cave of the Past", "B.B.'s Lair")
+    connect_regions(multiworld, player, "B.B.'s Lair", "B.B. Giygas")
     if multiworld.difficulty[player].value > 0:
         connect_regions(multiworld, player, "Show Stage", "Show Stage Proud")
         connect_regions(multiworld, player, "Kid's Cove", "Kid's Cove Proud")
@@ -470,11 +469,11 @@ def set_rules(multiworld: MultiWorld, player: int):
         connect_regions(multiworld, player, "Party Room 4", "Party Room 4 Critical")
         connect_regions(multiworld, player, "Office", "Office Critical")
     if multiworld.Goal[player].value == 1:
-        connect_regions(multiworld, player, "BB Giygas", "Refurbs")
+        connect_regions(multiworld, player, "B.B. Giygas", "Refurbs")
 
 
     # Win Condition
     if multiworld.Goal[player].value == 0:
-        multiworld.completion_condition[player] = lambda state: state.can_reach_location("BB Giygas", player)
+        multiworld.completion_condition[player] = lambda state: state.can_reach_location("B.B. Giygas", player)
     else:
         multiworld.completion_condition[player] = lambda state: state.can_reach_location("Refurbs", player)
