@@ -6,7 +6,7 @@ on:
       zip_name:
         description: "Name of the output zip file (without extension)"
         required: true
-        default: "games_and_worlds"
+        default: "FNaFBAPReleaseBuild"
 
 jobs:
   zip_folders:
@@ -27,7 +27,7 @@ jobs:
     - name: Zip the folders
       run: |
         cd output
-        zip -r "${{ github.event.inputs.zip_name }}.zip" FNaFBAPReleaseBuild
+        zip -r "${{ github.event.inputs.zip_name }}.zip"
 
     - name: Upload zip artifact
       uses: actions/upload-artifact@v3
