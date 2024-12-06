@@ -93,13 +93,21 @@ def can_fight_midgame(state: CollectionState, player: int) -> bool:
         and party_count(state, player) >= 2
         and skills(state, player) >= 2
     )
+    
+def can_fight_postmidgame(state: CollectionState, player: int) -> bool:
+    return (
+        attack_power(state, player) >= 6
+        and total_defense(state, player) >= 12
+        and party_count(state, player) >= 3
+        and skills(state, player) >= 4
+    )
 
 def can_fight_almostlategame(state: CollectionState, player: int) -> bool:
     return (
         attack_power(state, player) >= 10
         and total_defense(state, player) >= 20
-        and party_count(state, player) >= 3
-        and skills(state, player) >= 4
+        and party_count(state, player) >= 4
+        and skills(state, player) >= 6
     )
 
 def can_fight_lategame(state: CollectionState, player: int) -> bool:
@@ -131,12 +139,12 @@ def set_rules(multiworld: MultiWorld, player: int):
             (state.count("Progressive Tophat Slash", player)
             + state.count("Progressive Tophat Dash", player)
             + state.count("Progressive Tophat Crash", player)
-            + state.count("Progressive Tophat Smash", player)) >= 1
-            and state.count("Progressive Microphone", player) >= 2
-            and state.count("Progressive Body Endoskeletons", player) >= 1
-            and state.count("Progressive Head Endoskeletons", player) >= 1
-            and state.count("Progressive Pizza Shield", player) >= 1
-            and state.count("Progressive Caffeine Sodas", player) >= 1
+            + state.count("Progressive Tophat Smash", player)) >= 2
+            and state.count("Progressive Microphone", player) >= 3
+            and state.count("Progressive Body Endoskeletons", player) >= 2
+            and state.count("Progressive Head Endoskeletons", player) >= 2
+            and state.count("Progressive Pizza Shields", player) >= 2
+            and state.count("Progressive Caffeine Sodas", player) >= 2
         )
 
     multiworld.get_location("The Puppet", player).access_rule = \
@@ -187,13 +195,13 @@ def set_rules(multiworld: MultiWorld, player: int):
     multiworld.get_location("Right Vent - Camera", player).access_rule = \
         lambda state: can_fight_lategame(state, player)
     multiworld.get_location("Party Room 1 - Camera", player).access_rule = \
-        lambda state: can_fight_almostlategame(state, player)
+        lambda state: can_fight_postmidgame(state, player)
     multiworld.get_location("Party Room 2 - Camera", player).access_rule = \
-        lambda state: can_fight_almostlategame(state, player)
+        lambda state: can_fight_postmidgame(state, player)
     multiworld.get_location("Party Room 3 - Camera", player).access_rule = \
-        lambda state: can_fight_midgame(state, player)
+        lambda state: can_fight_postmidgame(state, player)
     multiworld.get_location("Party Room 4 - Camera", player).access_rule = \
-        lambda state: can_fight_almostlategame(state, player)
+        lambda state: can_fight_postmidgame(state, player)
 
     # General
     if multiworld.difficulty[player].value > 0:
