@@ -3,13 +3,24 @@ name: Release
 on:
   workflow_dispatch:
     inputs:
+      release_name:
+        description: "Name of the release"
+        required: true
+        default: "FNaFBAP"
       zip_name:
         description: "Name of the output zip file (without extension)"
         required: true
         default: "FNaFBAP"
+      release_body:
+        description: "Markdown-formatted body of the release"
+        required: true
+        default: |
+          ## Default Release Notes
+          - Games folder included.
+          - Individual .apworld files for each world folder.
 
 jobs:
-  zip_folders:
+  create_release:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,18 +30,43 @@ jobs:
     - name: Create a folder to hold the content
       run: mkdir -p output
 
-    - name: Copy folders to output directory
-      run: |
-        cp -r games output/
-        cp -r worlds output/
+    - name: Copy games folder to output directory
+      run: cp -r games output/
 
-    - name: Zip the folders
+    - name: Zip each folder in "worlds" as an .apworld file
+      run: |
+        mkdir -p output/worlds_apworlds
+        for dir in worlds/*; do
+          if [ -d "$dir" ]; then
+            folder_name=$(basename "$dir")
+            zip -r "output/worlds_apworlds/$folder_name.apworld" "$dir"
+          fi
+        done
+
+    - name: Debug - List output contents
+      run: ls -R output
+
+    - name: Create a release
+      id: create_release
+      uses: actions/create-release@v1
+      with:
+        tag_name: ${{ github.event.inputs.zip_name }}
+        release_name: ${{ github.event.inputs.release_name }}
+        body: ${{ github.event.inputs.release_body }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Zip the output folder for release
       run: |
         cd output
-        zip -r "${{ github.event.inputs.zip_name }}.zip" games worlds
+        zip -r "../${{ github.event.inputs.zip_name }}.zip" *
 
-    - name: Upload zip artifact
-      uses: actions/upload-artifact@v3
+    - name: Upload the zip file to the release
+      uses: actions/upload-release-asset@v1
       with:
-        name: ${{ github.event.inputs.zip_name }}
-        path: output/${{ github.event.inputs.zip_name }}.zip
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./${{ github.event.inputs.zip_name }}.zip
+        asset_name: ${{ github.event.inputs.zip_name }}.zip
+        asset_content_type: application/zip
