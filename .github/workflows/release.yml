@@ -42,6 +42,7 @@ jobs:
             zip -r "output/worlds_apworlds/$folder_name.apworld" "$dir"
           fi
         done
+        mv output/worlds_apworlds output/worlds
 
     - name: Debug - List output contents
       run: ls -R output
@@ -58,11 +59,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Zip the output folder for release
-      run: |
-        cd output
-        zip -r "../${{ github.event.inputs.zip_name }}.zip" *
-
+    - name: Incrementally zip the output folder
+      run: zip -r "../${{ github.event.inputs.zip_name }}.zip" output/*
+      
     - name: Upload the zip file to the release
       uses: actions/upload-release-asset@v1
       with:
