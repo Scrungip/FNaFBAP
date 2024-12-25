@@ -6,7 +6,7 @@
  Do note that this game is not, and never will be, supported by the main Archipelago team.
  This game is not permitted to be run or discussed in the official Archipelago Discord servers under any circumstances.
 
-# Changes to base game
+# Changes to base game of FNaFB1
  Some changes were made to make playing this randomizer a more seamless experience. Here's what you need to know.
  - Characters, Weapons, Armors, Key Items, and B.B. Shops have been shuffled into the item pool to find.
  - The Kingly/Godly Weapons have been removed from the RNG drops in place of Vouchers to be traded in on the Show Stage for checks (if enabled in the player's YAML).
@@ -20,6 +20,18 @@
  - The Puppet no longer has a timer and can be fought by interacting with it in the Restrooms.
  - Interior Walls will only open if the "Reveal Interior Walls" item has been recieved by the player.
  - The door to The Office requires 4 Key Pieces to be obtained before you're allowed to enter. You must also defeat all of the cameras as normal.
+  
+# Changes to base game of FNaFB2
+ - Every change from FNaFB1 were implemented into here with a couple of differences.
+ - Real Weapons have been removed from the RNG drops for vouchers if the setting is enabled.
+ - B.B. Shops work the same as the FNaFB1 AP with the order being Main Hall B.B., Party Room 3 B.B., Kid's Cove B.B., Office B.B.
+ - Both First and Second Puppet can be fought by interacting with it in either the Show Stage or the Women's Bathroom
+ - The door to the Cave of the Past requires 4 B.B.'s Essence.
+ - Mangle will no longer prevent you from shattering your masculinity before you enter the Women's Bathroom.
+ - Toy Bonnie will still appear in the right vent if you get Toy Bonnie before you talk/free him.
+ - Shadow Bonnie bossfight will appear if you have toy animatronics in your party, but they will be removed before you fight it.
+ - Cake Minigame has been reduced to 10 times to feed the kid from 100.
+ - The final cassette will no longer auto warp you to the rap god. There is another cassette in the bottom right corner of the Office for you to fight the rap god.
 
 # APWorld Setup
  This randomizer uses [Archipelago](https://github.com/ArchipelagoMW/Archipelago) to handle seed generation.

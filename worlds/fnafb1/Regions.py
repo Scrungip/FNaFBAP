@@ -60,12 +60,11 @@ def create_regions(multiworld: MultiWorld, player: int):
         "Backroom":             FNaFBRegionData(["Backroom - Camera",
                                                  "Backroom - Alpha Party Hat",
                                                  "Backroom - Return Bonnie's Head",
-                                                 "Backroom - Toy Bonnie",
-                                                 "Backroom - Alpha Party Hat"]),
+                                                 "Backroom - Toy Bonnie"]),
 
         "Backroom BB":          FNaFBRegionData([]),
 
-        "Interior Walls":       FNaFBRegionData(["Interior Walls - ???"]),
+        "Interior Walls":       FNaFBRegionData([]),
 
         "Office":               FNaFBRegionData(["Office - Golden Freddy"])
     }
