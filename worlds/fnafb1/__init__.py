@@ -58,6 +58,11 @@ class FNaFBWorld(World):
             quantity = data.max_quantity
             category = data.category
             classification = data.classification
+            chars = ["Freddy", "Bonnie", "Chica", "Foxy"]
+
+            if name == self.multiworld.random.choice(chars):
+                self.multiworld.push_precollected(create_item(name))
+                continue
 
             # Ignore Interior Walls if it's not enabled.
             if name == "Reveal Interior Walls" and not self.get_setting("interior_walls"):

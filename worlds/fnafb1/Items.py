@@ -26,6 +26,7 @@ def get_items_by_category(category: str) -> Dict[str, FNaFBItemData]:
 
 item_table: Dict[str, FNaFBItemData] = {
     # Party Members
+    "Freddy":                   FNaFBItemData("Party",      756782_999, ItemClassification.progression),
     "Bonnie":                   FNaFBItemData("Party",      756783_000, ItemClassification.progression),
     "Chica":                    FNaFBItemData("Party",      756783_001, ItemClassification.progression),
     "Foxy":                     FNaFBItemData("Party",      756783_002, ItemClassification.progression),
