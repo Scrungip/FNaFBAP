@@ -20,9 +20,9 @@ def create_regions(multiworld: MultiWorld, player: int):
                                                  "Dining Area - Camera",
                                                  "Kitchen - Chica",
                                                  "Show Stage - Toy Freddy"]),
-        
+
         "Levelsanity":          FNaFBRegionData([]),
-        
+
         "Trade Machine":        FNaFBRegionData([]),
 
         "Trade Machine IW":     FNaFBRegionData([]),
@@ -57,8 +57,8 @@ def create_regions(multiworld: MultiWorld, player: int):
 
         "Restrooms BB":         FNaFBRegionData([]),
 
-        "Backroom":             FNaFBRegionData(["Backroom - Camera",
-                                                 "Backroom - Alpha Party Hat",
+        "Backroom":             FNaFBRegionData(["Backroom - Alpha Party Hat",
+                                                 "Backroom - Camera",
                                                  "Backroom - Return Bonnie's Head",
                                                  "Backroom - Toy Bonnie"]),
 
@@ -83,7 +83,7 @@ def create_regions(multiworld: MultiWorld, player: int):
     for voucher in get_locations_by_category("Trade").keys():
         regions["Trade Machine"].locations.append(voucher)
     for voucheriw in get_locations_by_category("TradeIW").keys():
-        regions["Trade Machine IW"].locations.append(voucheriw)   
+        regions["Trade Machine IW"].locations.append(voucheriw)
     for levels in get_locations_by_category("Levelsanity").keys():
         regions["Levelsanity"].locations.append(levels)
 
@@ -96,7 +96,8 @@ def create_regions(multiworld: MultiWorld, player: int):
             continue
         if name == "Levelsanity" and multiworld.levelsanity[player] == Toggle.option_false:
             continue
-        multiworld.regions.append(create_region(multiworld, player, name, data))
+        multiworld.regions.append(
+            create_region(multiworld, player, name, data))
 
 
 def create_region(multiworld: MultiWorld, player: int, name: str, data: FNaFBRegionData):
@@ -104,11 +105,13 @@ def create_region(multiworld: MultiWorld, player: int, name: str, data: FNaFBReg
     if data.locations:
         for loc_name in data.locations:
             loc_data = location_table.get(loc_name)
-            location = FNaFBLocation(player, loc_name, loc_data.code if loc_data else None, region)
+            location = FNaFBLocation(
+                player, loc_name, loc_data.code if loc_data else None, region)
             region.locations.append(location)
 
     return region
-    
+
+
 def connect_regions(multiworld: MultiWorld, player: int, source: str, target: List[str], rule=None):
     sourceRegion = multiworld.get_region(source, player)
     targetRegion = multiworld.get_region(target, player)

@@ -43,7 +43,7 @@ item_table: Dict[str, FNaFB2ItemData] = {
     "Progressive Dragon Dildo":         FNaFB2ItemData("Useful",                766783_011, ItemClassification.progression,                 6),
     "Progressive Rod of Femininity":    FNaFB2ItemData("Useful",                766783_012, ItemClassification.useful,                      2),
     "Stick":                            FNaFB2ItemData("TFreddyWeapons",        766783_013, ItemClassification.progression),
-    
+
 
 
     # Skills (Not including Bite of 87 because of how much it would break the game)
@@ -67,7 +67,7 @@ item_table: Dict[str, FNaFB2ItemData] = {
     "Terror Fever":                     FNaFB2ItemData("TBonnieSkills",          766783_031, ItemClassification.useful),
     "Avian Strike":                     FNaFB2ItemData("TChicaSkills",           766783_032, ItemClassification.useful),
     "Disassembly":                      FNaFB2ItemData("MangleSkills",           766783_033, ItemClassification.useful),
-    
+
     # Armor/Defense
     "Progressive Body Endoskeletons":   FNaFB2ItemData("Armor",                  766783_034, ItemClassification.progression,                4),
     "Progressive Head Endoskeletons":   FNaFB2ItemData("Armor",                  766783_035, ItemClassification.progression,                4),
@@ -79,7 +79,7 @@ item_table: Dict[str, FNaFB2ItemData] = {
     # Progression
     # One to turn into BB, one to turn into the vending machine
     "Sex Toy Voucher":                  FNaFB2ItemData("Quest",                  766783_040, ItemClassification.progression,                2),
-    # First Sex Toy gets stolen so you need 2 to get Mangle 
+    # First Sex Toy gets stolen so you need 2 to get Mangle
     "Sex Toy":                          FNaFB2ItemData("Quest",                  766783_041, ItemClassification.progression,                2),
     "B.B.'s Essence":                   FNaFB2ItemData("Quest",                  766783_042, ItemClassification.progression_skip_balancing, 4),
 
@@ -101,19 +101,21 @@ item_table: Dict[str, FNaFB2ItemData] = {
 
     # Junk
     "Small Pizza":                      FNaFB2ItemData("Filler",                 766783_053, weight=2),
-    "Medium Pizza":                     FNaFB2ItemData("Filler",                 766783_054, weight=2),
-    "Large Pizza":                      FNaFB2ItemData("Filler",                 766783_055, weight=2),
+    "Medium Pizza":                     FNaFB2ItemData("Filler",                 766783_054, weight=4),
+    "Large Pizza":                      FNaFB2ItemData("Filler",                 766783_055, weight=3),
     "Small Soda":                       FNaFB2ItemData("Filler",                 766783_056, weight=2),
-    "Medium Soda":                      FNaFB2ItemData("Filler",                 766783_057, weight=2),
-    "Large Soda":                       FNaFB2ItemData("Filler",                 766783_058, weight=2),
-    "Pizza Slice":                      FNaFB2ItemData("Filler",                 766783_059, weight=2),
+    "Medium Soda":                      FNaFB2ItemData("Filler",                 766783_057, weight=4),
+    "Large Soda":                       FNaFB2ItemData("Filler",                 766783_058, weight=3),
+    "Pizza Slice":                      FNaFB2ItemData("Filler",                 766783_059, weight=1),
     "Cake":                             FNaFB2ItemData("Filler",                 766783_060, weight=2),
-    "Birthday Present":                 FNaFB2ItemData("Filler",                 766783_061, weight=2),
+    "Birthday Present":                 FNaFB2ItemData("Filler",                 766783_061, weight=1),
     "X-Large Pizza":                    FNaFB2ItemData("Filler",                 766783_062, weight=2),
     "X-Large Soda":                     FNaFB2ItemData("Filler",                 766783_063, weight=2),
-    "Life Boost":                       FNaFB2ItemData("Filler",                 766783_064, weight=2),
-    "Skill Boost":                      FNaFB2ItemData("Filler",                 766783_065, weight=2),
-    "Attack Boost":                     FNaFB2ItemData("Filler",                 766783_066, weight=2),
-    "Defense Boost":                    FNaFB2ItemData("Filler",                 766783_067, weight=2),
-    "Donuts":                           FNaFB2ItemData("Filler",                 766783_068, weight=2)
+    "Life Boost":                       FNaFB2ItemData("Filler",                 766783_064, weight=1),
+    "Skill Boost":                      FNaFB2ItemData("Filler",                 766783_065, weight=1),
+    "Attack Boost":                     FNaFB2ItemData("Filler",                 766783_066, weight=1),
+    "Defense Boost":                    FNaFB2ItemData("Filler",                 766783_067, weight=1),
+    "Donuts":                           FNaFB2ItemData("Filler",                 766783_068, weight=2),
+
+    "Tokens":                           FNaFB2ItemData("Filler",                 766783_069, weight=3)
 }

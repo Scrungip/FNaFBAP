@@ -72,7 +72,15 @@ class FNaFB2World(World):
     def create_item(self, name: str) -> FNaFB2Item:
         data = item_table[name]
         return FNaFB2Item(name, data.classification, data.code, self.player)
-
+    
+    def pre_fill(self) -> None:
+        if self.get_setting("Goal") == 0:
+            location = self.multiworld.get_location("B.B. Giygas", self.player)
+        else:
+            location = self.multiworld.get_location("Refurbs", self.player)
+        location.place_locked_item(FNaFB2Item("Victory", ItemClassification.progression, 766783_070, self.player))
+        
+    
     def create_regions(self):
         create_regions(self.multiworld, self.player)
 

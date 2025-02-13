@@ -139,12 +139,14 @@ def set_rules(multiworld: MultiWorld, player: int):
             (state.count("Progressive Tophat Slash", player)
             + state.count("Progressive Tophat Dash", player)
             + state.count("Progressive Tophat Crash", player)
-            + state.count("Progressive Tophat Smash", player)) >= 2
+            + state.count("Progressive Tophat Smash", player)) >= 3
             and state.count("Progressive Microphone", player) >= 3
-            and state.count("Progressive Body Endoskeletons", player) >= 2
-            and state.count("Progressive Head Endoskeletons", player) >= 2
-            and state.count("Progressive Pizza Shields", player) >= 2
-            and state.count("Progressive Caffeine Sodas", player) >= 2
+            and (
+                state.count("Progressive Body Endoskeletons", player)
+                + state.count("Progressive Head Endoskeletons", player)
+                + state.count("Progressive Pizza Shields", player)
+                + state.count("Progressive Caffeine Sodas", player)
+                ) >= 10
         )
 
     multiworld.get_location("The Puppet", player).access_rule = \
@@ -233,7 +235,7 @@ def set_rules(multiworld: MultiWorld, player: int):
             and state.has("Kid's Cove B.B.", player) and state.has("Sex Toy Voucher", player)
     multiworld.get_location("Kid's Cove - Return Sex Toy", player).access_rule = \
         lambda state: state.has("Sex Toy", player, 2)
-    multiworld.get_location("Vending Machine - Turn in Sex Toy", player).access_rule = \
+    multiworld.get_location("Vending Machine - Turn in Sex Toy Voucher", player).access_rule = \
         lambda state: state.has("Sex Toy Voucher", player) and can_fight_lategame(state, player)
 
     # Enemy Trade Item Drops
@@ -433,6 +435,7 @@ def set_rules(multiworld: MultiWorld, player: int):
         connect_regions(multiworld, player, "Show Stage", "Trade Machine")
     if multiworld.levelsanity[player] == Toggle.option_true and multiworld.difficulty[player].value < 2:
         connect_regions(multiworld, player, "Show Stage", "Levelsanity")
+    connect_regions(multiworld, player, "Show Stage", "Grindy")
     connect_regions(multiworld, player, "Main Hall", "Main Hall B.B.", lambda state: state.has("Main Hall B.B.", player))
     connect_regions(multiworld, player, "Main Hall", "Men's Bathroom") 
     if multiworld.fem_rods[player] == Toggle.option_true:
@@ -481,7 +484,4 @@ def set_rules(multiworld: MultiWorld, player: int):
 
 
     # Win Condition
-    if multiworld.Goal[player].value == 0:
-        multiworld.completion_condition[player] = lambda state: state.can_reach_location("B.B. Giygas", player)
-    else:
-        multiworld.completion_condition[player] = lambda state: state.can_reach_location("Refurbs", player)
+    multiworld.completion_condition[player] = lambda state: state.has("Victory", player)

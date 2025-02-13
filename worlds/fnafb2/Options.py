@@ -54,9 +54,16 @@ class Levelsanity(Toggle):
     """
     Includes each level up and each ability learned as an item location.
     This setting is ignored if the difficulty is critical
-    (Adds 108 locations)
+    (Adds 100 locations)
     """
     display_name = "Include Levelsanity"
+    
+class GrindyChecks(Toggle):
+    """
+    Turning this on will exclude checks that involve toy freddy using his
+    abilities 20 or 40 times.
+    """
+    display_anme = "Exclude Grindy Checks"
 
 #class DeathLink(Toggle):
 #    """
@@ -72,6 +79,7 @@ fnafb2_options: Dict[str, type(Option)] = {
     "fem_rods": FemRods,
     "extra_checks": ExtraChecks,
     "shadow_bonnie": ShadowBonnie,
-    "levelsanity": Levelsanity
+    "levelsanity": Levelsanity,
+    "grindy": GrindyChecks
 #    "death_link": DeathLink
 }

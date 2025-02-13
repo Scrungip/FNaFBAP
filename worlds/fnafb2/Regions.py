@@ -15,7 +15,7 @@ def create_regions(multiworld: MultiWorld, player: int):
 
         "Show Stage":                   FNaFB2RegionData(["Show Stage - Left Chest",
                                                  "Show Stage - Right Chest",
-                                                 "Vending Machine - Turn in Sex Toy",
+                                                 "Vending Machine - Turn in Sex Toy Voucher",
                                                  "Game Room - Punch the fuck out of the carousel",
                                                  "Show Stage - Camera",
                                                  "Game Room - Camera",
@@ -27,6 +27,8 @@ def create_regions(multiworld: MultiWorld, player: int):
                                                  "Show Stage - Double Pizza Chest"]),
         
         "Levelsanity":                  FNaFB2RegionData([]),
+        
+        "Grindy":                       FNaFB2RegionData([]),
 
         "Trade Machine":                FNaFB2RegionData([]),
 
@@ -159,6 +161,8 @@ def create_regions(multiworld: MultiWorld, player: int):
         regions["Trade Machine"].locations.append(voucher)
     for levels in get_locations_by_category("Levelsanity").keys():
         regions["Levelsanity"].locations.append(levels)
+    for grindy in get_locations_by_category("Grindy").keys():
+        regions["Grindy"].locations.append(grindy)
     for cassette in get_locations_by_category("Cassette").keys():
         regions[cassette.split(" - ")[0] + " Proud"].locations.append(cassette)
     for gem in get_locations_by_category("Gem").keys():
@@ -189,6 +193,7 @@ def create_region(multiworld: MultiWorld, player: int, name: str, data: FNaFB2Re
                 or (loc_name == "Boss Rush" and multiworld.extra_checks[player] == Toggle.option_true and multiworld.Goal[player] == 0)
                 or (loc_name == "Cave of the Past - Dragon Dildo F" and multiworld.extra_checks[player] == Toggle.option_true and multiworld.Goal[player] == 0)
                 or ("Shadow Bonnie" in loc_name and multiworld.shadow_bonnie[player] == Toggle.option_true and multiworld.difficulty[player].value == 2)
+                or ("Toy Freddy - Use" in loc_name and multiworld.grindy[player] == Toggle.option_true)
                 ):
                 location.progress_type = LocationProgressType.EXCLUDED
             region.locations.append(location)
