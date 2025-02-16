@@ -54,18 +54,20 @@ class FNaFBWorld(World):
     def create_items(self):
         item_pool: List[FNaFBItem] = []
         total_locations = len(self.multiworld.get_unfilled_locations(self.player))
+        chars = ["Freddy", "Bonnie", "Chica", "Foxy"]
+        randomstarter = self.multiworld.random.choice(chars)
+        self.multiworld.push_precollected(self.create_item(randomstarter))
         for name, data in item_table.items():
             quantity = data.max_quantity
             category = data.category
             classification = data.classification
-            chars = ["Freddy", "Bonnie", "Chica", "Foxy"]
-
-            if name == self.multiworld.random.choice(chars):
-                self.multiworld.push_precollected(create_item(name))
-                continue
 
             # Ignore Interior Walls if it's not enabled.
             if name == "Reveal Interior Walls" and not self.get_setting("interior_walls"):
+                continue
+
+            # Don't include the starting character in the item pool
+            if name == randomstarter:
                 continue
 
             # Remove more unneccessary items to make room for filler when extra settings aren't enabled

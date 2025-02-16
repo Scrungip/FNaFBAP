@@ -5,6 +5,8 @@ from Options import Toggle
 def FreddyStat(state: CollectionState, player: int) -> int:
     if state.has("Freddy", player):
         return state.count("Progressive Microphone", player)
+    else:
+        return 0
 
 def BonnieStat(state: CollectionState, player: int) -> int:
     if state.has("Bonnie", player):
@@ -29,6 +31,7 @@ def FreddySkill(state: CollectionState, player: int) -> int:
         return state.count("Tophat Toss", player) \
         + state.count("Lead Stinger", player) \
         + state.count("Toreador March", player)
+    else: return 0
 
 def BonnieSkill(state: CollectionState, player: int) -> int:
     if state.has("Bonnie", player):
@@ -49,12 +52,36 @@ def FoxySkill(state: CollectionState, player: int) -> int:
         + state.count("Plank Walk", player)
     else:
         return 0
+    
+def FreddyCanSkill(state: CollectionState, player: int) -> bool:
+    return FreddySkill(state, player) >= 1
+
+def BonnieCanSkill(state: CollectionState, player: int) -> bool:
+    return BonnieSkill(state, player) >= 1
+
+def ChicaCanSkill(state: CollectionState, player: int) -> bool:
+    return ChicaSkill(state, player) >= 1
+
+def FoxyCanSkill(state: CollectionState, player: int) -> bool:
+    return FoxySkill(state, player) >= 1
 
 def PartyCount(state: CollectionState, player: int) -> int:
     return state.count("Freddy", player) \
     + state.count("Bonnie", player) \
     + state.count("Chica", player) \
-    + state.count("Foxy", player) \
+    + state.count("Foxy", player)
+
+def PartyCanSkill(state: CollectionState, player: int) -> int:
+    partyskill = 0
+    if FreddyCanSkill(state, player):
+        partyskill += 1
+    if BonnieCanSkill(state, player):
+        partyskill += 1
+    if ChicaCanSkill(state, player):
+        partyskill += 1
+    if FoxyCanSkill(state, player):
+        partyskill += 1
+    return partyskill
 
 def TotalAttack(state: CollectionState, player: int) -> int:
     return FreddyStat(state, player) \
@@ -84,17 +111,14 @@ def can_fight_midgame(state: CollectionState, player: int) -> bool:
     return TotalAttack(state, player) >= 3 \
     and TotalDefense(state, player) >= 8 \
     and PartyCount(state, player) >= 2 \
-    and TotalSkills(state, player) >= 1
+    and PartyCanSkill(state, player) >= 1
 
 
 def can_fight_lategame(state: CollectionState, player: int) -> bool:
     return TotalAttack(state, player) >= 19 \
     and TotalDefense(state, player) >= 35 \
     and PartyCount(state, player) >= 4 \
-    and FreddySkill(state, player) >= 1 \
-    and BonnieSkill(state, player) >= 1 \
-    and ChicaSkill(state, player) >= 1 \
-    and FoxySkill(state, player) >= 2
+    and PartyCanSkill(state, player) >= 3
 
 
 def can_fight_postgame(state: CollectionState, player: int) -> bool:
