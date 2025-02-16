@@ -115,8 +115,8 @@ def can_fight_midgame(state: CollectionState, player: int) -> bool:
 
 
 def can_fight_lategame(state: CollectionState, player: int) -> bool:
-    return TotalAttack(state, player) >= 19 \
-    and TotalDefense(state, player) >= 35 \
+    return TotalAttack(state, player) >= 17 \
+    and TotalDefense(state, player) >= 32 \
     and PartyCount(state, player) >= 4 \
     and PartyCanSkill(state, player) >= 3
 
@@ -235,38 +235,49 @@ def set_rules(multiworld: MultiWorld, player: int):
     # Levelsanity
     if multiworld.levelsanity[player] == Toggle.option_true:
         # Freddy
+        multiworld.get_location("Freddy - Level 1", player).access_rule = \
+            lambda state: state.has("Freddy", player)
+        multiworld.get_location("Freddy - Level 2", player).access_rule = \
+            lambda state: state.has("Freddy", player)
+        multiworld.get_location("Freddy - Level 3", player).access_rule = \
+            lambda state: state.has("Freddy", player)
+        multiworld.get_location("Freddy - Level 4", player).access_rule = \
+            lambda state: state.has("Freddy", player)
+        multiworld.get_location("Freddy - Level 5", player).access_rule = \
+            lambda state: state.has("Freddy", player)
+        
         multiworld.get_location("Freddy - Level 6", player).access_rule = \
-            lambda state: can_fight_earlygame(state, player)
+            lambda state: can_fight_earlygame(state, player) and state.has("Freddy", player)
         multiworld.get_location("Freddy - Level 7", player).access_rule = \
-            lambda state: can_fight_earlygame(state, player)
+            lambda state: can_fight_earlygame(state, player) and state.has("Freddy", player)
         multiworld.get_location("Freddy - Level 8", player).access_rule = \
-            lambda state: can_fight_earlygame(state, player)
+            lambda state: can_fight_earlygame(state, player) and state.has("Freddy", player)
         multiworld.get_location("Freddy - Level 9", player).access_rule = \
-            lambda state: can_fight_earlygame(state, player)
+            lambda state: can_fight_earlygame(state, player) and state.has("Freddy", player)
         multiworld.get_location("Freddy - Level 10", player).access_rule = \
-            lambda state: can_fight_earlygame(state, player)
+            lambda state: can_fight_earlygame(state, player) and state.has("Freddy", player)
         
         multiworld.get_location("Freddy - Level 11", player).access_rule = \
-            lambda state: can_fight_midgame(state, player)
+            lambda state: can_fight_midgame(state, player) and state.has("Freddy", player)
         multiworld.get_location("Freddy - Level 12", player).access_rule = \
-            lambda state: can_fight_midgame(state, player)
+            lambda state: can_fight_midgame(state, player) and state.has("Freddy", player)
         multiworld.get_location("Freddy - Level 13", player).access_rule = \
-            lambda state: can_fight_midgame(state, player)
+            lambda state: can_fight_midgame(state, player) and state.has("Freddy", player)
         multiworld.get_location("Freddy - Level 14", player).access_rule = \
-            lambda state: can_fight_midgame(state, player)
+            lambda state: can_fight_midgame(state, player) and state.has("Freddy", player)
         multiworld.get_location("Freddy - Level 15", player).access_rule = \
-            lambda state: can_fight_midgame(state, player)
+            lambda state: can_fight_midgame(state, player) and state.has("Freddy", player)
         
         multiworld.get_location("Freddy - Level 16", player).access_rule = \
-            lambda state: can_fight_lategame(state, player)
+            lambda state: can_fight_lategame(state, player) and state.has("Freddy", player)
         multiworld.get_location("Freddy - Level 17", player).access_rule = \
-            lambda state: can_fight_lategame(state, player)
+            lambda state: can_fight_lategame(state, player) and state.has("Freddy", player)
         multiworld.get_location("Freddy - Level 18", player).access_rule = \
-            lambda state: can_fight_lategame(state, player)
+            lambda state: can_fight_lategame(state, player) and state.has("Freddy", player)
         multiworld.get_location("Freddy - Level 19", player).access_rule = \
-            lambda state: can_fight_lategame(state, player)
+            lambda state: can_fight_lategame(state, player) and state.has("Freddy", player)
         multiworld.get_location("Freddy - Level 20", player).access_rule = \
-            lambda state: can_fight_lategame(state, player)
+            lambda state: can_fight_lategame(state, player) and state.has("Freddy", player)
         # Bonnie
         multiworld.get_location("Bonnie - Level 1", player).access_rule = \
             lambda state: state.has("Bonnie", player)
