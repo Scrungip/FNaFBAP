@@ -98,5 +98,7 @@ item_table: Dict[str, FNaFBItemData] = {
     "MP Boost":                 FNaFBItemData("Filler",     756783_058, weight=1),
     "Attack Boost":             FNaFBItemData("Filler",     756783_059, weight=1),
     "Defense Boost":            FNaFBItemData("Filler",     756783_060, weight=1),
-    "Interior Walls Key":       FNaFBItemData("Filler",     756783_061, weight=1)
+    "Bonus Interior Walls Key": FNaFBItemData("Filler",     756783_061, weight=1),
+    "100 Tokens":               FNaFBItemData("Filler",     756783_062, weight=3),
+    "500 Tokens":                 FNaFBItemData("Filler",     756783_063, weight=2)
 }
