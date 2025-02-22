@@ -1,6 +1,13 @@
 from typing import Dict
 from Options import Choice, Range, Option, Toggle, DeathLink, DefaultOnToggle, OptionSet
 
+class RandomStarter(Toggle):
+    """
+    Randomizes the character you start with.
+    Dialogue will be changed according to the character you start the game with.
+    """
+    display_name = "Randomize Starting Character"
+
 
 class TradeQuest(Toggle):
     """
@@ -34,6 +41,7 @@ class Levelsanity(Toggle):
 
 
 fnafb_options: Dict[str, type(Option)] = { 
+    "random_starter": RandomStarter,
     "trade_quest": TradeQuest,
     "interior_walls": InteriorWalls,
     "levelsanity": Levelsanity

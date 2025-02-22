@@ -21,7 +21,7 @@ an experience customized for their taste, and different players in the same mult
 
 ### Where do I get a YAML file?
 
-you can customize your options by visiting the [Five Nights at Fuckboy's Options Page](/games/Five%20Nights%20at%20Fuckboy%27s/player-options).
+You can customize your options by visiting the [Five Nights at Fuckboy's Options Page](/games/Five%20Nights%20at%20Fuckboy%27s/player-options).
 
 ### Connect to the MultiServer
 

@@ -56,7 +56,10 @@ class FNaFBWorld(World):
         total_locations = len(self.multiworld.get_unfilled_locations(self.player))
         chars = ["Freddy", "Bonnie", "Chica", "Foxy"]
         randomstarter = self.multiworld.random.choice(chars)
-        self.multiworld.push_precollected(self.create_item(randomstarter))
+        if self.get_setting("random_starter"):
+            self.multiworld.push_precollected(self.create_item(randomstarter))
+        else:
+            self.multiworld.push_precollected(self.create_item("Freddy"))
         for name, data in item_table.items():
             quantity = data.max_quantity
             category = data.category
