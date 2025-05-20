@@ -70,7 +70,9 @@ class FNaFBWorld(World):
                 continue
 
             # Don't include the starting character in the item pool
-            if name == randomstarter:
+            if name == randomstarter and self.get_setting("random_starter"):
+                continue
+            if name == "Freddy" and not self.get_setting("random_starter"):
                 continue
 
             # Remove more unneccessary items to make room for filler when extra settings aren't enabled
