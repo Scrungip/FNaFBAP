@@ -78,7 +78,7 @@ class FNaFBWorld(World):
             # Remove more unneccessary items to make room for filler when extra settings aren't enabled
             if name == "Dragon Dildo" and self.get_extra_locations() <= 1:
                 continue
-            if category == "Armor" and self.get_extra_locations() <= 1:
+            if category == "ExtraArmor" and self.get_extra_locations() <= 1:
                 continue
             if name == "Fazbear Combo" and self.get_extra_locations() <= 1:
                 continue
@@ -90,7 +90,7 @@ class FNaFBWorld(World):
                 continue
             if name == "Caffeine Revival" and self.get_extra_locations() <= 1:
                 continue
-            if name == "Guitar Smash" and self.get_extra_locations() <= 1:
+            if name == "Guitar Riff" and self.get_extra_locations() <= 1:
                 continue
             if name == "Speed Share" and self.get_extra_locations() <= 1:
                 continue
