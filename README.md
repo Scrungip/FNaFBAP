@@ -36,6 +36,7 @@
 # Game Setup
  After a game has been generated and a room has been created, you may set up your game client.
  Setup for the Game Client is as follows.
+ - (If you haven't already) Install the [RPGMaker VX Ace RTP](https://www.rpgmakerweb.com/run-time-package).
  - Download and extract the latest version of Five Nights at Fuckboy's Archipelago from [our Releases page](https://github.com/Scrungip/FNaFBAP/releases).
  - Open mkxp.json in your text editor of choice. The instructions for that file are within.
  - Open Start Game.bat and begin playing whenever you and your group are ready.
