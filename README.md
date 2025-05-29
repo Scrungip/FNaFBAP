@@ -6,6 +6,7 @@
 # Legal Disclaimer
  Do note that this game is not, and never will be, supported by the main Archipelago team, due to its use of copyrighted assets without the proper rights to do so.
  This game is not permitted to be run or discussed in the official Archipelago Discord servers under any circumstances.
+ If you wish to play this randomizer, it must be done in a seperate group. A good place to find players would be [the Archipelago Unofficial Discord](https://discord.gg/Nu4X9gmGDR).
 
 # Changes to base game
  Some changes were made to make playing this randomizer a more seamless experience. Here's what you need to know.
