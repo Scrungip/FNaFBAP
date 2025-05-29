@@ -3,7 +3,8 @@
  The apworld code is heavily based on [Phar's work for Rogue Legacy](https://github.com/ArchipelagoMW/Archipelago/tree/main/worlds/rogue_legacy), as I'm new to coding and am still somewhat trying to make sense of this stuff personally.
  The game mod itself is using the [RPGMaker-VX-Ace-AP](https://github.com/EggonHub/RPGMaker-VX-Ace-AP) project by [EggonHub](https://github.com/EggonHub) to communicate with AP.
 
- Do note that this game is not, and never will be, supported by the main Archipelago team.
+# Legal Disclaimer
+ Do note that this game is not, and never will be, supported by the main Archipelago team, due to its use of copyrighted assets without the proper rights to do so.
  This game is not permitted to be run or discussed in the official Archipelago Discord servers under any circumstances.
 
 # Changes to base game
