@@ -4,7 +4,7 @@ from BaseClasses import Tutorial, Location, LocationProgressType, CollectionStat
 from worlds.AutoWorld import WebWorld, World
 from .Items import FNaFBItem, FNaFBItemData, get_items_by_category, item_table
 from .Locations import FNaFBLocation, location_table
-from .Options import fnafb_options
+from .Options import FNaFB1Options
 from .Regions import create_regions
 from .Rules import set_rules
 
@@ -26,7 +26,8 @@ class FNaFBWorld(World):
     Are you ready for Freddy?
     """
     game = "Five Nights at Fuckboy's"
-    option_definitions = fnafb_options
+    options_dataclass = FNaFB1Options
+    options: FNaFB1Options
     topology_present = True
     data_version = 4
     required_client_version = (0, 5, 0)
@@ -49,7 +50,7 @@ class FNaFBWorld(World):
         return extra
 
     def fill_slot_data(self) -> dict:
-        return {option_name: self.get_setting(option_name).value for option_name in fnafb_options}
+        return self.options.as_dict(*[name for name in self.options_dataclass.type_hints.keys()])
 
     def create_items(self):
         item_pool: List[FNaFBItem] = []

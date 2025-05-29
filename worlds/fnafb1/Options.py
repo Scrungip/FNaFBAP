@@ -1,5 +1,7 @@
 from typing import Dict
-from Options import Choice, Range, Option, Toggle, DeathLink, DefaultOnToggle, OptionSet
+from Options import Choice, Range, Option, Toggle, DeathLink, DefaultOnToggle, OptionSet, PerGameCommonOptions
+
+from dataclasses import dataclass
 
 class RandomStarter(Toggle):
     """
@@ -40,10 +42,10 @@ class Levelsanity(Toggle):
 #    display_name = "Deathlink"
 
 
-fnafb_options: Dict[str, type(Option)] = { 
-    "random_starter": RandomStarter,
-    "trade_quest": TradeQuest,
-    "interior_walls": InteriorWalls,
-    "levelsanity": Levelsanity
-#    "death_link": DeathLink
-}
+@dataclass
+class FNaFB1Options(PerGameCommonOptions):
+    random_starter: RandomStarter
+    trade_quest: TradeQuest
+    interior_walls: InteriorWalls
+    levelsanity: Levelsanity
+#    death_link: DeathLink
