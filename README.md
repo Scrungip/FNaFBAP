@@ -22,6 +22,7 @@
  - The Puppet no longer has a timer and can be fought by interacting with it in the Restrooms.
  - Interior Walls will only open if the "Reveal Interior Walls" item has been recieved by the player.
  - The door to The Office requires 4 Key Pieces to be obtained before you're allowed to enter. You must also defeat all of the cameras as normal.
+ - Bonnie's "Guitar Smash" skill has been replaced by "Guitar Riff" due to the former not working well for randomizer.
 
 # APWorld Setup
  This randomizer uses [Archipelago](https://github.com/ArchipelagoMW/Archipelago) to handle seed generation.
@@ -36,6 +37,7 @@
 # Game Setup
  After a game has been generated and a room has been created, you may set up your game client.
  Setup for the Game Client is as follows.
+ - (If you haven't already) Install the [RPGMaker VX Ace RTP](https://www.rpgmakerweb.com/run-time-package).
  - Download and extract the latest version of Five Nights at Fuckboy's Archipelago from [our Releases page](https://github.com/Scrungip/FNaFBAP/releases).
  - Open mkxp.json in your text editor of choice. The instructions for that file are within.
  - Open Start Game.bat and begin playing whenever you and your group are ready.
