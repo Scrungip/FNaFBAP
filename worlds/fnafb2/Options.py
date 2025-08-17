@@ -63,7 +63,7 @@ class GrindyChecks(Toggle):
     Turning this on will exclude checks that involve toy freddy using his
     abilities 20 or 40 times.
     """
-    display_anme = "Exclude Grindy Checks"
+    display_name = "Exclude Grindy Checks"
 
 #class DeathLink(Toggle):
 #    """
