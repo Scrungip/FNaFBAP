@@ -3,6 +3,15 @@ from Options import Choice, Range, Option, Toggle, DeathLink, DefaultOnToggle, O
 
 from dataclasses import dataclass
 
+class Goal(Choice):
+    """
+    Specify which ending you'll be required to achieve.
+    """
+    display_name = "Goal"
+    default = 0
+    option_golden_freddy = 0
+    option_puppetmaster_bb = 1
+
 class RandomStarter(Toggle):
     """
     Randomizes the character you start with.
@@ -35,6 +44,14 @@ class Levelsanity(Toggle):
     display_name = "Include Levelsanity"
 
 
+class DeveloperIntrusion(Toggle):
+    """
+    Find my checks.
+    (Adds 6 or 26 locations depending on settings.)
+    """
+    display_name = "Allow Scrungip to enter this Multiworld"
+
+
 #class DeathLink(Toggle):
 #    """
 #    If your party dies, so do your friends! The opposite is also true, of course.
@@ -44,8 +61,10 @@ class Levelsanity(Toggle):
 
 @dataclass
 class FNaFB1Options(PerGameCommonOptions):
+    goal: Goal
     random_starter: RandomStarter
     trade_quest: TradeQuest
     interior_walls: InteriorWalls
     levelsanity: Levelsanity
+    developer_intrusion: DeveloperIntrusion
 #    death_link: DeathLink
