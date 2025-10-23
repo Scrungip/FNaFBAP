@@ -18,7 +18,7 @@ module Archipelago
         def initialize()
             @connect_info = {}
             @terminate = false
-            @client_version = Objects::Version.new(0, 5, 0)
+            @client_version = Objects::Version.new(0, 6, 3)
             @client_connect_status = ConnectStatus::DISCONNECTED
             @data = Data.new()
             @locations = Locations.new(self)

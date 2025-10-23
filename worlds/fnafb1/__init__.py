@@ -30,7 +30,7 @@ class FNaFB1World(World):
     options: FNaFB1Options
     topology_present = True
     data_version = 4
-    required_client_version = (0, 5, 0)
+    required_client_version = (0, 6, 3)
     web = FNaFB1Web()
 
     item_name_to_id = {name: data.code for name, data in item_table.items()}
@@ -62,7 +62,7 @@ class FNaFB1World(World):
         else:
             self.multiworld.push_precollected(self.create_item("Freddy"))
         if self.options.goal == "puppetmaster_bb":
-            self.multiworld.push_precollected("Puppet's Strings")
+            self.multiworld.push_precollected(self.create_item("Puppet's Strings"))
         for name, data in item_table.items():
             quantity = data.max_quantity
             category = data.category

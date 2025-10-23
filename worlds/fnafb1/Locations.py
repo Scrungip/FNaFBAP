@@ -77,7 +77,7 @@ location_table: Dict[str, FNaFB1LocationData] = {
     "Backroom - Toy Bonnie":                                              FNaFB1LocationData("Boss",   756783_047),
     "Restrooms - Toy Chica":                                              FNaFB1LocationData("Boss",   756783_048),
     "Pirate Cove - Mangle":                                               FNaFB1LocationData("Boss",   756783_049),
-    "The Puppet":                                                         FNaFB1LocationData("Boss",   756783_050),
+    "Restrooms - The Puppet":                                             FNaFB1LocationData("Boss",   756783_050),
     "Interior Walls - ???":                                               FNaFB1LocationData("Walls",   756783_051),
     "Office - Golden Freddy":                                             FNaFB1LocationData("Boss",   756783_052),
     # Shops
@@ -147,6 +147,7 @@ location_table: Dict[str, FNaFB1LocationData] = {
     "Pirate Cove - Scrungip":                                             FNaFB1LocationData("Scrungip",     756783_253),
     "West Hall Corner - Scrungip":                                        FNaFB1LocationData("Scrungip",     756783_254),
     "Backroom - The Mirror":                                              FNaFB1LocationData("Scrungip",     756783_255),
-    "Show Stage - Puppermaster BB":                                       FNaFB1LocationData("Puppetmaster", 756783_256)
+    "Show Stage - Puppetmaster BB":                                       FNaFB1LocationData("Puppetmaster", 756783_256),
+    **{f"Scrungip - Level {i+1}":                                         FNaFB1LocationData("ScrungipLevelsanity",  756783_300 + i) for i in range(0, 20)}
 
 }

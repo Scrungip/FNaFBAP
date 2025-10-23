@@ -54,7 +54,7 @@ def create_regions(world: "FNaFB1World"):
                                                  "Restrooms - Camera",
                                                  "Restrooms - Turn in Bonnie's Head Voucher",
                                                  "Restrooms - Toy Chica",
-                                                 "The Puppet",
+                                                 "Restrooms - The Puppet",
                                                  "Restrooms - Beta Party Hat"]),
 
         "Restrooms BB":         FNaFB1RegionData([]),
@@ -73,7 +73,9 @@ def create_regions(world: "FNaFB1World"):
 
         "Scrungip DLC":         FNaFB1RegionData([]),
 
-        "Puppetmaster BB":      FNaFB1RegionData(["Show Stage - Puppermaster BB"])
+        "Scrungip DLC Levels":  FNaFB1RegionData([]),
+
+        "Puppetmaster BB":      FNaFB1RegionData(["Show Stage - Puppetmaster BB"])
     }
 
     # Category hell
@@ -95,6 +97,8 @@ def create_regions(world: "FNaFB1World"):
         regions["Levelsanity"].locations.append(levels)
     for scrungip in get_locations_by_category("Scrungip").keys():
         regions["Scrungip DLC"].locations.append(scrungip)
+    for scrungiplevels in get_locations_by_category("ScrungipLevelsanity").keys():
+        regions["Scrungip DLC Levels"].locations.append(scrungiplevels)
 
     for name, data in regions.items():
         if name == "Interior Walls" and not world.options.interior_walls:
@@ -106,6 +110,8 @@ def create_regions(world: "FNaFB1World"):
         if name == "Levelsanity" and not world.options.levelsanity:
             continue
         if name == "Scrungip DLC" and not world.options.developer_intrusion:
+            continue
+        if name == "Scrungip DLC Levels" and not world.options.developer_intrusion:
             continue
         if name == "Puppermaster BB" and world.options.goal == "golden_freddy":
             continue

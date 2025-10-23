@@ -148,7 +148,7 @@ def set_rules(world: "FNaFB1World", player: int):
     world.get_location("Restrooms - Toy Chica").access_rule = \
         lambda state: can_fight_lategame(state, player) and ChicaStat(state, player) >= 5
     
-    world.get_location("The Puppet").access_rule = \
+    world.get_location("Restrooms - The Puppet").access_rule = \
         lambda state: can_fight_lategame(state, player) and \
             state.can_reach("Show Stage - Toy Freddy", 'Location', player) and \
             state.can_reach("Backroom - Toy Bonnie", 'Location', player) and \
@@ -422,9 +422,49 @@ def set_rules(world: "FNaFB1World", player: int):
             lambda state: state.can_reach("Pirate Cove - Burn the place to the ground", 'Location', player)
         world.get_location("Backroom - The Mirror").access_rule = \
             lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_postgame(state, player)
-    
+        if world.options.levelsanity:
+            world.get_location("Scrungip - Level 1").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player)
+            world.get_location("Scrungip - Level 2").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player)
+            world.get_location("Scrungip - Level 3").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player)
+            world.get_location("Scrungip - Level 4").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player)
+            world.get_location("Scrungip - Level 5").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player)
+            world.get_location("Scrungip - Level 6").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_midgame(state, player)
+            world.get_location("Scrungip - Level 7").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_midgame(state, player)
+            world.get_location("Scrungip - Level 8").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_midgame(state, player)
+            world.get_location("Scrungip - Level 9").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_midgame(state, player)
+            world.get_location("Scrungip - Level 10").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_midgame(state, player)
+            world.get_location("Scrungip - Level 11").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_lategame(state, player)
+            world.get_location("Scrungip - Level 12").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_lategame(state, player)
+            world.get_location("Scrungip - Level 13").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_lategame(state, player)
+            world.get_location("Scrungip - Level 14").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_lategame(state, player)
+            world.get_location("Scrungip - Level 15").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_lategame(state, player)
+            world.get_location("Scrungip - Level 16").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_postgame(state, player)
+            world.get_location("Scrungip - Level 17").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_postgame(state, player)
+            world.get_location("Scrungip - Level 18").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_postgame(state, player)
+            world.get_location("Scrungip - Level 19").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_postgame(state, player)
+            world.get_location("Scrungip - Level 20").access_rule = \
+                lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_postgame(state, player)
     if world.options.goal == "puppetmaster_bb":
-        world.get_location("Hidden Room - Scrungip").access_rule = \
+        world.get_location("Show Stage - Puppetmaster BB").access_rule = \
             lambda state: state.can_reach("Office - Golden Freddy", 'Location', player) and can_fight_postgame(state, player)
     
     # Connect regions at rule runtime
@@ -444,8 +484,7 @@ def set_rules(world: "FNaFB1World", player: int):
         connect_regions(world, "Show Stage", "Interior Walls", lambda state: can_fight_postgame(state, player) and state.has("Reveal Interior Walls", player))
     if world.options.developer_intrusion:
         connect_regions(world, "Show Stage", "Scrungip DLC", lambda state: state.has("Funky Scrungip Token", player))
-    if world.options.goal == "puppetmaster_bb":
-        connect_regions(world, "Office", "Puppetmaster BB")
+        connect_regions(world, "Scrungip DLC", "Scrungip DLC Levels")
     connect_regions(world, "Backroom", "Backroom BB", lambda state: state.has("Backroom BB", player))
     connect_regions(world, "Restrooms", "Restrooms BB", lambda state: state.can_reach("Restrooms - Beta Party Hat", 'Location', player) and state.has("Restrooms BB", player))
     connect_regions(world, "West Hall", "Supply Closet")
@@ -455,7 +494,12 @@ def set_rules(world: "FNaFB1World", player: int):
     connect_regions(world, "East Hall", "East Hall Corner")
     connect_regions(world, "East Hall Corner", "East Hall Corner BB", lambda state: state.can_reach("East Hall Corner - Omega Party Hat", 'Location', player) and state.has("East Hall Corner BB", player))
     connect_regions(world, "East Hall Corner", "Office", lambda state: state.count("Office Key Piece", player) >= 4)
+    if world.options.goal == "puppetmaster_bb":
+        connect_regions(world, "Office", "Puppetmaster BB")
 
 
     # Win Condition
-    world.multiworld.completion_condition[player] = lambda state: state.can_reach("Office - Golden Freddy", 'Location', player)
+    if world.options.goal == "golden_freddy":
+        world.multiworld.completion_condition[player] = lambda state: state.can_reach("Office - Golden Freddy", 'Location', player)
+    if world.options.goal == "puppetmaster_bb":
+        world.multiworld.completion_condition[player] = lambda state: state.can_reach("Show Stage - Puppetmaster BB", 'Location', player)
