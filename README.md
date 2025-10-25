@@ -1,5 +1,5 @@
 # Five Nights at F***boy's: Final Mix Archipelago Randomizer
- This is a mod for Five Night's at F***boy's that targets the Archipelago Multiworld Randomizer.
+ This is a modified version of [Five Night's at F***boy's](https://gamejolt.com/games/fnafbfm/53422) that targets the Archipelago Multiworld Randomizer.
  The apworld code is heavily based on [Phar's work for Rogue Legacy]([https://github.com/ArchipelagoMW/Archipelago/tree/main/worlds/rogue_legacy](https://github.com/ArchipelagoMW/Archipelago/tree/2974f7d11f57e97da00a568b1c03a670fd8938d0/worlds/rogue_legacy)), as I'm new to coding and am still somewhat trying to make sense of this stuff personally.
  The game mod itself is using the [RPGMaker-VX-Ace-AP](https://github.com/EggonHub/RPGMaker-VX-Ace-AP) project by [EggonHub](https://github.com/EggonHub) to communicate with AP.
 
