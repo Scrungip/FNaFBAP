@@ -212,27 +212,27 @@ def set_rules(world: "FNaFB1World", player: int):
 
     # Enemy Trade Item Drops
     if world.options.trade_quest:
-        world.get_location("Dining Area - Trade Beta Voucher").access_rule = \
+        world.get_location("Show Stage - Trade Beta Voucher").access_rule = \
             lambda state: can_fight_earlygame(state, player)
     
     if world.options.trade_quest:
-        world.get_location("Dining Area - Trade Gamma Voucher").access_rule = \
+        world.get_location("Show Stage - Trade Gamma Voucher").access_rule = \
             lambda state: can_fight_midgame(state, player)
     if world.options.trade_quest:
-        world.get_location("Dining Area - Trade Omega Voucher").access_rule = \
+        world.get_location("Show Stage - Trade Omega Voucher").access_rule = \
             lambda state: can_fight_lategame(state, player)
     
     if world.options.trade_quest and world.options.interior_walls:
-        world.get_location("Dining Area - Trade Hearts Voucher").access_rule = \
+        world.get_location("Show Stage - Trade Hearts Voucher").access_rule = \
             lambda state: can_fight_postgame(state, player) and state.has("Reveal Interior Walls", player)
     if world.options.trade_quest and world.options.interior_walls:
-        world.get_location("Dining Area - Trade Spades Voucher").access_rule = \
+        world.get_location("Show Stage - Trade Spades Voucher").access_rule = \
             lambda state: can_fight_postgame(state, player) and state.has("Reveal Interior Walls", player)
     if world.options.trade_quest and world.options.interior_walls:
-        world.get_location("Dining Area - Trade Clubs Voucher").access_rule = \
+        world.get_location("Show Stage - Trade Clubs Voucher").access_rule = \
             lambda state: can_fight_postgame(state, player) and state.has("Reveal Interior Walls", player)
     if world.options.trade_quest and world.options.interior_walls:
-        world.get_location("Dining Area - Trade Diamonds Voucher").access_rule = \
+        world.get_location("Show Stage - Trade Diamonds Voucher").access_rule = \
             lambda state: can_fight_postgame(state, player) and state.has("Reveal Interior Walls", player)
         
     # Levelsanity
@@ -484,7 +484,8 @@ def set_rules(world: "FNaFB1World", player: int):
         connect_regions(world, "Show Stage", "Interior Walls", lambda state: can_fight_postgame(state, player) and state.has("Reveal Interior Walls", player))
     if world.options.developer_intrusion:
         connect_regions(world, "Show Stage", "Scrungip DLC", lambda state: state.has("Funky Scrungip Token", player))
-        connect_regions(world, "Scrungip DLC", "Scrungip DLC Levels")
+        if world.options.levelsanity:
+            connect_regions(world, "Scrungip DLC", "Scrungip DLC Levels")
     connect_regions(world, "Backroom", "Backroom BB", lambda state: state.has("Backroom BB", player))
     connect_regions(world, "Restrooms", "Restrooms BB", lambda state: state.can_reach("Restrooms - Beta Party Hat", 'Location', player) and state.has("Restrooms BB", player))
     connect_regions(world, "West Hall", "Supply Closet")
