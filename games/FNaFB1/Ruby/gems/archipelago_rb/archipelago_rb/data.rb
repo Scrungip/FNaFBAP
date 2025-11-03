@@ -31,13 +31,15 @@ module Archipelago
                 datapackages_to_update = []
 
                 @game_data["datapackage_checksums"].each do |game, checksum|
-                    if !Dir.exist?(File.join(@data_folder, game))
-                        Dir.mkdir(File.join(@data_folder, game))
-                        datapackages_to_update << game
-                    elsif !File.exist?(File.join(@data_folder, game, "#{checksum}.json"))
-                        datapackages_to_update << game
+                    game_dup = game.dup
+                    game_dup.gsub!(/[<>:"\/\\|?*]/, '')
+                    if !Dir.exist?(File.join(@data_folder, game_dup))
+                        Dir.mkdir(File.join(@data_folder, game_dup))
+                        datapackages_to_update << game_dup
+                    elsif !File.exist?(File.join(@data_folder, game_dup, "#{checksum}.json"))
+                        datapackages_to_update << game_dup
                     else
-                        @datapackages[game] = JSON.parse(File.read(File.join(@data_folder, game, "#{checksum}.json")).sub("\xEF\xBB\xBF".force_encoding("UTF-8"), ''))
+                        @datapackages[game_dup] = JSON.parse(File.read(File.join(@data_folder, game_dup, "#{checksum}.json")).sub("\xEF\xBB\xBF".force_encoding("UTF-8"), ''))
                     end
                 end
 
@@ -46,11 +48,13 @@ module Archipelago
 
             def update_datapackages(datapackage)
                 datapackage["data"]["games"].each do |game, datapak|
-                    json_filepath = File.join(@data_folder, game, "#{datapak["checksum"]}.json")
+                    game_dup = game.dup
+                    game_dup.gsub!(/[<>:"\/\\|?*]/, '')
+                    json_filepath = File.join(@data_folder, game_dup, "#{datapak["checksum"]}.json")
                     File.delete(json_filepath) if File.exist?(json_filepath)
                     File.open(json_filepath, 'w') do |file|
                         file.puts datapak.to_json
-                        @datapackages[game] = datapak
+                        @datapackages[game_dup] = datapak
                     end
                 end
             end
