@@ -113,7 +113,7 @@ def create_regions(world: "FNaFB1World"):
             continue
         if name == "Scrungip DLC Levels" and not world.options.developer_intrusion:
             continue
-        if name == "Puppermaster BB" and world.options.goal == "golden_freddy":
+        if name == "Puppetmaster BB" and world.options.goal == "golden_freddy":
             continue
         world.multiworld.regions.append(create_region(world.multiworld, world.player, name, data))
 
