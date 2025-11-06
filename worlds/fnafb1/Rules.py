@@ -465,7 +465,7 @@ def set_rules(world: "FNaFB1World", player: int):
                 lambda state: state.can_reach("Hidden Room - Scrungip", 'Location', player) and state.can_reach("Pirate Cove - Scrungip", 'Location', player) and can_fight_postgame(state, player)
     if world.options.goal == "puppetmaster_bb":
         world.get_location("Show Stage - Puppetmaster BB").access_rule = \
-            lambda state: state.can_reach("Office - Golden Freddy", 'Location', player) and can_fight_postgame(state, player)
+            lambda state: can_fight_postgame(state, player)
     
     # Connect regions at rule runtime
     connect_regions(world, "Menu", "Show Stage")
