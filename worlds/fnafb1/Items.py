@@ -20,6 +20,9 @@ def get_items_by_category(category: str) -> Dict[str, FNaFB1ItemData]:
     for name, data in item_table.items():
         if data.category == category:
             item_dict.setdefault(name, data)
+    for name, data in other_game_item_table.items():
+        if data.category == category:
+            item_dict.setdefault(name, data)
 
     return item_dict
 
@@ -105,4 +108,34 @@ item_table: Dict[str, FNaFB1ItemData] = {
     # Randomizer DLC
     "Puppet's Strings":                 FNaFB1ItemData("DLC",              756783_064, ItemClassification.progression),
     "Funky Scrungip Token":             FNaFB1ItemData("DLC",              756783_065, ItemClassification.progression)
+}
+
+other_game_item_table: Dict[str, FNaFB1ItemData] = {
+    "1-Up Mushroom":                    FNaFB1ItemData("SuperMario",       780000_001, ItemClassification.useful),
+    "Hylian Shield":                    FNaFB1ItemData("3DZelda",          780000_002, ItemClassification.useful),
+    "ChaosEmerald":                     FNaFB1ItemData("Sonic",            780000_003, ItemClassification.useful),
+    "Dreamer's Crown":                  FNaFB1ItemData("Junko",            780000_004, ItemClassification.useful),
+    "Blade":                            FNaFB1ItemData("CaveStory",        780000_005, ItemClassification.useful),
+    "The Big Red Button":               FNaFB1ItemData("Clique",           780000_006, ItemClassification.useful),
+    "Varia Suit":                       FNaFB1ItemData("Metroid",          780000_007, ItemClassification.useful),
+    "Warp Star":                        FNaFB1ItemData("Kirby",            780000_008, ItemClassification.useful),
+    "Dream Nail":                       FNaFB1ItemData("HollowKnight",     780000_009, ItemClassification.useful),
+    "Moon Pearl":                       FNaFB1ItemData("LttP",             780000_010, ItemClassification.useful),
+    "Mega Buster":                      FNaFB1ItemData("MegaMan",          780000_011, ItemClassification.useful),
+    "Roc's Feather":                    FNaFB1ItemData("LADX",             780000_012, ItemClassification.useful),
+    "Lawbot Disguise":                  FNaFB1ItemData("Toontown",         780000_013, ItemClassification.useful),
+    "Hookshot Badge":                   FNaFB1ItemData("HatInTime",        780000_014, ItemClassification.useful),
+    "Reflect Element":                  FNaFB1ItemData("KingdomHearts",    780000_015, ItemClassification.useful),
+    "HM04 Strength":                    FNaFB1ItemData("Pokemon",          780000_016, ItemClassification.useful),
+    "Toy Freddy":                       FNaFB1ItemData("Fuckboys2",        780000_017, ItemClassification.useful),
+    "1 Puzzle Piece":                   FNaFB1ItemData("Jigsaw",           780000_018, ItemClassification.useful),
+    "P":                                FNaFB1ItemData("LiesOfP",          780000_019, ItemClassification.useful),
+    "Star Fox Credits Theme":           FNaFB1ItemData("SMZ3",             780000_020, ItemClassification.trap),
+    "Scooby Snack":                     FNaFB1ItemData("Scooby",           780000_021, ItemClassification.useful),
+    "Anime catboy transformation potion": FNaFB1ItemData("Undertale2",     780000_022, ItemClassification.useful)
+}
+
+full_table: Dict[str, FNaFB1ItemData] = {
+    **item_table,
+    **other_game_item_table
 }
