@@ -21,7 +21,9 @@ def create_regions(world: "FNaFB1World"):
                                                  "Show Stage - Camera",
                                                  "Dining Area - Camera",
                                                  "Kitchen - Chica",
-                                                 "Show Stage - Toy Freddy"]),
+                                                 "Show Stage - Toy Freddy",
+                                                 "Dining Area - Chest",
+                                                 "Dining Area - Dragon Dildo Ritual"]),
         
         "Levelsanity":          FNaFB1RegionData([]),
         
@@ -31,7 +33,8 @@ def create_regions(world: "FNaFB1World"):
 
         "Pirate Cove":          FNaFB1RegionData(["Pirate Cove - Burn the place to the ground",
                                                  "Pirate Cove - Mangle",
-                                                 "Pirate Cove - Camera"]),
+                                                 "Pirate Cove - Camera",
+                                                 "Pirate Cove - Chest"]),
 
         "Supply Closet":        FNaFB1RegionData(["Supply Closet - Chest",
                                                  "Supply Closet - Gamma Party Hat",
@@ -39,7 +42,8 @@ def create_regions(world: "FNaFB1World"):
 
         "Supply Closet BB":     FNaFB1RegionData([]),
 
-        "West Hall":            FNaFB1RegionData(["West Hall - Camera"]),
+        "West Hall":            FNaFB1RegionData(["West Hall - Camera",
+                                                  "West Hall - Chest"]),
 
         "West Hall Corner":     FNaFB1RegionData(["West Hall Corner - Chest",
                                                  "West Hall Corner - Camera"]),
@@ -47,7 +51,8 @@ def create_regions(world: "FNaFB1World"):
         "East Hall":            FNaFB1RegionData(["East Hall - Camera"]),
 
         "East Hall Corner":     FNaFB1RegionData(["East Hall Corner - Camera",
-                                                 "East Hall Corner - Omega Party Hat"]),
+                                                 "East Hall Corner - Omega Party Hat",
+                                                 "East Hall Corner - Chest"]),
         "East Hall Corner BB":  FNaFB1RegionData([]),
 
         "Restrooms":            FNaFB1RegionData(["Restrooms - Chest",
@@ -63,7 +68,8 @@ def create_regions(world: "FNaFB1World"):
                                                  "Backroom - Alpha Party Hat",
                                                  "Backroom - Return Bonnie's Head",
                                                  "Backroom - Toy Bonnie",
-                                                 "Backroom - Alpha Party Hat"]),
+                                                 "Backroom - Alpha Party Hat",
+                                                 "Backroom - Chest"]),
 
         "Backroom BB":          FNaFB1RegionData([]),
 

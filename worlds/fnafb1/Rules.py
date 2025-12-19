@@ -198,6 +198,17 @@ def set_rules(world: "FNaFB1World", player: int):
     world.get_location("Show Stage - Right Chest").access_rule = \
         lambda state: can_fight_lategame(state, player)
     
+    # Final Version Additions
+    world.get_location("Dining Area - Chest").access_rule = \
+        lambda state: can_fight_midgame(state, player)
+    world.get_location("Pirate Cove - Chest").access_rule = \
+        lambda state: can_fight_midgame(state, player) and state.has("Lighter", player)
+    world.get_location("West Hall - Chest").access_rule = \
+        lambda state: can_fight_lategame(state, player)
+    world.get_location("East Hall Corner - Chest").access_rule = \
+        lambda state: can_fight_lategame(state, player)
+    world.get_location("Dining Area - Dragon Dildo Ritual").access_rule = \
+        lambda state: state.has("Progressive Dragon Dildo", player) and state.has("Freddy")
 
     # Story Quests
     world.get_location("Restrooms - Turn in Bonnie's Head Voucher").access_rule = \

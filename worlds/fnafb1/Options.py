@@ -12,12 +12,17 @@ class Goal(Choice):
     option_golden_freddy = 0
     option_puppetmaster_bb = 1
 
-class RandomStarter(Toggle):
+class StartingCharacter(Choice):
     """
-    Randomizes the character you start with.
+    Choose the character you will have at the start of the game.
     Dialogue will be changed according to the character you start the game with.
     """
-    display_name = "Randomize Starting Character"
+    display_name = "Starting Character"
+    default = "random"
+    option_freddy = 0
+    option_bonnie = 1
+    option_chica = 2
+    option_foxy = 3
 
 
 class TradeQuest(Toggle):
@@ -62,7 +67,7 @@ class DeveloperIntrusion(Toggle):
 @dataclass
 class FNaFB1Options(PerGameCommonOptions):
     goal: Goal
-    random_starter: RandomStarter
+    starter: StartingCharacter
     trade_quest: TradeQuest
     interior_walls: InteriorWalls
     levelsanity: Levelsanity

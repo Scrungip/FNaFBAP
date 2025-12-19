@@ -39,7 +39,7 @@ item_table: Dict[str, FNaFB1ItemData] = {
     "Progressive Guitar":               FNaFB1ItemData("BonnieWeapons",    756783_004, ItemClassification.progression,                          6),
     "Progressive Cupcakes":             FNaFB1ItemData("ChicaWeapons",     756783_005, ItemClassification.progression,                          6),
     "Progressive Hook":                 FNaFB1ItemData("FoxyWeapons",      756783_006, ItemClassification.progression,                          6),
-    "Dragon Dildo":                     FNaFB1ItemData("Useful",           756783_007, ItemClassification.useful),
+    "Progressive Dragon Dildo":         FNaFB1ItemData("Dildo",            756783_007, ItemClassification.progression,                          2),
 
     # Skills
     "Tophat Toss":                      FNaFB1ItemData("FreddySkills",     756783_008, ItemClassification.progression),
@@ -111,9 +111,9 @@ item_table: Dict[str, FNaFB1ItemData] = {
 }
 
 other_game_item_table: Dict[str, FNaFB1ItemData] = {
-    "1-Up Mushroom":                    FNaFB1ItemData("SuperMario",       780000_001, ItemClassification.useful),
+    "1-Up Mushroom":                    FNaFB1ItemData("SuperMario",       780000_001),
     "Hylian Shield":                    FNaFB1ItemData("3DZelda",          780000_002, ItemClassification.useful),
-    "ChaosEmerald":                     FNaFB1ItemData("Sonic",            780000_003, ItemClassification.useful),
+    "Chaos Emerald":                    FNaFB1ItemData("Sonic",            780000_003, ItemClassification.useful),
     "Dreamer's Crown":                  FNaFB1ItemData("Junko",            780000_004, ItemClassification.useful),
     "Blade":                            FNaFB1ItemData("CaveStory",        780000_005, ItemClassification.useful),
     "The Big Red Button":               FNaFB1ItemData("Clique",           780000_006, ItemClassification.useful),
@@ -131,8 +131,8 @@ other_game_item_table: Dict[str, FNaFB1ItemData] = {
     "1 Puzzle Piece":                   FNaFB1ItemData("Jigsaw",           780000_018, ItemClassification.useful),
     "P":                                FNaFB1ItemData("LiesOfP",          780000_019, ItemClassification.useful),
     "Star Fox Credits Theme":           FNaFB1ItemData("SMZ3",             780000_020, ItemClassification.trap),
-    "Scooby Snack":                     FNaFB1ItemData("Scooby",           780000_021, ItemClassification.useful),
-    "Anime catboy transformation potion": FNaFB1ItemData("Undertale2",     780000_022, ItemClassification.useful)
+    "Scooby Snack":                     FNaFB1ItemData("Scooby",           780000_021),
+    "Anime catboy transformation potion": FNaFB1ItemData("Undertale2",     780000_022, ItemClassification.trap)
 }
 
 full_table: Dict[str, FNaFB1ItemData] = {

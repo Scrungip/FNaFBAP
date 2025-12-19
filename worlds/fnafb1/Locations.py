@@ -148,6 +148,13 @@ location_table: Dict[str, FNaFB1LocationData] = {
     "West Hall Corner - Scrungip":                                        FNaFB1LocationData("Scrungip",     756783_254),
     "Backroom - The Mirror":                                              FNaFB1LocationData("Scrungip",     756783_255),
     "Show Stage - Puppetmaster BB":                                       FNaFB1LocationData("Puppetmaster", 756783_256),
-    **{f"Scrungip - Level {i+1}":                                         FNaFB1LocationData("ScrungipLevelsanity",  756783_300 + i) for i in range(0, 20)}
+    **{f"Scrungip - Level {i+1}":                                         FNaFB1LocationData("ScrungipLevelsanity",  756783_300 + i) for i in range(0, 20)},
 
+    # For parity with the final builds of the original game
+    "Dining Area - Chest":                                                FNaFB1LocationData("General",      780000_001),
+    "Pirate Cove - Chest":                                                FNaFB1LocationData("General",      780000_002),
+    "West Hall - Chest":                                                  FNaFB1LocationData("General",      780000_003),
+    "East Hall Corner - Chest":                                           FNaFB1LocationData("General",      780000_004),
+    "Backroom - Chest":                                                   FNaFB1LocationData("General",      780000_005),
+    "Dining Area - Dragon Dildo Ritual":                                  FNaFB1LocationData("General",      780000_006)
 }
