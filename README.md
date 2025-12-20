@@ -20,7 +20,7 @@
  - Some armors that don't normally show up during typical play appear in the randomizer to spice things up a bit.
  - A Vending Machine has been enabled in the Dining Area since B.B. no longer gives standard items.
  - The Puppet no longer has a timer and can be fought by interacting with it in the Restrooms.
- - Interior Walls will only open if the "Reveal Interior Walls" item has been recieved by the player.
+ - Interior Walls will only open if the "Reveal Interior Walls" item has been received by the player.
  - The door to The Office requires 4 Key Pieces to be obtained before you're allowed to enter. You must also defeat all of the cameras as normal.
  - Bonnie's "Guitar Smash" skill has been replaced by "Guitar Riff" due to the former not working well for randomizer.
 
