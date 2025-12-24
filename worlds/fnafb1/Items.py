@@ -132,7 +132,9 @@ other_game_item_table: Dict[str, FNaFB1ItemData] = {
     "P":                                FNaFB1ItemData("LiesOfP",          780000_019, ItemClassification.useful),
     "Star Fox Credits Theme":           FNaFB1ItemData("SMZ3",             780000_020, ItemClassification.trap),
     "Scooby Snack":                     FNaFB1ItemData("Scooby",           780000_021),
-    "Anime catboy transformation potion": FNaFB1ItemData("Undertale2",     780000_022, ItemClassification.trap)
+    "Anime catboy transformation potion": FNaFB1ItemData("Undertale2",     780000_022, ItemClassification.trap),
+    "Lava Badge":                       FNaFB1ItemData("SM64Romhack",      780000_023),
+    "The Fog is Coming":                FNaFB1ItemData("PvZF",             780000_024)
 }
 
 full_table: Dict[str, FNaFB1ItemData] = {

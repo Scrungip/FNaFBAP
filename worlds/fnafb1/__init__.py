@@ -81,9 +81,6 @@ class FNaFB1World(World):
         if self.options.goal == "puppetmaster_bb":
             self.multiworld.push_precollected(self.create_item("Puppet's Strings", ItemClassification.progression))
 
-        # We only want one Dragon Dildo to be progression so we'll use this to track it
-        dildo = 0
-
         # Tracking for Items from other worlds (so they don't end up in the pool multiple times)
         mario = 0
         zelda = 0
@@ -107,6 +104,8 @@ class FNaFB1World(World):
         smz = 0
         scoob = 0
         undertaletwo = 0
+        sm64romhack = 0
+        pvzfusion = 0
 
         for name, data in item_table.items():
             quantity = data.max_quantity
@@ -262,6 +261,14 @@ class FNaFB1World(World):
                     if undertaletwo < 1:
                         undertaletwo += 1
                         item_pool.append(self.create_other_game_item("Anime catboy transformation potion"))
+                if game_name == "SM64 Romhack":
+                    if sm64romhack < 1:
+                        sm64romhack += 1
+                        item_pool.append(self.create_other_game_item("Lava Badge"))
+                if game_name == "Plants Vs Zombies Fusion":
+                    if pvzfusion < 1:
+                        pvzfusion += 1
+                        item_pool.append(self.create_other_game_item("The Fog is Coming"))
 
 
         while len(item_pool) < total_locations:
