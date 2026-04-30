@@ -79,5 +79,6 @@ PokemonNames = {
     "Pokemon Emerald",
     "Pokemon FireRed and LeafGreen",
     "Pokemon Platinum",
-    "Pokemon Red and Blue"
+    "Pokemon Red and Blue",
+    "Pokemon Mystery Dungeon Explorers of Sky"
 }

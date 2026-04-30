@@ -106,6 +106,7 @@ class FNaFB1World(World):
         undertaletwo = 0
         sm64romhack = 0
         pvzfusion = 0
+        dig = 0
 
         for name, data in item_table.items():
             quantity = data.max_quantity
@@ -269,6 +270,10 @@ class FNaFB1World(World):
                     if pvzfusion < 1:
                         pvzfusion += 1
                         item_pool.append(self.create_other_game_item("The Fog is Coming"))
+                if game_name == "Minecraft Dig":
+                    if dig < 1:
+                        dig += 1
+                        item_pool.append(self.create_other_game_item("A Whole Chunk"))
 
 
         while len(item_pool) < total_locations:

@@ -134,7 +134,8 @@ other_game_item_table: Dict[str, FNaFB1ItemData] = {
     "Scooby Snack":                     FNaFB1ItemData("Scooby",           780000_021),
     "Anime catboy transformation potion": FNaFB1ItemData("Undertale2",     780000_022, ItemClassification.trap),
     "Lava Badge":                       FNaFB1ItemData("SM64Romhack",      780000_023),
-    "The Fog is Coming":                FNaFB1ItemData("PvZF",             780000_024)
+    "The Fog is Coming":                FNaFB1ItemData("PvZF",             780000_024, ItemClassification.trap),
+    "A Whole Chunk":                    FNaFB1ItemData("Dig",              780000_025)
 }
 
 full_table: Dict[str, FNaFB1ItemData] = {
