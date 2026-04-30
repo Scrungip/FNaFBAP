@@ -1,11 +1,25 @@
 {
-  // Hi! Welcome to the mkxp.json settings file. 
-  // You'll need to change some settings first before I'll boot the game. If you're seeing this in Notepad, please turn off word wrap ("Format" -> "Word Wrap").
-  // You should keep the same format as provided with all of your changes. Don't delete any quotation marks (") or commas (,)!
+    // Specify the window width on startup. If set to 0,
+    // it will default to the default resolution width
+    // specific to the RGSS version (640 in RGSS1, 544
+    // in RGSS2 or higher).
+    // (default: 0)
+    //
+"defScreenW": 1088,
 
-  // Please specify where your RTP (Runtime Package) is in case it isn't in the default location.
-  // Make sure to escape any backslashes (\, write these as \\)
-  // Default: [ "C:\\Program Files (x86)\\Common Files\\Enterbrain\\RGSS3\\RPGVXAce" ]
-  "RTP": [ "D:\\RPGVXAce" ],
+    // Specify the window height on startup. If set to 0,
+    // it will default to the default resolution height
+    // specific to the RGSS version (480 in RGSS1, 416
+    // in RGSS2 or higher).
+    // (default: 0)
+    //
+"defScreenH": 832,
 
+    // Add 'rtp1', 'rtp2.zip' and 'game.rgssad' to the asset search path
+    // (multiple allowed). You can use folders, RGSS archives, and any archive
+    // formats supported by PhysicsFS; see the compatibility list at:
+    // https://www.icculus.org/physfs/docs/html/
+    // (default: none)
+    //
+"RTP": ["D:/RPGVXAce"]
 }

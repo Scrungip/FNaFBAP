@@ -18,7 +18,7 @@ module Archipelago
         def initialize()
             @connect_info = {}
             @terminate = false
-            @client_version = Objects::Version.new(0, 6, 3)
+            @client_version = Objects::Version.new(0, 6, 7)
             @client_connect_status = ConnectStatus::DISCONNECTED
             @data = Data.new()
             @locations = Locations.new(self)
@@ -132,7 +132,7 @@ module Archipelago
                     "99999", 
                     @client_version.to_hash, 
                     @connect_info["items_handling"], 
-                    ["AP"], true
+                    ["AP"] + @connect_info["tags"], true
                 )
 
                 @client_socket.send(connect_packet.to_json)
