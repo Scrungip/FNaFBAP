@@ -1,9 +1,9 @@
-from typing import List
+from typing import List, Optional
 
 from BaseClasses import Tutorial, Location, LocationProgressType, CollectionState, MultiWorld, ItemClassification
-from Options import OptionError
+from Options import OptionError, Option
 from worlds.AutoWorld import WebWorld, World
-from .Items import FNaFB1Item, FNaFB1ItemData, get_items_by_category, item_table, other_game_item_table, full_table
+from .Items import FNaFB1Item, FNaFB1ItemData, get_items_by_category, item_table, other_game_item_table, full_table, item_groups
 from .Locations import FNaFB1Location, location_table
 from .Options import FNaFB1Options
 from .Regions import create_regions
@@ -28,13 +28,13 @@ class FNaFB1World(World):
     Are you ready for Freddy?
     """
     game = "Five Nights at Fuckboy's"
+    ut_can_gen_without_yaml = True
     options_dataclass = FNaFB1Options
     options: FNaFB1Options
-    topology_present = True
     data_version = 4
-    required_client_version = (0, 6, 3)
     web = FNaFB1Web()
 
+    item_name_groups =  item_groups
     item_name_to_id = {name: data.code for name, data in full_table.items()}
     location_name_to_id = {name: data.code for name, data in location_table.items()}
 
@@ -54,9 +54,28 @@ class FNaFB1World(World):
     def generate_early(self) -> None:
         if self.options.developer_intrusion and not self.options.interior_walls:
             raise OptionError(f"{self.player_name} has Developer Intrusion enabled without having enabled the Interior Walls as well. This is not supported behavior. Please change your YAML settings.")
+        re_gen_passthrough = getattr(self.multiworld, "re_gen_passthrough", {})
+        if re_gen_passthrough and self.game in re_gen_passthrough:
+            # Get the passed through slot data from the real generation
+            slot_data: dict[str, Any] = re_gen_passthrough[self.game]
+
+            slot_options: dict[str, Any] = slot_data.get("Options", {})
+            # Set all your options here instead of getting them from the yaml
+            for key, value in slot_options.items():
+                opt: Optional[Option] = getattr(self.options, key, None)
+                if opt is not None:
+                    # You can also set .value directly but that won't work if you have OptionSets
+                    setattr(self.options, key, opt.from_any(value))
 
     def fill_slot_data(self) -> dict:
-        return self.options.as_dict(*[name for name in self.options_dataclass.type_hints.keys()])
+        return {
+            "Options": self.options.as_dict("goal", "starter", "trade_quest", "interior_walls", "levelsanity", "developer_intrusion")
+        }
+    
+    @staticmethod
+    def interpret_slot_data(slot_data: dict[str, Any]) -> dict[str, Any]:
+        # Trigger a regen in UT
+        return slot_data
 
     def create_items(self):
         item_pool: List[FNaFB1Item] = []
@@ -108,6 +127,11 @@ class FNaFB1World(World):
         sm64romhack = 0
         pvzfusion = 0
         dig = 0
+        spelunky2 = 0
+        grinch = 0
+        sdc = 0
+        pizza = 0
+        bfbb = 0
 
         for name, data in item_table.items():
             quantity = data.max_quantity
@@ -300,7 +324,6 @@ class FNaFB1World(World):
         data = item_table[name]
         return FNaFB1Item(name, data.classification, data.code, self.player)
     
-
     # I'm stupid and don't know how to make two of the same item be different classifications so I'm just splitting off the dildo
     def create_dildo(self, name: str, classification: ItemClassification = ItemClassification.filler) -> FNaFB1Item:
         data = item_table[name]

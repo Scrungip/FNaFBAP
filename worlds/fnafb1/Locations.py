@@ -78,7 +78,7 @@ location_table: Dict[str, FNaFB1LocationData] = {
     "Restrooms - Toy Chica":                                              FNaFB1LocationData("Boss",   756783_048),
     "Pirate Cove - Mangle":                                               FNaFB1LocationData("Boss",   756783_049),
     "Restrooms - The Puppet":                                             FNaFB1LocationData("Boss",   756783_050),
-    "Interior Walls - ???":                                               FNaFB1LocationData("Walls",   756783_051),
+    "Interior Walls - ???":                                               FNaFB1LocationData("Walls",  756783_051),
     "Office - Golden Freddy":                                             FNaFB1LocationData("Boss",   756783_052),
     # Shops
     "Backroom BB - Item 1":                                               FNaFB1LocationData("BackroomBB",   756783_053),
@@ -157,4 +157,33 @@ location_table: Dict[str, FNaFB1LocationData] = {
     "East Hall Corner - Chest":                                           FNaFB1LocationData("General",      780000_004),
     "Backroom - Chest":                                                   FNaFB1LocationData("General",      780000_005),
     "Dining Area - Dragon Dildo Ritual":                                  FNaFB1LocationData("General",      780000_006)
+}
+
+location_groups: Dict[str, str] = {
+    "Events": list(get_locations_by_category("Quests"),
+                "Dining Area - Punch the fuck out of the kitchen door",
+                "Kitchen - Chica", "Dining Area - Dragon Dildo Ritual"),
+    "Chests": list("Show Stage - Left Chest",
+                   "Show Stage - Right Chest",
+                   "West Hall Corner - Chest",
+                   "Supply Closet - Chest",
+                   "Restrooms - Chest",
+                   "Dining Area - Chest",
+                   "Pirate Cove - Chest",
+                   "West Hall - Chest",
+                   "East Hall Corner - Chest",
+                   "Backroom - Chest"),
+    "Trades": list(get_locations_by_category("Trade")),
+    "Interior Walls Trades": list(get_locations_by_category("TradeIW")),
+    "Interior Walls": list(get_locations_by_category("Walls")),
+    "Bosses": list(get_locations_by_category("Boss"),
+                   "Show Stage - Puppetmaster BB"),
+    "Backroom BB Shop": list(get_locations_by_category("BackroomBB")),
+    "Restrooms BB Shop": list(get_locations_by_category("RestroomsBB")),
+    "Supply Closet BB Shop": list(get_locations_by_category("SupplyClosetBB")),
+    "East Hall Corner BB Shop": list(get_locations_by_category("East Hall BB")),
+    "Cameras": list(get_locations_by_category("Cameras")),
+    "Party Hats": list(get_locations_by_category("PartyHats")),
+    "Levelsanity": list(get_locations_by_category("Levelsanity"), get_locations_by_category("ScrungipLevelsanity")),
+    "Scrungip": list(get_locations_by_category("Scrungip"))
 }

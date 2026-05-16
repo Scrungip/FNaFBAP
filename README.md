@@ -41,4 +41,3 @@
  - Download and extract the latest version of Five Nights at Fuckboy's Archipelago from [our Releases page](https://github.com/Scrungip/FNaFBAP/releases).
  - Open mkxp.json in your text editor of choice. The instructions for that file are within.
  - Open Start Game.bat and begin playing whenever you and your group are ready.
- - It is HIGHLY recommended to have the Archipelago Text Client open alongside your game, as there are currently no indicators when you receive an item.

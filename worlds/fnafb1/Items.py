@@ -147,3 +147,13 @@ full_table: Dict[str, FNaFB1ItemData] = {
     **item_table,
     **other_game_item_table
 }
+
+item_groups: Dict[str, str] = {
+    "Party Members": list(get_items_by_category("Party")),
+    "Weapons": list(get_items_by_category("FreddyWeapons"), get_items_by_category("BonnieWeapons"), get_items_by_category("ChicaWeapons"), get_items_by_category("FoxyWeapons"), get_items_by_category("Dildo")),
+    "Skills": list(get_items_by_category("FreddySkills"), get_items_by_category("BonnieSkills"), get_items_by_category("ChicaSkills"), get_items_by_category("FoxySkills")),
+    "Armor": list(get_items_by_category("Armor"), get_items_by_category("ExtraArmor")),
+    "General Progression": list(get_items_by_category("Quest"), "Funky Scrungip Token"),
+    "Junk": list(get_items_by_category("Filler")),
+    "Cross World Items": list(other_game_item_table.keys)
+}
