@@ -79,7 +79,7 @@ item_table: Dict[str, FNaFB1ItemData] = {
     "Bonnie's Head":                    FNaFB1ItemData("Quest",            756783_038, ItemClassification.progression),
     "Kitchen Key":                      FNaFB1ItemData("Quest",            756783_039, ItemClassification.progression),
     "Reveal Interior Walls":            FNaFB1ItemData("Quest",            756783_040, ItemClassification.progression),
-    "Office Key Piece":                 FNaFB1ItemData("Quest",            756783_041, ItemClassification.progression_skip_balancing,           4),
+    "Office Key Piece":                 FNaFB1ItemData("Quest",            756783_041, ItemClassification.progression_deprioritized_skip_balancing, 4),
     "Backroom BB":                      FNaFB1ItemData("Quest",            756783_042, ItemClassification.progression),
     "Restrooms BB":                     FNaFB1ItemData("Quest",            756783_043, ItemClassification.progression),
     "Supply Closet BB":                 FNaFB1ItemData("Quest",            756783_044, ItemClassification.progression),
@@ -135,7 +135,12 @@ other_game_item_table: Dict[str, FNaFB1ItemData] = {
     "Anime catboy transformation potion": FNaFB1ItemData("Undertale2",     780000_022, ItemClassification.trap),
     "Lava Badge":                       FNaFB1ItemData("SM64Romhack",      780000_023),
     "The Fog is Coming":                FNaFB1ItemData("PvZF",             780000_024, ItemClassification.trap),
-    "A Whole Chunk":                    FNaFB1ItemData("Dig",              780000_025)
+    "A Whole Chunk":                    FNaFB1ItemData("Dig",              780000_025),
+    "Eggplant":                         FNaFB1ItemData("Spelunky2",        780000_026, ItemClassification.useful),
+    "Swinging Hook":                    FNaFB1ItemData("Grinch",           780000_027, ItemClassification.useful),
+    "Robustest Worm":                   FNaFB1ItemData("SDC",              780000_028),
+    "Toppin":                           FNaFB1ItemData("PizzaTower",       780000_029, ItemClassification.useful),
+    "Subaru":                           FNaFB1ItemData("Sponge",           780000_030)
 }
 
 full_table: Dict[str, FNaFB1ItemData] = {

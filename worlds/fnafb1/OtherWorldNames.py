@@ -9,6 +9,8 @@ Zelda3DNames = {
     "Ship of Harkinian",
     "Majora's Mask Recompiled",
     "The Wind Waker"
+    "Skyward Sword",
+    "Twilight Princess"
 }
 
 SonicNames = {
@@ -20,8 +22,7 @@ SonicNames = {
     "Sonic Heroes",
     "Shadow the Hedgehog",
     "Sonic Riders",
-    "Sonic Robo Blast 2",
-    "Sonic Dreams Collection"
+    "Sonic Robo Blast 2"
 }
 
 JunkoNames = {
@@ -37,7 +38,8 @@ MetroidNames = {
     "Metroid Zero Mission",
     "Metroid Fusion",
     "AM2R",
-    "SMZ3"
+    "SMZ3",
+    "Metroid: Samus Returns"
 }
 
 KirbyNames = {
@@ -48,11 +50,13 @@ KirbyNames = {
 }
 
 LttPNames = {
+    "The Legend of Zelda: A Link to the Past",
     "A Link to the Past",
     "SMZ3"
 }
 
 MegaManNames = {
+    "Mega Man",
     "Mega Man 2",
     "Mega Man 3",
     "Mega Man X",

@@ -63,25 +63,26 @@ class FNaFB1World(World):
         total_locations = len(self.multiworld.get_unfilled_locations(self.player))
 
         # Starting Character stuff
-        starter = " "
+        starter = ""
         if self.options.starter == "freddy":
-            self.multiworld.push_precollected(self.create_item("Freddy", ItemClassification.progression))
+            self.multiworld.push_precollected(self.create_item("Freddy"))
             starter = "Freddy"
         if self.options.starter == "bonnie":
-            self.multiworld.push_precollected(self.create_item("Bonnie", ItemClassification.progression))
+            self.multiworld.push_precollected(self.create_item("Bonnie"))
             starter = "Bonnie"
         if self.options.starter == "chica":
-            self.multiworld.push_precollected(self.create_item("Chica", ItemClassification.progression))
+            self.multiworld.push_precollected(self.create_item("Chica"))
             starter = "Chica"
         if self.options.starter == "foxy":
-            self.multiworld.push_precollected(self.create_item("Foxy", ItemClassification.progression))
+            self.multiworld.push_precollected(self.create_item("Foxy"))
             starter = "Foxy"
 
         # Goal stuff
         if self.options.goal == "puppetmaster_bb":
-            self.multiworld.push_precollected(self.create_item("Puppet's Strings", ItemClassification.progression))
+            self.multiworld.push_precollected(self.create_item("Puppet's Strings"))
 
         # Tracking for Items from other worlds (so they don't end up in the pool multiple times)
+        # Can you tell I have no idea what I'm doing
         mario = 0
         zelda = 0
         sonic = 0
@@ -115,8 +116,8 @@ class FNaFB1World(World):
 
             # We only want one progression Dragon Dildo
             if name == "Progressive Dragon Dildo":
-                item_pool.append(self.create_item(name, classification))
-                item_pool.append(self.create_item(name, ItemClassification.useful))
+                item_pool.append(self.create_dildo(name, classification))
+                item_pool.append(self.create_dildo(name, ItemClassification.useful))
                 continue
 
             # Ignore Interior Walls if it's not enabled.
@@ -163,26 +164,22 @@ class FNaFB1World(World):
         # Game names are pulled from OtherWorldNames.py if they are part of a group
         for game_name in self.multiworld.game.values():
             if len(item_pool) < total_locations:
-                for MarioMulti in MarioNames:
-                    if MarioMulti == game_name:
-                        if mario < 1:
-                            mario += 1
-                            item_pool.append(self.create_other_game_item("1-Up Mushroom"))
-                for Zelda3DMulti in Zelda3DNames:
-                    if Zelda3DMulti == game_name:
-                        if zelda < 1:
-                            zelda += 1
-                            item_pool.append(self.create_other_game_item("Hylian Shield"))
-                for SonicMulti in SonicNames:
-                    if SonicMulti == game_name:
-                        if sonic < 1:
-                            sonic += 1
-                            item_pool.append(self.create_other_game_item("Chaos Emerald"))
-                for JunkoMulti in JunkoNames:
-                    if JunkoMulti == game_name:
-                        if junko < 1:
-                            junko += 1
-                            item_pool.append(self.create_other_game_item("Dreamer's Crown"))
+                if game_name in MarioNames:
+                    if mario < 1:
+                        mario += 1
+                        item_pool.append(self.create_other_game_item("1-Up Mushroom"))
+                if game_name in Zelda3DNames:
+                    if zelda < 1:
+                        zelda += 1
+                        item_pool.append(self.create_other_game_item("Hylian Shield"))
+                if game_name in SonicNames:
+                    if sonic < 1:
+                        sonic += 1
+                        item_pool.append(self.create_other_game_item("Chaos Emerald"))
+                if game_name in JunkoNames:
+                    if junko < 1:
+                        junko += 1
+                        item_pool.append(self.create_other_game_item("Dreamer's Crown"))
                 if game_name == "Cave Story":
                     if cavestory < 1:
                         cavestory += 1
@@ -191,35 +188,30 @@ class FNaFB1World(World):
                     if clique < 1:
                         clique += 1
                         item_pool.append(self.create_other_game_item("The Big Red Button"))
-                for MetroidMulti in MetroidNames:
-                    if MetroidMulti == game_name:
-                        if metroid < 1:
-                            metroid += 1
-                            item_pool.append(self.create_other_game_item("Varia Suit"))
-                for KirbyMulti in KirbyNames:
-                    if KirbyMulti == game_name:
-                        if kirby < 1:
-                            kirby += 1
-                            item_pool.append(self.create_other_game_item("Warp Star"))
+                if game_name in MetroidNames:
+                    if metroid < 1:
+                        metroid += 1
+                        item_pool.append(self.create_other_game_item("Varia Suit"))
+                if game_name in KirbyNames:
+                    if kirby < 1:
+                        kirby += 1
+                        item_pool.append(self.create_other_game_item("Warp Star"))
                 if game_name == "Hollow Knight":
                     if hollow < 1:
                         hollow += 1
                         item_pool.append(self.create_other_game_item("Dream Nail"))
-                for LttPMulti in LttPNames:
-                    if LttPMulti == game_name:
-                        if lttp < 1:
-                            lttp += 1
-                            item_pool.append(self.create_other_game_item("Moon Pearl"))
-                for MegaManMulti in MegaManNames:
-                    if MegaManMulti == game_name:
-                        if megaman < 1:
-                            megaman += 1
-                            item_pool.append(self.create_other_game_item("Mega Buster"))
-                for LADXMulti in LADXNames:
-                    if LADXMulti == game_name:
-                        if ladx < 1:
-                            ladx += 1
-                            item_pool.append(self.create_other_game_item("Roc's Feather"))
+                if game_name in LttPNames:
+                    if lttp < 1:
+                        lttp += 1
+                        item_pool.append(self.create_other_game_item("Moon Pearl"))
+                if game_name in MegaManNames:
+                    if megaman < 1:
+                        megaman += 1
+                        item_pool.append(self.create_other_game_item("Mega Buster"))
+                if game_name in LADXNames:
+                    if ladx < 1:
+                        ladx += 1
+                        item_pool.append(self.create_other_game_item("Roc's Feather"))
                 if game_name == "Toontown":
                     if toontown < 1:
                         toontown += 1
@@ -228,16 +220,14 @@ class FNaFB1World(World):
                     if hatintime < 1:
                         hatintime += 1
                         item_pool.append(self.create_other_game_item("Hookshot Badge"))
-                for KingdomHeartsMulti in KingdomHeartsNames:
-                    if KingdomHeartsMulti == game_name:
-                        if kingdom < 1:
-                            kingdom += 1
-                            item_pool.append(self.create_other_game_item("Reflect Element"))
-                for PokemonMulti in PokemonNames:
-                    if PokemonMulti == game_name:
-                        if pokemon < 1:
-                            pokemon += 1
-                            item_pool.append(self.create_other_game_item("HM04 Strength"))
+                if game_name in KingdomHeartsNames:
+                    if kingdom < 1:
+                        kingdom += 1
+                        item_pool.append(self.create_other_game_item("Reflect Element"))
+                if game_name in PokemonNames:
+                    if pokemon < 1:
+                        pokemon += 1
+                        item_pool.append(self.create_other_game_item("HM04 Strength"))
                 if game_name == "Five Nights at Fuckboy's 2":
                     if fuckboys < 1:
                         fuckboys += 1
@@ -274,6 +264,26 @@ class FNaFB1World(World):
                     if dig < 1:
                         dig += 1
                         item_pool.append(self.create_other_game_item("A Whole Chunk"))
+                if game_name == "Spelunky 2":
+                    if spelunky2 < 1:
+                        spelunky2 += 1
+                        item_pool.append(self.create_other_game_item("Eggplant"))
+                if game_name == "The Grinch":
+                    if grinch < 1:
+                        grinch += 1
+                        item_pool.append(self.create_other_game_item("Swinging Hook"))
+                if game_name == "Sonic Dreams Collection":
+                    if sdc < 1:
+                        sdc += 1
+                        item_pool.append(self.create_other_game_item("Robustest Worm"))
+                if game_name == "Pizza Tower":
+                    if pizza < 1:
+                        pizza += 1
+                        item_pool.append(self.create_other_game_item("Toppin"))
+                if game_name == "Battle for Bikini Bottom":
+                    if bfbb < 1:
+                        bfbb += 1
+                        item_pool.append(self.create_other_game_item("Subaru"))
 
 
         while len(item_pool) < total_locations:
@@ -286,7 +296,13 @@ class FNaFB1World(World):
         weights = [data.weight for data in fillers.values()]
         return self.random.choices([filler for filler in fillers.keys()], weights, k=1)[0]
 
-    def create_item(self, name: str, classification: ItemClassification = ItemClassification.filler) -> FNaFB1Item:
+    def create_item(self, name: str) -> FNaFB1Item:
+        data = item_table[name]
+        return FNaFB1Item(name, data.classification, data.code, self.player)
+    
+
+    # I'm stupid and don't know how to make two of the same item be different classifications so I'm just splitting off the dildo
+    def create_dildo(self, name: str, classification: ItemClassification = ItemClassification.filler) -> FNaFB1Item:
         data = item_table[name]
         return FNaFB1Item(name, classification, data.code, self.player)
     
