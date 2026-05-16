@@ -1,8 +1,9 @@
 {
   "game": "Five Nights at Fuckboy's",
   "authors": ["Scrungip", "EggSlashEther"],
-  "minimum_ap_version": "0.6.4",
+  "minimum_ap_version": "0.6.7",
   "world_version": "1.1.0",
+  "repo_url": "https://github.com/Scrungip/FNaFBAP",
   "version": 7,
   "compatible_version": 7
 }
