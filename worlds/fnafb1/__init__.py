@@ -1,10 +1,10 @@
-from typing import List, Optional
+from typing import List, Optional, Any
 
 from BaseClasses import Tutorial, Location, LocationProgressType, CollectionState, MultiWorld, ItemClassification
 from Options import OptionError, Option
 from worlds.AutoWorld import WebWorld, World
 from .Items import FNaFB1Item, FNaFB1ItemData, get_items_by_category, item_table, other_game_item_table, full_table, item_groups
-from .Locations import FNaFB1Location, location_table
+from .Locations import FNaFB1Location, location_table, location_groups
 from .Options import FNaFB1Options
 from .Regions import create_regions
 from .Rules import set_rules
@@ -34,8 +34,9 @@ class FNaFB1World(World):
     data_version = 4
     web = FNaFB1Web()
 
-    item_name_groups =  item_groups
+    item_name_groups = item_groups
     item_name_to_id = {name: data.code for name, data in full_table.items()}
+    location_name_groups = location_groups
     location_name_to_id = {name: data.code for name, data in location_table.items()}
 
     def get_setting(self, name: str):
@@ -182,7 +183,7 @@ class FNaFB1World(World):
             if data.category == "Filler":
                 continue
 
-            item_pool += [self.create_item(name, classification) for _ in range(0, quantity)]
+            item_pool += [self.create_item(name) for _ in range(0, quantity)]
 
         # Add items depending on other games in the multiworld, make sure they only get added once
         # Game names are pulled from OtherWorldNames.py if they are part of a group
@@ -308,7 +309,6 @@ class FNaFB1World(World):
                     if bfbb < 1:
                         bfbb += 1
                         item_pool.append(self.create_other_game_item("Subaru"))
-
 
         while len(item_pool) < total_locations:
             item_pool.append(self.create_item(self.get_filler_item_name()))
