@@ -61,7 +61,8 @@ MegaManNames = {
     "Mega Man 3",
     "Mega Man X",
     "Mega Man X2",
-    "Mega Man X3"
+    "Mega Man X3",
+    "MegaMan Battle Network 3"
 }
 
 LADXNames = {

@@ -192,123 +192,123 @@ class FNaFB1World(World):
                 if game_name in MarioNames:
                     if mario < 1:
                         mario += 1
-                        item_pool.append(self.create_other_game_item("1-Up Mushroom"))
+                        item_pool.append(self.create_item("1-Up Mushroom"))
                 if game_name in Zelda3DNames:
                     if zelda < 1:
                         zelda += 1
-                        item_pool.append(self.create_other_game_item("Hylian Shield"))
+                        item_pool.append(self.create_item("Hylian Shield"))
                 if game_name in SonicNames:
                     if sonic < 1:
                         sonic += 1
-                        item_pool.append(self.create_other_game_item("Chaos Emerald"))
+                        item_pool.append(self.create_item("Chaos Emerald"))
                 if game_name in JunkoNames:
                     if junko < 1:
                         junko += 1
-                        item_pool.append(self.create_other_game_item("Dreamer's Crown"))
+                        item_pool.append(self.create_item("Dreamer's Crown"))
                 if game_name == "Cave Story":
                     if cavestory < 1:
                         cavestory += 1
-                        item_pool.append(self.create_other_game_item("Blade"))
+                        item_pool.append(self.create_item("Blade"))
                 if game_name == "Clique":
                     if clique < 1:
                         clique += 1
-                        item_pool.append(self.create_other_game_item("The Big Red Button"))
+                        item_pool.append(self.create_item("The Big Red Button"))
                 if game_name in MetroidNames:
                     if metroid < 1:
                         metroid += 1
-                        item_pool.append(self.create_other_game_item("Varia Suit"))
+                        item_pool.append(self.create_item("Varia Suit"))
                 if game_name in KirbyNames:
                     if kirby < 1:
                         kirby += 1
-                        item_pool.append(self.create_other_game_item("Warp Star"))
+                        item_pool.append(self.create_item("Warp Star"))
                 if game_name == "Hollow Knight":
                     if hollow < 1:
                         hollow += 1
-                        item_pool.append(self.create_other_game_item("Dream Nail"))
+                        item_pool.append(self.create_item("Dream Nail"))
                 if game_name in LttPNames:
                     if lttp < 1:
                         lttp += 1
-                        item_pool.append(self.create_other_game_item("Moon Pearl"))
+                        item_pool.append(self.create_item("Moon Pearl"))
                 if game_name in MegaManNames:
                     if megaman < 1:
                         megaman += 1
-                        item_pool.append(self.create_other_game_item("Mega Buster"))
+                        item_pool.append(self.create_item("Mega Buster"))
                 if game_name in LADXNames:
                     if ladx < 1:
                         ladx += 1
-                        item_pool.append(self.create_other_game_item("Roc's Feather"))
+                        item_pool.append(self.create_item("Roc's Feather"))
                 if game_name == "Toontown":
                     if toontown < 1:
                         toontown += 1
-                        item_pool.append(self.create_other_game_item("Lawbot Disguise"))
+                        item_pool.append(self.create_item("Lawbot Disguise"))
                 if game_name == "A Hat in Time":
                     if hatintime < 1:
                         hatintime += 1
-                        item_pool.append(self.create_other_game_item("Hookshot Badge"))
+                        item_pool.append(self.create_item("Hookshot Badge"))
                 if game_name in KingdomHeartsNames:
                     if kingdom < 1:
                         kingdom += 1
-                        item_pool.append(self.create_other_game_item("Reflect Element"))
+                        item_pool.append(self.create_item("Reflect Element"))
                 if game_name in PokemonNames:
                     if pokemon < 1:
                         pokemon += 1
-                        item_pool.append(self.create_other_game_item("HM04 Strength"))
+                        item_pool.append(self.create_item("HM04 Strength"))
                 if game_name == "Five Nights at Fuckboy's 2":
                     if fuckboys < 1:
                         fuckboys += 1
-                        item_pool.append(self.create_other_game_item("Toy Freddy"))
+                        item_pool.append(self.create_item("Toy Freddy"))
                 if game_name == "Jigsaw":
                     if jigsaw < 1:
                         jigsaw += 1
-                        item_pool.append(self.create_other_game_item("1 Puzzle Piece"))
+                        item_pool.append(self.create_item("1 Puzzle Piece"))
                 if game_name == "Lies of P":
                     if p < 1:
                         p += 1
-                        item_pool.append(self.create_other_game_item("P"))
+                        item_pool.append(self.create_item("P"))
                 if game_name == "SMZ3":
                     if smz < 1:
                         smz += 1
-                        item_pool.append(self.create_other_game_item("Star Fox Credits Theme"))
+                        item_pool.append(self.create_item("Star Fox Credits Theme"))
                 if game_name == "Scooby-Doo! Night of 100 Frights":
                     if scoob < 1:
                         scoob += 1
-                        item_pool.append(self.create_other_game_item("Scooby Snack"))
+                        item_pool.append(self.create_item("Scooby Snack"))
                 if game_name == "Undertale 2":
                     if undertaletwo < 1:
                         undertaletwo += 1
-                        item_pool.append(self.create_other_game_item("Anime catboy transformation potion"))
+                        item_pool.append(self.create_item("Anime catboy transformation potion"))
                 if game_name == "SM64 Romhack":
                     if sm64romhack < 1:
                         sm64romhack += 1
-                        item_pool.append(self.create_other_game_item("Lava Badge"))
+                        item_pool.append(self.create_item("Lava Badge"))
                 if game_name == "Plants Vs Zombies Fusion":
                     if pvzfusion < 1:
                         pvzfusion += 1
-                        item_pool.append(self.create_other_game_item("The Fog is Coming"))
+                        item_pool.append(self.create_item("The Fog is Coming"))
                 if game_name == "Minecraft Dig":
                     if dig < 1:
                         dig += 1
-                        item_pool.append(self.create_other_game_item("A Whole Chunk"))
+                        item_pool.append(self.create_item("A Whole Chunk"))
                 if game_name == "Spelunky 2":
                     if spelunky2 < 1:
                         spelunky2 += 1
-                        item_pool.append(self.create_other_game_item("Eggplant"))
+                        item_pool.append(self.create_item("Eggplant"))
                 if game_name == "The Grinch":
                     if grinch < 1:
                         grinch += 1
-                        item_pool.append(self.create_other_game_item("Swinging Hook"))
+                        item_pool.append(self.create_item("Swinging Hook"))
                 if game_name == "Sonic Dreams Collection":
                     if sdc < 1:
                         sdc += 1
-                        item_pool.append(self.create_other_game_item("Robustest Worm"))
+                        item_pool.append(self.create_item("Robustest Worm"))
                 if game_name == "Pizza Tower":
                     if pizza < 1:
                         pizza += 1
-                        item_pool.append(self.create_other_game_item("Toppin"))
+                        item_pool.append(self.create_item("Toppin"))
                 if game_name == "Battle for Bikini Bottom":
                     if bfbb < 1:
                         bfbb += 1
-                        item_pool.append(self.create_other_game_item("Subaru"))
+                        item_pool.append(self.create_item("Subaru"))
 
         while len(item_pool) < total_locations:
             item_pool.append(self.create_item(self.get_filler_item_name()))
@@ -321,17 +321,13 @@ class FNaFB1World(World):
         return self.random.choices([filler for filler in fillers.keys()], weights, k=1)[0]
 
     def create_item(self, name: str) -> FNaFB1Item:
-        data = item_table[name]
+        data = full_table[name]
         return FNaFB1Item(name, data.classification, data.code, self.player)
     
     # I'm stupid and don't know how to make two of the same item be different classifications so I'm just splitting off the dildo
     def create_dildo(self, name: str, classification: ItemClassification = ItemClassification.filler) -> FNaFB1Item:
         data = item_table[name]
         return FNaFB1Item(name, classification, data.code, self.player)
-    
-    def create_other_game_item(self, name: str) -> FNaFB1Item:
-        data = other_game_item_table[name]
-        return FNaFB1Item(name, data.classification, data.code, self.player)
 
     def create_regions(self):
         create_regions(self)
