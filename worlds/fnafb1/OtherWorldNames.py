@@ -35,7 +35,7 @@ MetroidNames = {
     "Super Metroid Map Rando",
     "Subversion",
     "Metroid Prime",
-    "Metroid Zero Mission",
+    "Metroid: Zero Mission",
     "Metroid Fusion",
     "AM2R",
     "SMZ3",

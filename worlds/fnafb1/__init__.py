@@ -9,6 +9,7 @@ from .Options import FNaFB1Options
 from .Regions import create_regions
 from .Rules import set_rules
 from .OtherWorldNames import MarioNames, Zelda3DNames, SonicNames, JunkoNames, MetroidNames, KirbyNames, LttPNames, MegaManNames, LADXNames, KingdomHeartsNames, PokemonNames
+import logging
 
 
 class FNaFB1Web(WebWorld):
@@ -81,6 +82,7 @@ class FNaFB1World(World):
     def create_items(self):
         item_pool: List[FNaFB1Item] = []
         total_locations = len(self.multiworld.get_unfilled_locations(self.player))
+        logger = logging.getLogger(self.player_name)
 
         # Starting Character stuff
         starter = ""
@@ -187,129 +189,137 @@ class FNaFB1World(World):
 
         # Add items depending on other games in the multiworld, make sure they only get added once
         # Game names are pulled from OtherWorldNames.py if they are part of a group
+        validotherworlditems = []
         for game_name in self.multiworld.game.values():
             if len(item_pool) < total_locations:
                 if game_name in MarioNames:
                     if mario < 1:
                         mario += 1
-                        item_pool.append(self.create_item("1-Up Mushroom"))
+                        validotherworlditems.append("1-Up Mushroom")
                 if game_name in Zelda3DNames:
                     if zelda < 1:
                         zelda += 1
-                        item_pool.append(self.create_item("Hylian Shield"))
+                        validotherworlditems.append("Hylian Shield")
                 if game_name in SonicNames:
                     if sonic < 1:
                         sonic += 1
-                        item_pool.append(self.create_item("Chaos Emerald"))
+                        validotherworlditems.append("Chaos Emerald")
                 if game_name in JunkoNames:
                     if junko < 1:
                         junko += 1
-                        item_pool.append(self.create_item("Dreamer's Crown"))
+                        validotherworlditems.append("Dreamer's Crown")
                 if game_name == "Cave Story":
                     if cavestory < 1:
                         cavestory += 1
-                        item_pool.append(self.create_item("Blade"))
+                        validotherworlditems.append("Blade")
                 if game_name == "Clique":
                     if clique < 1:
                         clique += 1
-                        item_pool.append(self.create_item("The Big Red Button"))
+                        validotherworlditems.append("The Big Red Button")
                 if game_name in MetroidNames:
                     if metroid < 1:
                         metroid += 1
-                        item_pool.append(self.create_item("Varia Suit"))
+                        validotherworlditems.append("Varia Suit")
                 if game_name in KirbyNames:
                     if kirby < 1:
                         kirby += 1
-                        item_pool.append(self.create_item("Warp Star"))
+                        validotherworlditems.append("Warp Star")
                 if game_name == "Hollow Knight":
                     if hollow < 1:
                         hollow += 1
-                        item_pool.append(self.create_item("Dream Nail"))
+                        validotherworlditems.append("Dream Nail")
                 if game_name in LttPNames:
                     if lttp < 1:
                         lttp += 1
-                        item_pool.append(self.create_item("Moon Pearl"))
+                        validotherworlditems.append("Moon Pearl")
                 if game_name in MegaManNames:
                     if megaman < 1:
                         megaman += 1
-                        item_pool.append(self.create_item("Mega Buster"))
+                        validotherworlditems.append("Mega Buster")
                 if game_name in LADXNames:
                     if ladx < 1:
                         ladx += 1
-                        item_pool.append(self.create_item("Roc's Feather"))
+                        validotherworlditems.append("Roc's Feather")
                 if game_name == "Toontown":
                     if toontown < 1:
                         toontown += 1
-                        item_pool.append(self.create_item("Lawbot Disguise"))
+                        validotherworlditems.append("Lawbot Disguise")
                 if game_name == "A Hat in Time":
                     if hatintime < 1:
                         hatintime += 1
-                        item_pool.append(self.create_item("Hookshot Badge"))
+                        validotherworlditems.append("Hookshot Badge")
                 if game_name in KingdomHeartsNames:
                     if kingdom < 1:
                         kingdom += 1
-                        item_pool.append(self.create_item("Reflect Element"))
+                        validotherworlditems.append("Reflect Element")
                 if game_name in PokemonNames:
                     if pokemon < 1:
                         pokemon += 1
-                        item_pool.append(self.create_item("HM04 Strength"))
+                        validotherworlditems.append("HM04 Strength")
                 if game_name == "Five Nights at Fuckboy's 2":
                     if fuckboys < 1:
                         fuckboys += 1
-                        item_pool.append(self.create_item("Toy Freddy"))
+                        validotherworlditems.append("Toy Freddy")
                 if game_name == "Jigsaw":
                     if jigsaw < 1:
                         jigsaw += 1
-                        item_pool.append(self.create_item("1 Puzzle Piece"))
+                        validotherworlditems.append("1 Puzzle Piece")
                 if game_name == "Lies of P":
                     if p < 1:
                         p += 1
-                        item_pool.append(self.create_item("P"))
+                        validotherworlditems.append("P")
                 if game_name == "SMZ3":
                     if smz < 1:
                         smz += 1
-                        item_pool.append(self.create_item("Star Fox Credits Theme"))
+                        validotherworlditems.append("Star Fox Credits Theme")
                 if game_name == "Scooby-Doo! Night of 100 Frights":
                     if scoob < 1:
                         scoob += 1
-                        item_pool.append(self.create_item("Scooby Snack"))
+                        validotherworlditems.append("Scooby Snack")
                 if game_name == "Undertale 2":
                     if undertaletwo < 1:
                         undertaletwo += 1
-                        item_pool.append(self.create_item("Anime catboy transformation potion"))
+                        validotherworlditems.append("Anime catboy transformation potion")
                 if game_name == "SM64 Romhack":
                     if sm64romhack < 1:
                         sm64romhack += 1
-                        item_pool.append(self.create_item("Lava Badge"))
+                        validotherworlditems.append("Lava Badge")
                 if game_name == "Plants Vs Zombies Fusion":
                     if pvzfusion < 1:
                         pvzfusion += 1
-                        item_pool.append(self.create_item("The Fog is Coming"))
+                        validotherworlditems.append("The Fog is Coming")
                 if game_name == "Minecraft Dig":
                     if dig < 1:
                         dig += 1
-                        item_pool.append(self.create_item("A Whole Chunk"))
+                        validotherworlditems.append("A Whole Chunk")
                 if game_name == "Spelunky 2":
                     if spelunky2 < 1:
                         spelunky2 += 1
-                        item_pool.append(self.create_item("Eggplant"))
+                        validotherworlditems.append("Eggplant")
                 if game_name == "The Grinch":
                     if grinch < 1:
                         grinch += 1
-                        item_pool.append(self.create_item("Swinging Hook"))
+                        validotherworlditems.append("Swinging Hook")
                 if game_name == "Sonic Dreams Collection":
                     if sdc < 1:
                         sdc += 1
-                        item_pool.append(self.create_item("Robustest Worm"))
+                        validotherworlditems.append("Robustest Worm")
                 if game_name == "Pizza Tower":
                     if pizza < 1:
                         pizza += 1
-                        item_pool.append(self.create_item("Toppin"))
+                        validotherworlditems.append("Toppin")
                 if game_name == "Battle for Bikini Bottom":
                     if bfbb < 1:
                         bfbb += 1
-                        item_pool.append(self.create_item("Subaru"))
+                        validotherworlditems.append("Subaru")
+        self.multiworld.random.shuffle(validotherworlditems)
+        foundmatches = len(validotherworlditems)
+        logger.info(f"{foundmatches} cross-world items found for use in FNaFb, shuffling into the pool")
+        for crossitem in validotherworlditems:
+            if len(item_pool) < total_locations:
+                item_pool.append(self.create_item(crossitem))
 
+        # Filler handling
         while len(item_pool) < total_locations:
             item_pool.append(self.create_item(self.get_filler_item_name()))
 
