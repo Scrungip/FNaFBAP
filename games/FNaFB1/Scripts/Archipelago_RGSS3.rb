@@ -244,7 +244,13 @@
         780000021 => "$game_temp.reserve_common_event(118)", # Scooby Snack
         780000022 => "$game_temp.reserve_common_event(119)", # Anime catboy transformaation potion
         780000023 => "$game_temp.reserve_common_event(120)", # Lava Badge
-        780000024 => "$game_temp.reserve_common_event(121)"  # The Fog is Coming
+        780000024 => "$game_temp.reserve_common_event(121)", # The Fog is Coming
+        780000025 => "$game_temp.reserve_common_event(122)", # A Whole Chunk
+        780000026 => "$game_temp.reserve_common_event(123)", # Eggplant
+        780000027 => "$game_temp.reserve_common_event(124)", # Swinging Hook
+        780000028 => "$game_temp.reserve_common_event(125)", # Robustest Worm
+        780000029 => "$game_temp.reserve_common_event(126)", # Toppin
+        780000030 => "$game_temp.reserve_common_event(127)"  # Subaru
     }
 #==============================================================================
 # ** ADVANCED
@@ -434,17 +440,11 @@
         port = text_input("Port:")
         name = text_input("Seat name:")
         password = text_input("Password (can be blank):")
-        ringlink = text_input("Enable RingLink? (type \"true\" or \"false\"):")
 
         $archipelago.connect_info["hostname"] = hostname.empty? ? "archipelago.gg" : hostname
         $archipelago.connect_info["port"] = port.to_i
         $archipelago.connect_info["name"] = name
         $archipelago.connect_info["password"] = password unless password.empty?
-        if ringlink == "true"
-            $ringlink_enabled = true
-        else
-            $ringlink_enabled = false
-        end
     end
 #--------------------------------------------------------------------------
 # * Create a new TextInput Scene
@@ -488,7 +488,7 @@
     def restart_archipelago
         
         $ap_tags = []
-        $ap_tags.append("RingLink") if $ringlink_enabled
+        $ap_tags.append("RingLink") if $ringlink_enabled = true
 
         $archipelago = Archipelago::Client.new
         $archipelago.connect_info["game"] = $archipelago_gamename
@@ -649,21 +649,21 @@
 # * RingLink: Setup RingLink by adding new methods
 #--------------------------------------------------------------------------
 
-    if $ringlink_enabled
-        $ringlink_uuid = rand(0..1000000)
-        module RingLink_Methods
-            def gain_gold(amount)
-                ringlink_packet = [{cmd: "Bounce", tags: ["RingLink"], data: {time: Time.now.to_i, source: $ringlink_uuid, amount: amount * $ringlink_conversion_rate}}].to_json
+    $ringlink_uuid = rand(0..1000000)
+    module RingLink_Methods
+        def gain_gold(amount)
+            ringlink_packet = [{cmd: "Bounce", tags: ["RingLink"], data: {time: Time.now.to_i, source: $ringlink_uuid, amount: amount * $ringlink_conversion_rate}}].to_json
+            if $ringlink_enabled
                 $archipelago.client_socket.send(ringlink_packet)
-                super(amount)
             end
-
-            def gain_gold_ringlink(amount)
-                @gold = [[@gold + amount, 0].max, max_gold].min
-            end
+            super(amount)
         end
 
-        Game_Party.prepend(RingLink_Methods)
+        def gain_gold_ringlink(amount)
+            @gold = [[@gold + amount, 0].max, max_gold].min
+        end
     end
+
+    Game_Party.prepend(RingLink_Methods)
 
 
