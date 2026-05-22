@@ -314,7 +314,8 @@ class FNaFB1World(World):
                         validotherworlditems.append("Subaru")
         self.multiworld.random.shuffle(validotherworlditems)
         foundmatches = len(validotherworlditems)
-        logger.info(f"{foundmatches} cross-world items found for use in FNaFb, shuffling into the pool")
+        if foundmatches < 0:
+            logger.info(f"{foundmatches} cross-world items found for use in FNaFb, shuffling into the pool")
         for crossitem in validotherworlditems:
             if len(item_pool) < total_locations:
                 item_pool.append(self.create_item(crossitem))
