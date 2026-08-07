@@ -332,7 +332,7 @@ class FNaFB1World(World):
         self.multiworld.random.shuffle(validotherworlditems)
         self.multiworld.random.shuffle(validotherworldpartymembers)
         foundmatches = len(validotherworlditems) + len(validotherworldpartymembers)
-        if foundmatches < 0:
+        if foundmatches > 0:
             logger.info(f"{foundmatches} cross-world items found for use in FNaFb, shuffling into the pool")
         for crossparty in validotherworldpartymembers:
             if len(item_pool) < total_locations:
