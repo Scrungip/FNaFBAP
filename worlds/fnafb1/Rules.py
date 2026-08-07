@@ -482,6 +482,8 @@ def set_rules(world: "FNaFB1World", player: int):
     
     # Connect regions at rule runtime
     connect_regions(world, "Menu", "Show Stage")
+    if "DELTARUNE" in world.multiworld.game.values():
+        connect_regions(world, "Show Stage", "Well, there is a man here.", lambda state: state.has("Freddy", player) and state.has("Bonnie", player) and state.has("Egg", player))
     connect_regions(world, "Show Stage", "Backroom")
     connect_regions(world, "Show Stage", "Restrooms")
     connect_regions(world, "Show Stage", "Pirate Cove")

@@ -140,7 +140,9 @@ other_game_item_table: Dict[str, FNaFB1ItemData] = {
     "Swinging Hook":                    FNaFB1ItemData("Grinch",           780000_027, ItemClassification.useful),
     "Robustest Worm":                   FNaFB1ItemData("SDC",              780000_028),
     "Toppin":                           FNaFB1ItemData("PizzaTower",       780000_029, ItemClassification.useful),
-    "Subaru":                           FNaFB1ItemData("Sponge",           780000_030)
+    "Subaru":                           FNaFB1ItemData("Sponge",           780000_030, ItemClassification.useful),
+    "Egg":                              FNaFB1ItemData("Delta",            780000_031, ItemClassification.progression),
+    "Spring Trap":                      FNaFB1ItemData("SADX",             780000_032, ItemClassification.trap)
 }
 
 full_table: Dict[str, FNaFB1ItemData] = {
@@ -244,5 +246,7 @@ item_groups: Dict[str, str] = {
                           "Swinging Hook",
                           "Robustest Worm",
                           "Toppin",
-                          "Subaru"}
+                          "Subaru",
+                          "Egg",
+                          "Spring Trap"}
 }

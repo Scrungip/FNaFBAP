@@ -135,6 +135,8 @@ class FNaFB1World(World):
         sdc = 0
         pizza = 0
         bfbb = 0
+        delta = 0
+        sadx = 0
 
         for name, data in item_table.items():
             quantity = data.max_quantity
@@ -312,6 +314,14 @@ class FNaFB1World(World):
                     if bfbb < 1:
                         bfbb += 1
                         validotherworlditems.append("Subaru")
+                if game_name == "DELTARUNE":
+                    if delta < 1:
+                        delta += 1
+                        validotherworlditems.append("Egg")
+                if game_name == "Sonic Adventure DX":
+                    if sadx < 1:
+                        sadx += 1
+                        validotherworlditems.append("Spring Trap")
         self.multiworld.random.shuffle(validotherworlditems)
         foundmatches = len(validotherworlditems)
         if foundmatches < 0:

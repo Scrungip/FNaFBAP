@@ -159,6 +159,15 @@ location_table: Dict[str, FNaFB1LocationData] = {
     "Dining Area - Dragon Dildo Ritual":                                  FNaFB1LocationData("General",      780000_006)
 }
 
+bonus_location_table: Dict[str, FNaFB1LocationData] = {
+    "Egg":                                                                FNaFB1LocationData("Bonus",        800000_000)
+}
+
+all_location_tables: Dict[str, FNaFB1LocationData] = {
+    **location_table,
+    **bonus_location_table
+}
+
 location_groups: Dict[str, str] = {
     "Events": {"Restrooms - Turn in Bonnie's Head Voucher",
                "Backroom - Return Bonnie's Head",
@@ -221,5 +230,6 @@ location_groups: Dict[str, str] = {
                  "Hidden Room - Scrungip",
                  "Pirate Cove - Scrungip",
                  "West Hall Corner - Scrungip"},
-    "Scrungip Levels": {*{f"Scrungip- Level {i+1}" for i in range(0, 20)}}
+    "Scrungip Levels": {*{f"Scrungip- Level {i+1}" for i in range(0, 20)}},
+    "Cross World Locations": {"Egg"}
 }

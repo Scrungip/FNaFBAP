@@ -15,14 +15,16 @@ Zelda3DNames = {
 
 SonicNames = {
     "Sonic the Hedgehog 1",
-    "Sonic Adventure DX",
     "Sonic Adventure 2 Battle",
     "Sonic Battle",
     "Sonic Advance 2",
     "Sonic Heroes",
     "Shadow the Hedgehog",
     "Sonic Riders",
-    "Sonic Robo Blast 2"
+    "Sonic Robo Blast 2",
+    "Sonic Generations",
+    "Sonic Frontiers",
+    "Shadow Generations"
 }
 
 JunkoNames = {
@@ -39,7 +41,8 @@ MetroidNames = {
     "Metroid Fusion",
     "AM2R",
     "SMZ3",
-    "Metroid: Samus Returns"
+    "Metroid: Samus Returns",
+    "Metroid Dread"
 }
 
 KirbyNames = {

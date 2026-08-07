@@ -3,7 +3,7 @@ from typing import Dict, List, NamedTuple, Optional, TYPE_CHECKING
 if TYPE_CHECKING:
     from .__init__ import FNaFB1World
 from BaseClasses import MultiWorld, Region
-from .Locations import FNaFB1Location, location_table, get_locations_by_category
+from .Locations import FNaFB1Location, all_location_tables, get_locations_by_category
 from Options import Toggle
 
 
@@ -81,7 +81,8 @@ def create_regions(world: "FNaFB1World"):
 
         "Scrungip DLC Levels":  FNaFB1RegionData([]),
 
-        "Puppetmaster BB":      FNaFB1RegionData(["Show Stage - Puppetmaster BB"])
+        "Puppetmaster BB":      FNaFB1RegionData(["Show Stage - Puppetmaster BB"]),
+        "Well, there is a man here.": FNaFB1RegionData([])
     }
 
     # Category hell
@@ -105,6 +106,8 @@ def create_regions(world: "FNaFB1World"):
         regions["Scrungip DLC"].locations.append(scrungip)
     for scrungiplevels in get_locations_by_category("ScrungipLevelsanity").keys():
         regions["Scrungip DLC Levels"].locations.append(scrungiplevels)
+    if "DELTARUNE" in world.multiworld.game.values():
+        regions["Well, there is a man here."].locations.append("Egg")
 
     for name, data in regions.items():
         if name == "Interior Walls" and not world.options.interior_walls:
@@ -128,7 +131,7 @@ def create_region(multiworld: MultiWorld, player: int, name: str, data: FNaFB1Re
     region = Region(name, player, multiworld)
     if data.locations:
         for loc_name in data.locations:
-            loc_data = location_table.get(loc_name)
+            loc_data = all_location_tables.get(loc_name)
             location = FNaFB1Location(player, loc_name, loc_data.code if loc_data else None, region)
             region.locations.append(location)
 
