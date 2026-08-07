@@ -1,0 +1,33 @@
+name: Create and Release Python APWorld
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      apworld:
+        description: "World folder under worlds/ to build"
+        required: true
+        type: string
+      source_ref:
+        description: "Git ref to build for a manual dry-run"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish-wheel:
+    uses: MultiworldGG/gen-pymod-release/.github/workflows/build.yml@v3
+    with:
+      apworld: ${{ inputs.apworld || '' }}
+      source-ref: ${{ inputs.source_ref || '' }}
+      dry-run: ${{ github.event_name == 'workflow_dispatch' }}
+
+  publish-apworld:
+    uses: MultiworldGG/gen-pymod-release/.github/workflows/build-apworld.yml@v3
+    with:
+      game: "Your Game Name"
+      apworld: ${{ inputs.apworld || '' }}
+      apworld-source-ref: ${{ inputs.source_ref || '' }}
+      dry-run: ${{ github.event_name == 'workflow_dispatch' }}
