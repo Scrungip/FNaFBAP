@@ -5,11 +5,11 @@ on:
   workflow_dispatch:
     inputs:
       apworld:
-        description: "World folder under worlds/ to build"
+        description: "fnafb1"
         required: true
         type: string
       source_ref:
-        description: "Git ref to build for a manual dry-run"
+        description: "1.1.0"
         required: false
         type: string
 
@@ -27,7 +27,7 @@ jobs:
   publish-apworld:
     uses: MultiworldGG/gen-pymod-release/.github/workflows/build-apworld.yml@v3
     with:
-      game: "Your Game Name"
+      game: "Five Nights at Fuckboy's"
       apworld: ${{ inputs.apworld || '' }}
       apworld-source-ref: ${{ inputs.source_ref || '' }}
       dry-run: ${{ github.event_name == 'workflow_dispatch' }}
