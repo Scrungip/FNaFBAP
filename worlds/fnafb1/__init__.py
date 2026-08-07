@@ -189,6 +189,13 @@ class FNaFB1World(World):
 
             item_pool += [self.create_item(name) for _ in range(0, quantity)]
 
+
+        # If more than 8 characters are in the party I will kill myself
+        party_count = 4
+        if self.options.developer_intrusion:
+            party_count += 1
+        validotherworldpartymembers = []
+
         # Add items depending on other games in the multiworld, make sure they only get added once
         # Game names are pulled from OtherWorldNames.py if they are part of a group
         validotherworlditems = []
@@ -261,7 +268,7 @@ class FNaFB1World(World):
                 if game_name == "Five Nights at Fuckboy's 2":
                     if fuckboys < 1:
                         fuckboys += 1
-                        validotherworlditems.append("Toy Freddy")
+                        validotherworldpartymembers.append("Toy Freddy")
                 if game_name == "Jigsaw":
                     if jigsaw < 1:
                         jigsaw += 1
@@ -309,11 +316,11 @@ class FNaFB1World(World):
                 if game_name == "Pizza Tower":
                     if pizza < 1:
                         pizza += 1
-                        validotherworlditems.append("Toppin")
+                        validotherworldpartymembers.append("Toppin")
                 if game_name == "Battle for Bikini Bottom":
                     if bfbb < 1:
                         bfbb += 1
-                        validotherworlditems.append("Subaru")
+                        validotherworldpartymembers.append("Subaru")
                 if game_name == "DELTARUNE":
                     if delta < 1:
                         delta += 1
@@ -321,11 +328,16 @@ class FNaFB1World(World):
                 if game_name == "Sonic Adventure DX":
                     if sadx < 1:
                         sadx += 1
-                        validotherworlditems.append("Spring Trap")
+                        validotherworldpartymembers.append("Spring Trap")
         self.multiworld.random.shuffle(validotherworlditems)
-        foundmatches = len(validotherworlditems)
+        self.multiworld.random.shuffle(validotherworldpartymembers)
+        foundmatches = len(validotherworlditems) + len(validotherworldpartymembers)
         if foundmatches < 0:
             logger.info(f"{foundmatches} cross-world items found for use in FNaFb, shuffling into the pool")
+        for crossparty in validotherworldpartymembers:
+            if len(item_pool) < total_locations:
+                if party_count <= 8:
+                    item_pool.append(self.create_item(crossparty))
         for crossitem in validotherworlditems:
             if len(item_pool) < total_locations:
                 item_pool.append(self.create_item(crossitem))
