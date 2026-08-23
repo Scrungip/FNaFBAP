@@ -199,6 +199,11 @@ class FNaFB1World(World):
         # Add items depending on other games in the multiworld, make sure they only get added once
         # Game names are pulled from OtherWorldNames.py if they are part of a group
         validotherworlditems = []
+
+        # Track how many Cross World items exist
+        foundmatches = 0
+
+
         for game_name in self.multiworld.game.values():
             if len(item_pool) < total_locations:
                 if game_name in MarioNames:
@@ -324,19 +329,20 @@ class FNaFB1World(World):
                 if game_name == "DELTARUNE":
                     if delta < 1:
                         delta += 1
-                        validotherworlditems.append("Egg")
+                        foundmatches += 1
+                        item_pool.append(self.create_item("Egg"))
                 if game_name == "Sonic Adventure DX":
                     if sadx < 1:
                         sadx += 1
                         validotherworldpartymembers.append("Spring Trap")
         self.multiworld.random.shuffle(validotherworlditems)
         self.multiworld.random.shuffle(validotherworldpartymembers)
-        foundmatches = len(validotherworlditems) + len(validotherworldpartymembers)
+        foundmatches += len(validotherworlditems) + len(validotherworldpartymembers)
         if foundmatches > 0:
             logger.info(f"{foundmatches} cross-world items found for use in FNaFb, shuffling into the pool")
         for crossparty in validotherworldpartymembers:
             if len(item_pool) < total_locations:
-                if party_count <= 8:
+                if party_count < 8:
                     item_pool.append(self.create_item(crossparty))
         for crossitem in validotherworlditems:
             if len(item_pool) < total_locations:
