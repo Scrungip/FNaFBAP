@@ -4,12 +4,7 @@
 
 - Five Nights at Fuckboy's Archipelago from the
   [Five Nights at Fuckboy's Archipelago Releases Page](https://github.com/Scrungip/FNaFBAP/releases/latest)
-
-## Recommended Installation Instructions
-
-Please read the README file on the 
-[Five Nights at Fuckboy's GitHub](https://github.com/ThePhar/RogueLegacyRandomizer/blob/master/README.md) page for 
-up-to-date installation instructions.
+- [RPGMaker VX Ace's RTP](https://www.rpgmakerweb.com/run-time-package)
 
 ## Configuring your YAML file
 
@@ -25,6 +20,6 @@ You can customize your options by visiting the [Five Nights at Fuckboy's Options
 
 ### Connect to the MultiServer
 
-In the mkxp.json found within the main install, enter the server, port, and your slot name.
-Save the file and open Start Game.bat. The game will connect after the newspaper fades.
-Your connection info will save to your save data.
+If you use a different install directory than the default for the RPGMaker VX Ace RTP, you'll want to edit this game's `mkxp.json` file to match your local install, the entry is at the bottom.
+
+Open the game using Start_Game.bat, or open the game with the `debug` launch command. This will enable the developer console, which you need to connect to the multiworld. After this, simply start a new game and connection instructions will be given to you.
