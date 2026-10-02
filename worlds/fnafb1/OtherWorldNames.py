@@ -42,7 +42,9 @@ MetroidNames = {
     "AM2R",
     "SMZ3",
     "Metroid: Samus Returns",
-    "Metroid Dread"
+    "Metroid Dread",
+    "Metroid Bread",
+    "Super Metroid - X-Fusion"
 }
 
 KirbyNames = {

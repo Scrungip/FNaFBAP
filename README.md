@@ -1,7 +1,7 @@
 # Five Nights at F***boy's: Final Mix Archipelago Randomizer
  This is a modified version of [Five Night's at F***boy's](https://gamejolt.com/games/fnafbfm/53422) that targets the Archipelago Multiworld Randomizer.
  The apworld code is heavily based on [Phar's work for Rogue Legacy](https://github.com/ArchipelagoMW/Archipelago/tree/2974f7d11f57e97da00a568b1c03a670fd8938d0/worlds/rogue_legacy), as I'm new to coding and am still somewhat trying to make sense of this stuff personally.
- The game mod itself is using the [RPGMaker-VX-Ace-AP](https://github.com/EggonHub/RPGMaker-VX-Ace-AP) project by [EggSlashEther](https://github.com/EggSlashEther) to communicate with AP.
+ The game mod itself is using my fork of [RPGMaker-VX-Ace-AP](https://github.com/Scrungip/RPGMaker-VX-Ace-AP-Maintenance) project originally made by [EggSlashEther](https://github.com/EggSlashEther) to communicate with AP.
 
 # Legal Disclaimer
  Do note that this game is not, and never will be, supported by the main Archipelago team, due to its use of copyrighted assets without the proper rights to do so.
@@ -39,5 +39,5 @@
  Setup for the Game Client is as follows.
  - (If you haven't already) Install the [RPGMaker VX Ace RTP](https://www.rpgmakerweb.com/run-time-package).
  - Download and extract the latest version of Five Nights at Fuckboy's Archipelago from [our Releases page](https://github.com/Scrungip/FNaFBAP/releases).
- - Open mkxp.json in your text editor of choice. The instructions for that file are within.
+ - Open mkxp.json in your text editor of choice, and give it the install path of your RTP.
  - Open Start Game.bat and begin playing whenever you and your group are ready.
